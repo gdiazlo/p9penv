@@ -1,0 +1,22 @@
+#!/usr/local/plan9/bin/rc 
+
+if(! ~ $#* 1) { 
+        echo 'usage: Run title' >[1=2] 
+        exit 1 
+} 
+
+id=`{awk -v 'pat='$1 '$6 ~ pat {print $1}' <{9p read acme/index}} 
+if(~ $#id 0) { 
+        echo 'no match for pattern' >[1=2] 
+        exit 2 
+} 
+if(! ~ $#id 1) { 
+        echo 'ambiguous pattern' >[1=2] 
+        exit 3 
+} 
+if(~ `{wc -w <{9p read acme/$id/rdsel}} 0) { 
+        echo 'no command selected' >[1=2] 
+        exit 4 
+} 
+#exec cat <{9p read acme/$id/rdsel} 
+exec /usr/local/plan9/bin/rc <{9p read acme/$id/rdsel}

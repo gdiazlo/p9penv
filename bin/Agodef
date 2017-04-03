@@ -1,0 +1,4 @@
+#!/usr/local/plan9/bin/9 rc
+
+echo
+godef -acme -a | tail -n+2 | grep -v -e '^[[:space:]]*$'

@@ -1,0 +1,28 @@
+#!/usr/local/plan9/bin/9 rc
+######!/usr/bin/env 9 rc
+
+. 9.rc
+dir=acme/acme/$winid
+
+fn rd {
+	9p read $dir/$1 || { echo 9p failed >[1=2]; exit 9p }
+}
+
+tag=`{rd tag}
+if(~ $tag(1) */){
+	cd $tag(1)
+	go build -o go.out && ./go.out && rm go.out
+}
+if not {
+	if(~ $tag(1) *.go){
+		file=`{basename $tag(1)}
+		dir1=`{dirname $tag(1)}
+		cd $dir1
+		go run $file
+	}
+	if not {
+		echo window $tag(1) is not a directory or Go source file >[1=2]
+        exit 'not a directory or Go source file'
+	}
+}
+

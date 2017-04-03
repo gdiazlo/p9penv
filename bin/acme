@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+mono="Go Mono"
+sans="Go Regular"
+
+s=`cat /tmp/.acme_font_size`
+
+export font="/mnt/font/${sans}/${s}a/font"
+export fixedfont="/mnt/font/${mono}/${s}a/font"
+
+9 plumber &
+
+_cd () {
+	builtin cd "$@" &&
+	case "$TERM!$-" in
+	linux!*)
+		;;
+	*!*i*)
+		awd
+	esac
+}
+alias cd=_cd
+
+SHELL=bash  9 acme -a -c 1 -f "$font" -F "$fixedfont"
+
