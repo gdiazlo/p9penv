@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+# orignal: https://gist.github.com/mikesmullin/6401258
+# based on script by :	Mike Smullin <mike@smullindesign.com>
+# license: GPLv3
+
+filepath=""
+if [ -z "$winid" ]; then
+	filepath=$1
+	shift
+else
+	filepath=$( 9p read acme/$winid/tag | sed 1q | awk '{print $1}' )
+fi
+
+
+workdir=$( dirname $filepath )
+currentdir=$(pwd)
+
+cmd=$*
+if [ -z "$cmd" ]; then
+	echo Usage: Watch [filepath] command
+	exit -1
+fi
+
+sha=0
+update_sha() {
+	sha=`/bin/ls -lR --time-style=full-iso $filepath | sha1sum`
+}
+update_sha
+previous_sha=$sha
+build() {
+	cd $workdir
+	$cmd
+	cd $currentdir
+}
+compare() {
+	update_sha
+	if [[ $sha != $previous_sha ]] ; then
+		build
+		previous_sha=$sha
+	fi
+}
+trap build SIGINT
+trap exit SIGQUIT
+
+while true; do
+	compare
+	sleep 1
+done
+
