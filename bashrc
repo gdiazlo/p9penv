@@ -10,7 +10,7 @@ export GOPATH=$HOME/go
 # set acme environment
 export ACME=$HOME/acme
 
-export PATH=$PATH:$HOME/bin:$ACME/bin:$PLAN9/bin:$GOROOT/bin
+export PATH=$PATH:$HOME/bin:$ACME/bin:$PLAN9/bin:$GOROOT/bin:$GOPATH/bin
 
 # set cd to execute awd when in acme win
 cda () {
@@ -62,8 +62,20 @@ _sfont() {
 
 alias sfont=_sfont
 
-mono="Go Mono"
-sans="Go Regular"
+mono=""
+sans=""
+
+case "$(uname -s)" in
+   Darwin)
+	mono="GoMono"
+	sans="GoRegular"
+     ;;
+
+   Linux)
+	mono="Go Mono"
+	sans="Go Regular"
+     ;;
+esac
 
 _acme() {
 	export font="/mnt/font/${sans}/${acme_font_size}a/font"
