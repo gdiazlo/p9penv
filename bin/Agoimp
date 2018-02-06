@@ -26,7 +26,7 @@ if (aread body | goimports $*>$ftmp >[2]$etmp) {
        }
 }
 if not {
-       sed 's|^/dev/stdin|'^$%^'|' $etmp >[1=2]
+       sed 's|^<standard input>|'^$%^'|' $etmp >[1=2]
 }
 
 rm -f $ftmp $etmp
