@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+user=$1
+IFS=";"
+inventory=("${2}")
+commands=("${3}")
+
+
+IFS=";" 
+for command in ${commands}; do
+     for host in ${inventory}; do
+        ssh -t ${user}@${host} "bash -c \"${command}\""
+    done
+done
