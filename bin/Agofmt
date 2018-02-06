@@ -2,11 +2,13 @@
 ##### !/usr/bin/env 9 rc
 fn aread { 9p read acme/$winid/$1 }
 fn awrite { 9p write acme/$winid/$1 }
+
+atag=`{aread tag | awk '{print $1}'  | sed 's/\//#/g'}
 ftmp=`{mktemp /tmp/Agofmt.XXXXXX}
 etmp=`{mktemp /tmp/Agofmt.XXXXXX}
-if (aread body | gofmt $*>$ftmp >[2]$etmp) {
+if (aread body | gofmt $* >$ftmp >[2]$etmp) {
        # Don't dirty the window if you don't have to
-       if (! aread body | cmp /dev/stdin $ftmp >/dev/null >[2=1]) {
+       if (! aread body | cmp /dev/stdin $ftmp >/dev/null >[2=1]  ) {
                echo -n mark | awrite ctl
                echo -n nomark | awrite ctl
                echo -n , | awrite addr
@@ -19,7 +21,7 @@ if (aread body | gofmt $*>$ftmp >[2]$etmp) {
        }
 }
 if not {
-       sed 's|^/dev/stdin|'^$%^'|' $etmp >[1=2]
+       sed 's|^<standard input>|'^$%^'|' $etmp >[1=2]
 }
 rm -f $ftmp $etmp
 
