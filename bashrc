@@ -84,5 +84,8 @@ _acme() {
 }
 
 alias acme=_acme
+alias acme2="_acme -l $HOME/acme/layout/2cols.dump"
+alias acme3="_acme -l $HOME/acme/layout/3cols.dump"
+
 complete -f nospace _cd acme
 
