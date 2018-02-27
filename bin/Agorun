@@ -1,4 +1,4 @@
-#!/usr/local/plan9/bin/9 rc
+#!/usr/bin/env rc
 ######!/usr/bin/env 9 rc
 
 . 9.rc

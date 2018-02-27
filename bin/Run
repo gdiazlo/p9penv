@@ -1,4 +1,4 @@
-#!/usr/local/plan9/bin/rc 
+#!/usr/bin/env rc
 
 if(! ~ $#* 1) { 
         echo 'usage: Run title' >[1=2] 

@@ -1,4 +1,4 @@
-#!/usr/local/plan9/bin/9 rc
+#!/usr/bin/env rc
 ##### !/usr/bin/env 9 rc
 fn aread { 9p read acme/$winid/$1 }
 fn awrite { 9p write acme/$winid/$1 }
