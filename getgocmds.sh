@@ -20,4 +20,8 @@ go get github.com/josharian/impl
 go get github.com/fatih/gomodifytags
 go get github.com/davidrjenni/reftools/cmd/fillstruct
 
+# other tools
+
+go get rsc.io/mailgun/cmd/mailgun-mail
+go get rsc.io/mailgun/cmd/mailgun-sendmail
 
