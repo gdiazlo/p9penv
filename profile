@@ -39,7 +39,7 @@ pathappend "$HOME/bin" "$ACME/bin" "$GOROOT/bin" "$GOPATH/bin" "$PLAN9/bin"
 
 # start new p9p session
 new_p9p_session() {
-        pkill -9 factotum plumber fontsrv devdraw 
+        pkill -9 factotum plumber fontsrv devdraw mailfs
 	9 plumber &
 	9 fontsrv &
         9 factotum -n &
@@ -146,7 +146,4 @@ alias acme3="_acme -l $HOME/acme/layout/3cols.dump"
 
 complete -f nospace _cd acme
 
-# defaults
-set_font "plan9" "10"
-new_p9p_session
 
