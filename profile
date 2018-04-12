@@ -10,6 +10,8 @@ export GOPATH=$HOME/go
 # set acme environment
 export ACME=$HOME/acme
 export usebigarrow=1
+export EDITOR=editinacme
+export BROWSER=chrome
 
 # check if something is not there
 dirs=("$HOME/lib" "$PLAN9" "$GOROOT" "$GOPATH" "$ACME")
