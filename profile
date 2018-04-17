@@ -39,18 +39,6 @@ pathappend() {
 
 pathappend "$HOME/bin" "$ACME/bin" "$GOROOT/bin" "$GOPATH/bin" "$PLAN9/bin"
 
-# start new p9p session
-new_p9p_session() {
-        pkill -9 factotum plumber fontsrv devdraw mailfs
-	9 plumber &
-	9 fontsrv &
-        9 factotum -n &
-	# if you use factotum for ssh or other keys	
-        # 9 aescbc -d < $HOME/lib/secstore.aes | 9p write -l factotum/ctl
-        # eval `9 ssh-agent -e`
-	set_font 10
-}
-
 new_imap_session() {
 	echo -n "server name: "
 	read server
@@ -139,7 +127,7 @@ alias set_font=_set_font
 
 
 _acme() {
-	SHELL=bash  9 acme -a -c 1 -f "$font" -F "$fixedfont" "$@" 2>&1 >/dev/null
+	SHELL=bash  9 acme -a -c 1 -f "$font" -F "$fixedfont" "$@" 2>&1 >/dev/null &
 }
 
 alias acme=_acme
@@ -149,3 +137,16 @@ alias acme3="_acme -l $HOME/acme/layout/3cols.dump"
 complete -f nospace _cd acme
 
 
+# start new p9p session
+new_p9p_session() {
+	for proc in factotum plumber fontsrv devdraw mailfs; do
+		pkill $proc
+	done
+	$PLAN9/bin/9 plumber &
+	$PLAN9/bin/9 fontsrv &
+        $PLAN9/bin/9 factotum -n &
+	# if you use factotum for ssh or other keys	
+        # 9 aescbc -d < $HOME/lib/secstore.aes | 9p write -l factotum/ctl
+        # eval `9 ssh-agent -e`
+	set_font 10
+}

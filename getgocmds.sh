@@ -19,6 +19,10 @@ go get github.com/godoctor/godoctor
 go get github.com/josharian/impl
 go get github.com/fatih/gomodifytags
 go get github.com/davidrjenni/reftools/cmd/fillstruct
+go get github.com/9fans/go/acme/editinacme
+go get github.com/9fans/go/acme/acmego
+go get github.com/9fans/go/acme/Watch
+
 
 # other tools
 
