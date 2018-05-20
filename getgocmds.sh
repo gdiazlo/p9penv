@@ -22,7 +22,7 @@ go get github.com/davidrjenni/reftools/cmd/fillstruct
 go get github.com/9fans/go/acme/editinacme
 go get github.com/9fans/go/acme/acmego
 go get github.com/9fans/go/acme/Watch
-
+go get github.com/mpl/xplor
 
 # other tools
 
