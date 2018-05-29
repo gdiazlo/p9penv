@@ -60,6 +60,7 @@ cda () {
         linux!*)
                 ;;
         *!*i*)
+		export PS1="\h>"
                 awd
         esac
 }
