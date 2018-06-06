@@ -60,7 +60,7 @@ cda () {
         linux!*)
                 ;;
         *!*i*)
-		export PS1="\h>"
+		
                 awd
         esac
 }
@@ -128,7 +128,7 @@ alias set_font=_set_font
 
 
 _acme() {
-	SHELL=bash  9 acme -a -c 1 -f "$font" -F "$fixedfont" "$@" 2>&1 >/dev/null &
+	SHELL=bash  $PLAN9/bin/acme -a -c 1 -f "$font" -F "$fixedfont" "$@" 2>&1 >/dev/null &
 }
 
 alias acme=_acme
