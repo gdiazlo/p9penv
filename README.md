@@ -4,6 +4,7 @@ Configurations, clients, scripts and guides to work with plan9ports in linux.
 
 Because I always forgot to set up something, I just wanna clone this and be ready.
 
+![simple screenshot](screenshots/simple.png)
 # programs I use
 
 ## general
