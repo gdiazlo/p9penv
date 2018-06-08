@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-
-source $HOME/acme/profile
-
-new_p9p_session
-
