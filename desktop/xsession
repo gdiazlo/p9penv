@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+# create plan9port session
+source ~/acme/profile
+new_p9p_session
+
+export fontname="'Go Mono:style=Regular'"
+export fontsize="11"
+
+export xtermcmd="xterm -fa ${fontname} -fs ${fontsize}"
+
+# get dpi information and set font sizes accordingly
+
+set_font go 11
+xbindkeys
+exec compton --backend glx --unredir-if-possible --vsync opengl-swc &
+exec /usr/local/plan9/bin/rio -term "${xtermcmd}" -virtuals 4 &
+
+sh ~/.fehbg
+
+xconsole

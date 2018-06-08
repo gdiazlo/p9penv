@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=plan9
+Comment=Plan9ports environment
+Exec=/home/gdiazlo/acme/xsession
+Type=XSession
+NoDisplay=false
