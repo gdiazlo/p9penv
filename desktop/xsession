@@ -17,7 +17,9 @@ exec compton --backend glx --unredir-if-possible --vsync opengl-swc &
 exec /usr/local/plan9/bin/rio -term "${xtermcmd}" -virtuals 4 &
 exec dunst &
 exec stalonetray &
-
+exec pulseaudio &
 sh ~/.fehbg
 
+# disable X11 blank screen
+xset s off
 xconsole
