@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#  set plan9 environment
+# set plan9 environment
 export PLAN9=/usr/local/plan9
 
 # set golang environment
@@ -76,6 +76,16 @@ install_go_fonts() {
 	fc-cache -f -v
 }
 
+# install terminus font
+install_terminus_fonts() {
+	cd $(mktemp -d)
+	wget https://files.ax86.net/terminus-ttf/files/latest.zip
+	unzip latest.zip
+	cd terminus-ttf-4.46.0
+	cp *.ttf ~/.fonts
+	fc-cache -f -v
+}
+
 # install cmu fonts
 install_cmu_fonts() {
 	cd $(mktemp -d)
@@ -113,6 +123,13 @@ _set_font() {
 		mono="CMU Typewriter Text Variable Width"
 		sans="CMU Concrete Roman"
 		;;
+	terminus)
+		mono="Terminus (TTF)"
+		sans="Terminus (TTF)"
+		if [ $size -lt 14 ]; then
+			size=14
+		fi
+		;;
 	plan9)
 		export fixedfont="$PLAN9/font/fixed/unicode.8x13.font"
 		export font="$PLAN9/font/lucsans/unicode.8.font"
@@ -137,7 +154,6 @@ alias acme3="_acme -l $HOME/acme/layout/3cols.dump"
 
 complete -f nospace _cd acme
 
-
 # start new p9p session
 new_p9p_session() {
 	for proc in factotum plumber fontsrv devdraw mailfs; do
@@ -149,5 +165,22 @@ new_p9p_session() {
 	# if you use factotum for ssh or other keys	
         # 9 aescbc -d < $HOME/lib/secstore.aes | 9p write -l factotum/ctl
         # eval `9 ssh-agent -e`
-	set_font 10
+	set_font terminus 14
 }
+
+setcolor() {
+	declare -A colors
+	colors[black]="#313131"
+	colors[gray]="#777777"
+	colors[purple]="#bfb1d5"
+	colors[green]="#adddcf"
+	colors[blue]="#abe1fd"
+	colors[orange]="#fed1be"
+	colors[yellow]="#f0e0a2"
+	colors[lightgray]="#e8e7e5"
+	colors[white]="#fafafa"
+
+        echo -ne "\033]11;${colors[$1]}\007"
+        echo -ne "\033]10;${colors[$2]}\007"
+}
+
