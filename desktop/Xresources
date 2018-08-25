@@ -1,0 +1,40 @@
+!XTerm*faceName: xft:CMU Typewriter Text:style=Regular
+XTerm*faceName: xft:Terminus (TTF):style=Bold
+!XTerm*font: -*-terminus-*-*-*-*-*-*-*-*-*-*-*-*
+!XTerm*boldFont: -*-terminus-*-*-*-*-*-*-*-*-*-*-*-*
+!XTerm*italicFont: -*-terminus-*-*-*-*-*-*-*-*-*-*-*-*
+XTerm*utf8: true
+XTerm*vt100*geometry: 80x25
+XTerm*saveLines: 16384
+XTerm*loginShell: true
+XTerm*charClass: 33:48,35:48,37:48,43:48,45-47:48,64:48,95:48,126:48
+XTerm*termName: XTerm-color
+!XTerm*locale: true
+Xterm*vbell: True
+XTerm.underlineURLs: true
+XTerm*inheritPixmap: true
+XTerm*dynamicColors: true
+XTerm*background: #fafafa
+XTerm*foreground: #171717
+xterm*cursorColor: #ff0000
+XTerm*faceSize: 12
+XTerm*faceSize1: 8
+XTerm*faceSize2: 10
+XTerm*faceSize3: 12
+XTerm*faceSize4: 14
+XTerm*faceSize5: 16
+XTerm*faceSize6: 24
+XTerm.vt100.printerCommand: xterm -e sh -c 'most -c <&3' 3<&0
+XTerm.vt100.translations: #override Ctrl ~Meta ~Shift <Key>slash: print-everything()
+
+URxvt.font: xft:Terminus (TTF):size=13
+!URxvt.font: xft:CMU Typewriter Text:size=13
+
+!Xft.dpi:  118
+Xft.autohint: 0
+Xft.lcdfilter: lcddefault
+Xft.hintstyle: hintslight
+Xft.hinting: 1
+Xft.antialias: 1
+Xft.rgba: rgb
+
