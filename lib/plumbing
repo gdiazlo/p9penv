@@ -3,3 +3,17 @@
 editor = acme
 include basic
 
+kind is text
+data matches '[a-zA-Z0-9_\-./~{}@]+('$addr')?'
+data matches '((/[a-zA-Z0-9_\-./]+)@[a-zA-Z0-9_\-./~{}@]+)('$addr')?'
+data set       $1
+arg isdir      $2
+attr add       addr=$4
+plumb to gitfileedit
+plumb client Gitfiles
+
+type is text
+data matches '[a-zA-Z¡-�0-9_\-./]+'
+data matches '([0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f])[0-9a-f]*'
+plumb start rc -c 'cd '''$wdir'''; root=`{git rev-parse --show-toplevel}; rev='''$1'''; {gitfileshow $rev} >[2=1] | nobs | plumb -i -d edit -a ''action=showdata filename=''$root/+$rev'
+

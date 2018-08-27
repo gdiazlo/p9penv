@@ -1,0 +1,8 @@
+#!/bin/bash
+
+source ~/acme/profile
+
+_set_font book 14
+
+_acme $@
+

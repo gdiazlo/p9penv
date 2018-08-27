@@ -1,0 +1,3 @@
+#!/bin/bash
+
+xcalib ~/.icc/dell_u2515h.icc

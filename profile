@@ -11,7 +11,7 @@ export GOPATH=$HOME/go
 export ACME=$HOME/acme
 export usebigarrow=1
 export EDITOR=editinacme
-export BROWSER=chrome
+export BROWSER=chromium
 
 # check if something is not there
 dirs=("$HOME/lib" "$PLAN9" "$GOROOT" "$GOPATH" "$ACME")
@@ -39,20 +39,6 @@ pathappend() {
 
 pathappend "$HOME/bin" "$ACME/bin" "$GOROOT/bin" "$GOPATH/bin" "$PLAN9/bin"
 
-new_imap_session() {
-	echo -n "server name: "
-	read server
-	echo
-	echo -n "user name: "
-	read user
-	echo
-	echo -n "password: "
-	read -s password
-	echo
-	9 factotum -g "proto=pass service=imap server=$server user=$user !password=$password"
-	9 mailfs -t $server
-}
-
 # set cd to execute awd when in acme win
 cda () {
         builtin cd "$@" &&
@@ -66,39 +52,6 @@ cda () {
 }
 alias cd=cda
 complete -f nospace _cd cda
-
-# install go font
-install_go_fonts() {
-	cd $(mktemp -d)
-	git clone https://go.googlesource.com/image
-	mkdir -p ~/.fonts
-	cp image/font/gofont/ttfs/* ~/.fonts
-	fc-cache -f -v
-}
-
-# install terminus font
-install_terminus_fonts() {
-	cd $(mktemp -d)
-	wget https://files.ax86.net/terminus-ttf/files/latest.zip
-	unzip latest.zip
-	cd terminus-ttf-4.46.0
-	cp *.ttf ~/.fonts
-	fc-cache -f -v
-}
-
-# install cmu fonts
-install_cmu_fonts() {
-	cd $(mktemp -d)
-	wget https://kent.dl.sourceforge.net/project/cm-unicode/cm-unicode/0.7.0/cm-unicode-0.7.0-ttf.tar.xz
-	tar xvfJ cm-unicode-0.7.0-ttf.tar.xz
-	cp cm-unicode-0.7.0/*.ttf ~/.fonts
-	fc-cache -f -v
-}
-
-# install fonts in OSX
-install_fonts_osx() {
-	cp ~/.fonts/* ~/Library/Fonts/
-}
 
 _set_font() {
 	family="$1"
@@ -126,13 +79,14 @@ _set_font() {
 	terminus)
 		mono="Terminus (TTF)"
 		sans="Terminus (TTF)"
-		if [ $size -lt 14 ]; then
-			size=14
-		fi
 		;;
+	book)
+		mono="Go Mono"
+		sans="Bitter Regular"
+		;;	
 	plan9)
-		export fixedfont="$PLAN9/font/fixed/unicode.8x13.font"
-		export font="$PLAN9/font/lucsans/unicode.8.font"
+		export fixedfont="/usr/local/plan9/font/pelm/unicode.9.font"
+		export font="/lib/font/bit/lucsans/euro.8.font"
 		return
 		;;
 	esac
@@ -141,46 +95,21 @@ _set_font() {
 	export font="/mnt/font/${sans}/${acme_font_size}a/font"
 }
 
-alias set_font=_set_font
-
-
 _acme() {
-	SHELL=bash  $PLAN9/bin/acme -a -c 1 -f "$font" -F "$fixedfont" "$@" 2>&1 >/dev/null &
+	SHELL=bash  $PLAN9/bin/acme -a -c 1 -f "$font" -F "$fixedfont" "$@" 
 }
-
-alias acme=_acme
-alias acme2="_acme -l $HOME/acme/layout/2cols.dump"
-alias acme3="_acme -l $HOME/acme/layout/3cols.dump"
 
 complete -f nospace _cd acme
 
 # start new p9p session
 new_p9p_session() {
-	for proc in factotum plumber fontsrv devdraw mailfs; do
-		pkill $proc
+	for proc in fontsrv factotum plumber; do
+		pgrep $proc 2>&1 > /dev/null
+		if [ $? -ne 0 ]; then 
+			$PLAN9/bin/9 $proc &
+		fi
 	done
-	$PLAN9/bin/9 plumber &
-	$PLAN9/bin/9 fontsrv &
-        $PLAN9/bin/9 factotum -n &
-	# if you use factotum for ssh or other keys	
-        # 9 aescbc -d < $HOME/lib/secstore.aes | 9p write -l factotum/ctl
-        # eval `9 ssh-agent -e`
-	set_font terminus 14
 }
+new_p9p_session
 
-setcolor() {
-	declare -A colors
-	colors[black]="#313131"
-	colors[gray]="#777777"
-	colors[purple]="#bfb1d5"
-	colors[green]="#adddcf"
-	colors[blue]="#abe1fd"
-	colors[orange]="#fed1be"
-	colors[yellow]="#f0e0a2"
-	colors[lightgray]="#e8e7e5"
-	colors[white]="#fafafa"
-
-        echo -ne "\033]11;${colors[$1]}\007"
-        echo -ne "\033]10;${colors[$2]}\007"
-}
 

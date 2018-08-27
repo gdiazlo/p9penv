@@ -1,6 +1,0 @@
-"xbindkeys_show" 
-  alt + k
-
-"rofi -show run -modi run"
-  alt + r
-
