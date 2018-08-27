@@ -1,19 +1,14 @@
 [Desktop Entry]
-Comment[en_US]=acme editor
-Comment=acme editor
-Exec=acme %u
-GenericName[en_US]=
-GenericName=
+Comment=
+Exec=/home/gdiazlo/acme/bin/kacme
+GenericName=acme editor
 Icon=/usr/local/plan9/mac/spaceglenda.png
-MimeType=
-Name[en_US]=acme editor
-Name=acme editor
-Path=$HOME
+Name=acme
+NoDisplay=false
+Path[$e]=$HOME/
 StartupNotify=true
-Terminal=false
-TerminalOptions=\s--noclose
+Terminal=0
+TerminalOptions=
 Type=Application
-X-DBUS-ServiceName=
-X-DBUS-StartupType=
 X-KDE-SubstituteUID=false
 X-KDE-Username=

@@ -1,19 +1,14 @@
 [Desktop Entry]
-Comment[en_US]=plumber
-Comment=plumber
-Exec=plumb %u
-GenericName[en_US]=
-GenericName=
+Comment=
+Exec=/usr/local/plan9/bin/plumb
+GenericName=plumber
 Icon=/usr/local/plan9/mac/spaceglenda.png
-MimeType=
-Name[en_US]=plumber
 Name=plumber
-Path=~/
+NoDisplay=false
+Path[$e]=$HOME/
 StartupNotify=true
-Terminal=false
+Terminal=0
 TerminalOptions=
 Type=Application
-X-DBUS-ServiceName=
-X-DBUS-StartupType=none
 X-KDE-SubstituteUID=false
 X-KDE-Username=

@@ -1,0 +1,20 @@
+#!/bin/bash
+
+source ~/acme/profile
+
+# get kde fonts
+config=$(cat ~/.config/kdeglobals | grep font)
+
+kfixed=$(echo "$config" | grep ^fixed | cut -f 1 -d, | cut -f2 -d=)
+kfixedsize=$(echo "$config" | grep ^fixed | cut -f2 -d,)
+kfixedstyle=$(echo "$config" | grep ^fixed | cut -f11 -d,)
+kfont=$(echo "$config" | grep ^font | cut -f 1 -d, | cut -f2 -d=)
+kfontsize=$(echo "$config" | grep ^font | cut -f2 -d,)
+kfontstyle=$(echo "$config" | grep ^font | cut -f11 -d,)
+
+export fixedfont="/mnt/font/${kfixed} ${kfixedstyle}/${kfixedsize}a/font"
+export font="/mnt/font/${kfont} ${kfontstyle}/${kfontsize}a/font"
+
+SHELL=bash  $PLAN9/bin/acme -a -c 1 -f "$font" -F "$fixedfont" "$@"
+
+

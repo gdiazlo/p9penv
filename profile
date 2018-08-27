@@ -110,6 +110,8 @@ new_p9p_session() {
 		fi
 	done
 }
-new_p9p_session
 
+if [ ! -z "$DISPLAY" ]; then
+	new_p9p_session
+fi
 
