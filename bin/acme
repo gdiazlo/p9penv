@@ -2,7 +2,7 @@
 
 source ~/acme/profile
 
-_set_font book 14
+_set_font book 12 18
 
 _acme $@
 
