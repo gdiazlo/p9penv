@@ -39,6 +39,9 @@ pathappend() {
 
 pathappend "$HOME/bin" "$ACME/bin" "$GOROOT/bin" "$GOPATH/bin" "$PLAN9/bin"
 
+# prepend goroot/in into path to avoid using gcc-go in system path by default
+export PATH="$GOROOT/bin":$PATH
+
 # set cd to execute awd when in acme win
 cda () {
         builtin cd "$@" &&
@@ -58,9 +61,15 @@ _set_font() {
 	shift
 	size="$1"
 	shift
+	hidpi="$1"
+	shift
 
 	if [[ $size =~ ^[0-9]+$ ]]; then
 		acme_font_size=$size
+	fi
+
+	if [[ $hidpi =~ ^[0-9]+$ ]]; then
+		acme_font_size_hidpi=$hidpi
 	fi
 
 	if [ -z "$family" ]; then
@@ -93,10 +102,12 @@ _set_font() {
 
 	export fixedfont="/mnt/font/${mono}/${acme_font_size}a/font"
 	export font="/mnt/font/${sans}/${acme_font_size}a/font"
+	export hidpifixedfont="/mnt/font/${mono}/${acme_font_size_hidpi}a/font"
+	export hidpifont="/mnt/font/${sans}/${acme_font_size_hidpi}a/font"
 }
 
 _acme() {
-	SHELL=bash  $PLAN9/bin/acme -a -c 1 -f "$font" -F "$fixedfont" "$@" 
+	SHELL=bash  $PLAN9/bin/acme -a -c 1 -f "$font,$hidpifont" -F "$fixedfont,$hidpifixedfont" "$@" 
 }
 
 complete -f nospace _cd acme
