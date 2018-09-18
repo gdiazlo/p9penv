@@ -1,0 +1,18 @@
+[gui]
+	fontui = -family \"CMU Sans Serif\" -size 10 -weight normal -slant roman -underline 0 -overstrike 0
+	fontdiff = -family \"Terminus (TTF)\" -size 10 -weight normal -slant roman -underline 0 -overstrike 0
+
+[pager]
+	diff = false
+
+[core]
+	pager = 
+
+[color]        
+	ui = false
+	branch = false
+	diff = false
+	interactive = false
+	status = false
+	log = false
+
