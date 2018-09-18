@@ -30,7 +30,7 @@ XTerm.vt100.translations: #override Ctrl ~Meta ~Shift <Key>slash: print-everythi
 URxvt.font: xft:Terminus (TTF):size=13
 !URxvt.font: xft:CMU Typewriter Text:size=13
 
-Xft.dpi: 200
+!Xft.dpi: 200
 Xft.autohint: 0
 Xft.lcdfilter: lcddefault
 Xft.hintstyle: hintslight
