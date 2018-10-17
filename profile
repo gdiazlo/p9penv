@@ -85,6 +85,10 @@ _set_font() {
 		mono="CMU Typewriter Text Variable Width"
 		sans="CMU Concrete Roman"
 		;;
+	ibm)
+		mono="IBM Plex Mono Text"
+		sans="IBM Plex Sans Text"
+		;;
 	terminus)
 		mono="Terminus (TTF)"
 		sans="Terminus (TTF)"
