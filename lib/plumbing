@@ -1,6 +1,6 @@
 # to update: cat $HOME/lib/plumbing | 9p write plumb/rules
 
-editor = /home/gdiazlo/acme/bin/kacme
+editor = /home/gdiazlo/acme/bin/acme
 include basic
 
 kind is text
