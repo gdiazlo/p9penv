@@ -6,6 +6,7 @@ export PLAN9=/usr/local/plan9
 # set golang environment
 export GOROOT=/usr/local/go
 export GOPATH=$HOME/go
+export GO111MODULE=on
 
 # set acme environment
 export ACME=$HOME/acme
