@@ -1,7 +1,32 @@
  #!/bin/bash
  
- DEST=~/.fonts
- 
+DEST=~/.fonts
+
+syntax() {
+	fonts=("https://www.wfonts.com/download/data/2016/07/06/syntax-lt-std/syntax-lt-std.zip")
+	install "syntax" "${fonts[@]}"
+}
+
+lucida() {
+	fonts=("https://www.wfonts.com/download/data/2014/11/24/lucida-sans-unicode/lucida-sans-unicode.zip" "https://www.wfonts.com/download/data/2016/07/08/lucida-sans/lucida-sans.zip" "https://www.wfonts.com/download/data/2014/12/30/lucida-sans-typewriter/lucida-sans-typewriter.zip" "https://www.wfonts.com/download/data/2015/10/29/lucida-grande/lucida-grande.zip" "https://www.wfonts.com/download/data/2014/12/30/lucida-calligraphy/lucida-calligraphy.zip" "https://www.wfonts.com/download/data/2014/12/30/lucida-fax/lucida-fax.zip" "https://www.wfonts.com/download/data/2016/05/14/lucida-bright/lucida-bright.zip")
+	install "lucida" "${fonts[@]}"
+}
+
+
+install() {
+	name=$1
+	shift	
+	fonts="$@"
+	for f in $fonts; do 
+		wget $f
+	done
+	for i in $(ls -1 *.zip); do
+		unzip $i
+	done
+	mkdir -p $DEST/$name
+	find ./ -type f \( -iname \*.ttf -o -iname \*.otf \) -exec cp {} $DEST/$name \;
+}
+
 # install go font
 go() {
 	git clone https://go.googlesource.com/image
@@ -33,7 +58,7 @@ bitter() {
 	cp *.otf $DEST/bitter
 }
 
-FONTS=(go terminus computer_modern bitter)
+FONTS=(lucida syntax go terminus computer_modern bitter)
 
 for font in ${FONTS[@]}; do
 	tmp=$(mktemp -d)
@@ -41,7 +66,7 @@ for font in ${FONTS[@]}; do
 	echo Installing $font
 	$font
 	cd
-	rm -rf $tmp
+	echo rm -rf $tmp
 done
 
 fc-cache -f -v
