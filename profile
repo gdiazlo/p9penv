@@ -6,13 +6,16 @@ export PLAN9=/usr/local/plan9
 # set golang environment
 export GOROOT=/usr/local/go
 export GOPATH=$HOME/go
-export GO111MODULE=on
+export GO111MODULE=auto
 
 # set acme environment
 export ACME=$HOME/acme
 export usebigarrow=1
 export EDITOR=editinacme
 export BROWSER=chromium
+
+# set java environment
+export JAVA_HOME=/usr/lib64/java
 
 # check if something is not there
 dirs=("$HOME/lib" "$PLAN9" "$GOROOT" "$GOPATH" "$ACME")
@@ -38,7 +41,7 @@ pathappend() {
   done
 }
 
-pathappend "$HOME/bin" "$ACME/bin" "$GOROOT/bin" "$GOPATH/bin" "$PLAN9/bin"
+pathappend "$HOME/bin" "$ACME/bin" "$GOROOT/bin" "$GOPATH/bin" "$PLAN9/bin" "$JAVA_HOME/bin"
 
 # prepend goroot/in into path to avoid using gcc-go in system path by default
 export PATH="$GOROOT/bin":$PATH
@@ -89,6 +92,18 @@ _set_font() {
 	ibm)
 		mono="IBM Plex Mono Text"
 		sans="IBM Plex Sans Text"
+		;;
+	fira)
+		mono="FiraMono-Regular"
+		sans="FiraSans-Regular"
+		;;
+	lucida)
+		mono="LucidaConsole"
+		sans="LucidaSansUnicode"
+		;;
+	syntax)
+		mono="SyntaxLTStd-Roman"
+		sans="SyntaxLTStd-Roman"
 		;;
 	terminus)
 		mono="Terminus (TTF)"
