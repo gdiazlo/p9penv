@@ -8,7 +8,7 @@ syntax() {
 }
 
 lucida() {
-	fonts=("https://www.wfonts.com/download/data/2014/11/24/lucida-sans-unicode/lucida-sans-unicode.zip" "https://www.wfonts.com/download/data/2016/07/08/lucida-sans/lucida-sans.zip" "https://www.wfonts.com/download/data/2014/12/30/lucida-sans-typewriter/lucida-sans-typewriter.zip" "https://www.wfonts.com/download/data/2015/10/29/lucida-grande/lucida-grande.zip" "https://www.wfonts.com/download/data/2014/12/30/lucida-calligraphy/lucida-calligraphy.zip" "https://www.wfonts.com/download/data/2014/12/30/lucida-fax/lucida-fax.zip" "https://www.wfonts.com/download/data/2016/05/14/lucida-bright/lucida-bright.zip")
+	fonts=("https://www.wfonts.com/download/data/2014/11/24/lucida-sans-unicode/lucida-sans-unicode.zip" "https://www.wfonts.com/download/data/2016/07/08/lucida-sans/lucida-sans.zip" "https://www.wfonts.com/download/data/2014/12/30/lucida-sans-typewriter/lucida-sans-typewriter.zip" "https://www.wfonts.com/download/data/2015/10/29/lucida-grande/lucida-grande.zip" "https://www.wfonts.com/download/data/2014/12/30/lucida-calligraphy/lucida-calligraphy.zip" "https://www.wfonts.com/download/data/2014/12/30/lucida-fax/lucida-fax.zip" "https://www.wfonts.com/download/data/2016/05/14/lucida-bright/lucida-bright.zip" "https://www.wfonts.com/download/data/2016/05/13/lucida-console/lucida-console.zip")
 	install "lucida" "${fonts[@]}"
 }
 

@@ -1,6 +1,9 @@
 !XTerm*faceName: xft:CMU Typewriter Text:style=Regular
 !XTerm*faceName: xft:Terminus (TTF):style=Regular
 !XTerm*faceName: xft:IBM Plex Mono:style=Regular
+!XTerm*faceName: xft:FiraMono:style=Regular
+XTerm*faceName: xft:LucidaConsole:style=Regular
+!XTerm*faceName: xft:Lucida Sans Typewriter:style=Regular
 !XTerm*font: -*-terminus-*-*-*-*-*-*-*-*-*-*-*-*
 !XTerm*boldFont: -*-terminus-*-*-*-*-*-*-*-*-*-*-*-*
 !XTerm*italicFont: -*-terminus-*-*-*-*-*-*-*-*-*-*-*-*
@@ -15,24 +18,25 @@ Xterm*vbell: True
 XTerm.underlineURLs: true
 XTerm*inheritPixmap: true
 XTerm*dynamicColors: true
-XTerm*background: #fafafa
+XTerm*background: #ffffea
 XTerm*foreground: #171717
 xterm*cursorColor: #ff0000
 XTerm*faceSize: 10
-XTerm*faceSize1: 8
-XTerm*faceSize2: 10
-XTerm*faceSize3: 12
-XTerm*faceSize4: 14
+XTerm*faceSize1: 6
+XTerm*faceSize2: 8
+XTerm*faceSize3: 10
+XTerm*faceSize4: 12
 XTerm*faceSize5: 16
 XTerm*faceSize6: 24
 XTerm.vt100.printerCommand: xterm -e sh -c 'most -c <&3' 3<&0
 XTerm.vt100.translations: #override Ctrl ~Meta ~Shift <Key>slash: print-everything()
 
-Xft.dpi: 96
+Xft.dpi: 200
 Xft.autohint: 0
 Xft.lcdfilter: lcddefault
 Xft.hintstyle: hintslight
 Xft.hinting: 1
 Xft.antialias: 1
 Xft.rgba: rgb
-
+!Xcursor.themes: rh
+Xcursor.size: 32

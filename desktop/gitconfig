@@ -1,6 +1,6 @@
 [gui]
-	fontui = -family \"CMU Sans Serif\" -size 10 -weight normal -slant roman -underline 0 -overstrike 0
-	fontdiff = -family \"Terminus (TTF)\" -size 10 -weight normal -slant roman -underline 0 -overstrike 0
+	fontui = -family \"Lucida Sans Unicode\" -size 10 -weight normal -slant roman -underline 0 -overstrike 0
+	fontdiff = -family \"Lucida Console\" -size 10 -weight normal -slant roman -underline 0 -overstrike 0
 
 [pager]
 	diff = false
