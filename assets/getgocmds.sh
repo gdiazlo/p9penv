@@ -5,7 +5,6 @@ go get -u golang.org/x/tools/...
 
 # 3rd party
 
-
 go get -u github.com/davidrjenni/A
 go get -u github.com/rogpeppe/godef
 go get -u github.com/nsf/gocode
@@ -23,4 +22,9 @@ go get -u github.com/mpl/xplor
 
 go get -u rsc.io/mailgun/cmd/mailgun-mail
 go get -u rsc.io/mailgun/cmd/mailgun-sendmail
+
+# lang server
+
+go get github.com/fhs/acme-lsp/cmd/L
+GO111MODULE=on go get github.com/saibing/bingo
 
