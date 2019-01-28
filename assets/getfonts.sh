@@ -27,6 +27,14 @@ install() {
 	find ./ -type f \( -iname \*.ttf -o -iname \*.otf \) -exec cp {} $DEST/$name \;
 }
 
+# install ibm plex fonts
+
+ibm() {
+	git clone https://github.com/IBM/plex
+	mkdir -p $DEST/ibm
+	find ./ -type f \( -iname \*.otf \) -exec cp {} $DEST/$name \;
+}
+
 # install go font
 go() {
 	git clone https://go.googlesource.com/image
@@ -58,7 +66,8 @@ bitter() {
 	cp *.otf $DEST/bitter
 }
 
-FONTS=(lucida syntax go terminus computer_modern bitter)
+FONTS=(lucida syntax go terminus computer_modern bitter ibm)
+
 
 for font in ${FONTS[@]}; do
 	tmp=$(mktemp -d)
@@ -66,7 +75,7 @@ for font in ${FONTS[@]}; do
 	echo Installing $font
 	$font
 	cd
-	echo rm -rf $tmp
+	echo Remove $tmp
 done
 
 fc-cache -f -v
