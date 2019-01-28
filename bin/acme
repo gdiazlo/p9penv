@@ -2,7 +2,7 @@
 
 source ~/acme/profile
 
-_set_font lucida 11 18
+_set_font ibm 12 20
 
 _acme $@
 
