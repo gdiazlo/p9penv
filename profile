@@ -95,8 +95,8 @@ _set_font() {
 		sans="CMU Concrete Roman"
 		;;
 	ibm)
-		mono="IBM Plex Mono Text"
-		sans="IBM Plex Sans Text"
+		mono="IBMPlexMono"
+		sans="IBMPlexSansCond"
 		;;
 	fira)
 		mono="FiraMono-Regular"
