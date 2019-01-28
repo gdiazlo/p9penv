@@ -1,8 +1,9 @@
 !XTerm*faceName: xft:CMU Typewriter Text:style=Regular
 !XTerm*faceName: xft:Terminus (TTF):style=Regular
-!XTerm*faceName: xft:IBM Plex Mono:style=Regular
+!XTerm*faceName: xft:IBM Plex Mono:style=Medium
+XTerm*faceName: xft:3270:style=Medium
 !XTerm*faceName: xft:FiraMono:style=Regular
-XTerm*faceName: xft:LucidaConsole:style=Regular
+!XTerm*faceName: xft:LucidaConsole:style=Regular
 !XTerm*faceName: xft:Lucida Sans Typewriter:style=Regular
 !XTerm*font: -*-terminus-*-*-*-*-*-*-*-*-*-*-*-*
 !XTerm*boldFont: -*-terminus-*-*-*-*-*-*-*-*-*-*-*-*
