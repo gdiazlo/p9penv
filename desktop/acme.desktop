@@ -1,6 +1,6 @@
 [Desktop Entry]
-Comment=
-Exec=/home/gdiazlo/acme/bin/kacme
+Comment=Plan9 Text Editor
+Exec=/home/gdiazlo/acme/bin/acme
 GenericName=acme editor
 Icon=/usr/local/plan9/mac/spaceglenda.png
 Name=acme
