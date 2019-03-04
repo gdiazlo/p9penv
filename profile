@@ -6,13 +6,16 @@ export PLAN9=/usr/local/plan9
 # set golang environment
 export GOROOT=/usr/local/go
 export GOPATH=$HOME/go
-export GO111MODULE=auto
+export GO111MODULE=on
 
 # set acme environment
 export ACME=$HOME/acme
 export usebigarrow=1
 export EDITOR=editinacme
-export BROWSER=chromium
+export BROWSER=firefox
+if [ -f /usr/bin/google-chrome-stable]; then
+	export BROWSER=/usr/bin/google-chrome-stable
+fi
 
 # set java environment
 export JAVA_HOME=/usr/lib64/java
@@ -41,10 +44,12 @@ pathappend() {
   done
 }
 
-pathappend "$HOME/bin" "$ACME/bin" "$GOROOT/bin" "$GOPATH/bin" "$PLAN9/bin" "$JAVA_HOME/bin"
+pathappend "$HOME/bin" "$GOROOT/bin" "$GOPATH/bin" "$PLAN9/bin" "$JAVA_HOME/bin" "$HOME/VSCode-linux-x64/bin/"
 
-# prepend goroot/in into path to avoid using gcc-go in system path by default
-export PATH="$GOROOT/bin":$PATH
+# prepend acme and goroot into path to avoid using gcc-go in system path by default
+export PATH="$ACME/bin:$GOROOT/bin":$PATH
+
+alias tb="nc termbin.com 9999"
 
 # set cd to execute awd when in acme win
 cda () {
