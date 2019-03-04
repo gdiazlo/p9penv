@@ -13,7 +13,7 @@ export ACME=$HOME/acme
 export usebigarrow=1
 export EDITOR=editinacme
 export BROWSER=firefox
-if [ -f /usr/bin/google-chrome-stable]; then
+if [ -f /usr/bin/google-chrome-stable ]; then
 	export BROWSER=/usr/bin/google-chrome-stable
 fi
 
