@@ -2,7 +2,13 @@
 
 source ~/acme/profile
 
-_set_font ibm 12 20
+_set_font lucida 12 20
 
-_acme $@
+if [ -f $HOME/acme.dump ]
+then
+	_acme -l $HOME/acme.dump
+else
+	_acme $@
+fi
+
 
