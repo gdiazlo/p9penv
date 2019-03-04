@@ -142,8 +142,8 @@ _set_font() {
 		sans="Terminus (TTF)"
 		;;
 	book)
-		mono="Go Mono"
-		sans="Bitter Regular"
+		mono="GoMono"
+		sans="Bitter-Regular"
 		;;	
 	plan9)
 		export fixedfont="/usr/local/plan9/font/pelm/unicode.9.font"

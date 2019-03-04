@@ -16,3 +16,6 @@
 	status = false
 	log = false
 
+[user]
+	name = Gabriel Diaz
+	email = gdiaz@qswarm.com

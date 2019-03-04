@@ -6,9 +6,8 @@ _set_font lucida 12 20
 
 if [ -f $HOME/acme.dump ]
 then
-	_acme -l $HOME/acme.dump
+	_acme -l $HOME/acme.dump $@
 else
 	_acme $@
 fi
-
 
