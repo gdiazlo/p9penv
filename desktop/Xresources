@@ -32,6 +32,11 @@ XTerm*faceSize6: 24
 XTerm.vt100.printerCommand: xterm -e sh -c 'most -c <&3' 3<&0
 XTerm.vt100.translations: #override Ctrl ~Meta ~Shift <Key>slash: print-everything()
 
+XTerm*decTerminalID: vt340
+XTerm*numColorRegisters: 256
+XTerm*maxGraphicSize: 2560x1440
+XTerm*disallowedWindowOps: 20,21,SetXprop
+
 Xft.dpi: 100
 Xft.autohint: 0
 Xft.lcdfilter: lcddefault
