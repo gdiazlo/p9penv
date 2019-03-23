@@ -13,6 +13,10 @@ export ACME=$HOME/acme
 export usebigarrow=1
 export EDITOR=editinacme
 export BROWSER=firefox
+
+# set cursor to a steady bar | 
+printf '\033[6 q'
+
 if [ -f /usr/bin/google-chrome-stable ]; then
 	export BROWSER=/usr/bin/google-chrome-stable
 fi
