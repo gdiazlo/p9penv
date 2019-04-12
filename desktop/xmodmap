@@ -1,11 +1,18 @@
-keycode 232 = XF86MonBrightnessDown
-keycode 233 = XF86MonBrightnessUp
+! multimedia keys for macbook pro
+!keycode 232 = XF86MonBrightnessDown
+!keycode 233 = XF86MonBrightnessUp
 
-keycode 121 = XF86AudioMute
-keycode 122 = XF86AudioRaiseVolume
-keycode 123 = XF86AudioLowerVolume
+!keycode 121 = XF86AudioMute
+!keycode 122 = XF86AudioRaiseVolume
+!keycode 123 = XF86AudioLowerVolume
 
-keycode 173 = XF86AudioPrev
-keycode 172 = XF86AudioPlay
-keycode 171 = XF86AudioNext
+!keycode 173 = XF86AudioPrev
+!keycode 172 = XF86AudioPlay
+!keycode 171 = XF86AudioNext
+
+! Right Control key as META 
+! on IBM PS2 model M keyboard
+
+remove control = Control_R
+add mod4 = Control_R
 
