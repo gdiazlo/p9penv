@@ -14,8 +14,12 @@ export usebigarrow=1
 export EDITOR=editinacme
 export BROWSER=firefox
 
-# set cursor to a steady bar | 
+# set cursor to a steady bar |
 printf '\033[6 q'
+
+# set aliases
+alias ls="ls -p"
+alias tb="nc termbin.com 9999"
 
 if [ -f /usr/bin/google-chrome-stable ]; then
 	export BROWSER=/usr/bin/google-chrome-stable
@@ -53,10 +57,6 @@ pathappend "$HOME/bin" "$GOROOT/bin" "$GOPATH/bin" "$PLAN9/bin" "$JAVA_HOME/bin"
 # prepend acme and goroot into path to avoid using gcc-go in system path by default
 export PATH="$ACME/bin:$GOROOT/bin":$PATH
 
-alias tb="nc termbin.com 9999"
-
-
-
 # ssh agent set up
 
 SSH_ENV="$HOME/.ssh/environment"
@@ -89,7 +89,7 @@ cda () {
         linux!*)
                 ;;
         *!*i*)
-		
+
                 awd
         esac
 }
@@ -148,7 +148,7 @@ _set_font() {
 	book)
 		mono="GoMono"
 		sans="Bitter-Regular"
-		;;	
+		;;
 	plan9)
 		export fixedfont="/usr/local/plan9/font/pelm/unicode.9.font"
 		export font="/lib/font/bit/lucsans/euro.8.font"
@@ -163,7 +163,7 @@ _set_font() {
 }
 
 _acme() {
-	SHELL=bash  $PLAN9/bin/acme -a -c 1 -f "$font,$hidpifont" -F "$fixedfont,$hidpifixedfont" "$@" 
+	SHELL=bash  $PLAN9/bin/acme -a -c 1 -f "$font,$hidpifont" -F "$fixedfont,$hidpifixedfont" "$@"
 }
 
 complete -f nospace _cd acme
@@ -172,7 +172,7 @@ complete -f nospace _cd acme
 new_p9p_session() {
 	for proc in fontsrv factotum plumber; do
 		pgrep $proc 2>&1 > /dev/null
-		if [ $? -ne 0 ]; then 
+		if [ $? -ne 0 ]; then
 			$PLAN9/bin/9 $proc &
 		fi
 	done

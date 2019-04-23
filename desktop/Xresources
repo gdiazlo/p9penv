@@ -1,49 +1,50 @@
-XTerm*renderFont: true
-!XTerm*faceName: xft:CMU Typewriter Text:style=Regular
-!XTerm*faceName: xft:Terminus (TTF):style=Regular
-!XTerm*faceName: xft:IBM Plex Mono:style=Medium
-!XTerm*faceName: xft:3270:style=Medium
-!XTerm*faceName: xft:FiraMono:style=Regular
-XTerm*faceName: Lucida Console
-!XTerm*faceName: xft:Lucida Sans Typewriter:style=Regular
-!XTerm*font: -*-terminus-*-*-*-*-*-*-*-*-*-*-*-*
-!XTerm*boldFont: -*-terminus-*-*-*-*-*-*-*-*-*-*-*-*
-!XTerm*italicFont: -*-terminus-*-*-*-*-*-*-*-*-*-*-*-*
-XTerm*utf8: true
-XTerm*vt100*geometry: 80x25
-XTerm*saveLines: 16384
-XTerm*loginShell: true
-XTerm*charClass: 33:48,35:48,37:48,43:48,45-47:48,64:48,95:48,126:48
-XTerm*termName: XTerm-color
-!XTerm*locale: true
-Xterm*vbell: True
-XTerm.underlineURLs: true
-XTerm*inheritPixmap: true
-XTerm*dynamicColors: true
-XTerm*background: #ffffea
-XTerm*foreground: #171717
+xterm*faceName: Lucida Console
+xterm*renderFont: true
+xterm*faceSize: 10
+
+xterm*utf8: true
+xterm*vt100*geometry: 80x25
+xterm*saveLines: 16384
+xterm*loginShell: true
+xterm*charClass: 33:48,35:48,37:48,43:48,45-47:48,64:48,95:48,126:48
+xterm*termName: xterm-color
+!xterm*locale: true
+xterm*vbell: True
+xterm.underlineURLs: true
+xterm*inheritPixmap: true
+xterm*dynamicColors: true
+xterm*background: #ffffea
+xterm*foreground: #171717
 xterm*cursorColor: #ff0000
-XTerm*faceSize: 10
-XTerm*faceSize1: 6
-XTerm*faceSize2: 8
-XTerm*faceSize3: 10
-XTerm*faceSize4: 12
-XTerm*faceSize5: 16
-XTerm*faceSize6: 24
-XTerm.vt100.printerCommand: xterm -e sh -c 'most -c <&3' 3<&0
-XTerm.vt100.translations: #override Ctrl ~Meta ~Shift <Key>slash: print-everything()
+xterm*faceSize1: 6
+xterm*faceSize2: 8
+xterm*faceSize3: 10
+xterm*faceSize4: 12
+xterm*faceSize5: 16
+xterm*faceSize6: 24
+xterm.vt100.printerCommand: xterm -e sh -c 'most -c <&3' 3<&0
+xterm.vt100.translations: #override Ctrl ~Meta ~Shift <Key>slash: print-everything()
 
-XTerm*decTerminalID: vt340
-XTerm*numColorRegisters: 256
-XTerm*maxGraphicSize: 2560x1440
-XTerm*disallowedWindowOps: 20,21,SetXprop
+xterm*decTerminalID: vt340
+xterm*numColorRegisters: 256
+xterm*maxGraphicSize: 2560x1440
+xterm*disallowedWindowOps: 20,21,Setxprop
 
-Xft.dpi: 100
-Xft.autohint: 0
-Xft.lcdfilter: lcddefault
-Xft.hintstyle: hintslight
-Xft.hinting: 1
-Xft.antialias: 1
-Xft.rgba: rgb
-!Xcursor.themes: rh
-Xcursor.size: 32
+
+xterm*VT100.Translations: #override \
+    Ctrl <Key> minus: smaller-vt-font() \n\
+    Ctrl <Key> plus: larger-vt-font() \n\
+    Ctrl <Key> 0: set-vt-font(d)xterm*VT100.Translations: #override \
+    Ctrl <Key> minus: smaller-vt-font() \n\
+    Ctrl <Key> plus: larger-vt-font() \n\
+    Ctrl <Key> 0: set-vt-font(d)
+
+xft.dpi: 100
+xft.autohint: 0
+xft.lcdfilter: lcddefault
+xft.hintstyle: hintslight
+xft.hinting: 1
+xft.antialias: 1
+xft.rgba: rgb
+xcursor.size: 32
+
