@@ -5,8 +5,7 @@ source ~/.profile
 set_font lucida 12 20
 
 xbindkeys
-exec 9 rio -term xterm -virtuals 4 &
+exec 9 rio -font -*-lucida-medium-r-normal-sans-17-*-100-100-*-*-*-* -term xterm -virtuals 4 &
 
 xconsole
-
 

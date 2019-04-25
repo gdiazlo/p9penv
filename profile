@@ -12,7 +12,9 @@ export GO111MODULE=on
 export ACME=$HOME/acme
 export usebigarrow=1
 export EDITOR=editinacme
+export PAGER=nobs
 export BROWSER=firefox
+unset FCEDIT VISUAL
 
 # set cursor to a steady bar |
 printf '\033[6 q'
@@ -142,8 +144,8 @@ _set_font() {
 		sans="SyntaxLTStd-Roman"
 		;;
 	terminus)
-		mono="Terminus (TTF)"
-		sans="Terminus (TTF)"
+		mono="Terminus"
+		sans="Terminus"
 		;;
 	book)
 		mono="GoMono"
@@ -182,3 +184,5 @@ if [ ! -z "$DISPLAY" ]; then
 	new_p9p_session
 fi
 
+# default font 
+_set_font lucida 12 18

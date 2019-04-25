@@ -1,6 +1,5 @@
 "xbindkeys_show"
   alt + k
 
-"rofi -show run -modi run"
+"rofi -theme ~/acme/desktop/rio  -show run -modi run -font 'Lucida Sans 12' -columns 3"
   alt + r
-
