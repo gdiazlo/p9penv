@@ -1,6 +1,7 @@
+xterm*font: -*-lucida-medium-r-normal-sans-17-*-100-100-*-*-*-*
 xterm*faceName: Lucida Console
 xterm*renderFont: true
-xterm*faceSize: 10
+xterm*faceSize: 12
 
 xterm*utf8: true
 xterm*vt100*geometry: 80x25
@@ -13,9 +14,17 @@ xterm*vbell: True
 xterm.underlineURLs: true
 xterm*inheritPixmap: true
 xterm*dynamicColors: true
-xterm*background: #ffffea
+
+xterm*ScrollBar: on
+*XTerm*scrollBar: true
+xterm*multiScroll: on
+xterm*jumpScroll: on
+
+! xterm*background: #ffffea
+xterm*background: #ffffff
 xterm*foreground: #171717
 xterm*cursorColor: #ff0000
+
 xterm*faceSize1: 6
 xterm*faceSize2: 8
 xterm*faceSize3: 10
@@ -39,12 +48,13 @@ xterm*VT100.Translations: #override \
     Ctrl <Key> plus: larger-vt-font() \n\
     Ctrl <Key> 0: set-vt-font(d)
 
-xft.dpi: 100
-xft.autohint: 0
-xft.lcdfilter: lcddefault
-xft.hintstyle: hintslight
-xft.hinting: 1
-xft.antialias: 1
-xft.rgba: rgb
-xcursor.size: 32
+Xft.dpi: 200
+
+Xft.autohint: 0
+Xft.lcdfilter: lcddefault
+Xft.hintstyle: hintslight
+Xft.hinting: 1
+Xft.antialias: 1
+Xft.rgba: rgb
+Xcursor.size: 32
 
