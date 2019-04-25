@@ -48,7 +48,7 @@ xterm*VT100.Translations: #override \
     Ctrl <Key> plus: larger-vt-font() \n\
     Ctrl <Key> 0: set-vt-font(d)
 
-Xft.dpi: 200
+Xft.dpi: 100
 
 Xft.autohint: 0
 Xft.lcdfilter: lcddefault
