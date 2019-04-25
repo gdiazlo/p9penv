@@ -4,8 +4,19 @@ source ~/.profile
 
 set_font lucida 12 20
 
-xbindkeys
+if [ -x "$(which xbindkeys)" ]; then
+	exec xbindkeys &
+fi
+
 exec 9 rio -font -*-lucida-medium-r-normal-sans-17-*-100-100-*-*-*-* -term xterm -virtuals 4 &
+
+if [ -x "$(which compton)" ]; then
+	exec	compton &
+fi
+
+if [ -x "$(which dunst)" ]; then
+	exec	dunst -conf ~/acme/desktop/dunstrc &
+fi
 
 xconsole
 
