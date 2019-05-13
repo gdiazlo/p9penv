@@ -144,12 +144,20 @@ _set_font() {
 		sans="SyntaxLTStd-Roman"
 		;;
 	terminus)
-		mono="Terminus"
-		sans="Terminus"
+		mono="TerminusTTF"
+		sans="TerminusTTF"
 		;;
 	book)
 		mono="GoMono"
 		sans="Bitter-Regular"
+		;;
+	input-condensed)
+		mono="InputMonoCondensed-Light"
+		sans="InputSansCondensed-Light"
+		;;
+	input)
+		mono="InputMono-Light"
+		sans="InputSans-Light"
 		;;
 	plan9)
 		export fixedfont="/usr/local/plan9/font/pelm/unicode.9.font"

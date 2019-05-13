@@ -2,7 +2,7 @@
 
 source ~/acme/profile
 
-_set_font lucida 12 20
+_set_font input-condensed 14 22
 
 if [ -f $HOME/acme.dump ]
 then
