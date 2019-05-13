@@ -13,7 +13,7 @@ lucida() {
 }
 
 input() {
-	fonts=("http://input.fontbureau.com/build/?fontSelection=whole&a=0&g=0&i=0&l=0&zero=0&asterisk=0&braces=0&preset=default&line-height=1.2&accept=I+do&email=github%40github.com")
+	fonts=("http://input.fontbureau.com/build/?fontSelection=whole&a=0&g=ss&i=0&l=0&zero=nodot&asterisk=0&braces=0&preset=default&line-height=1.2&accept=I+do&email=")
 	install "input" "${fonts[@]}"
 
 }
