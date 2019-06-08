@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# QT auto scale
+export QT_AUTO_SCREEN_SCALE_FACTOR=true 
+
 # set plan9 environment
 export PLAN9=/usr/local/plan9
 
@@ -152,8 +155,8 @@ _set_font() {
 		sans="Bitter-Regular"
 		;;
 	input-condensed)
-		mono="InputMonoCondensed-Light"
-		sans="InputSansCondensed-Light"
+		mono="InputMonoCondensed-Medium"
+		sans="InputSansCondensed-Medium"
 		;;
 	input)
 		mono="InputMono-Light"
@@ -173,7 +176,7 @@ _set_font() {
 }
 
 _acme() {
-	SHELL=bash  $PLAN9/bin/acme -a -c 1 -f "$font,$hidpifont" -F "$fixedfont,$hidpifixedfont" "$@"
+	SHELL=oh  $PLAN9/bin/acme -a -c 1 -f "$font,$hidpifont" -F "$fixedfont,$hidpifixedfont" "$@"
 }
 
 complete -f nospace _cd acme
