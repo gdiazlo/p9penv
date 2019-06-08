@@ -1,5 +1,8 @@
  #!/bin/bash
 
+# Download the oh shell
+go get -u github.com/michaelmacinnis/oh
+
 # Download go lang toosl and helpers
 go get -u golang.org/x/tools/...
 
@@ -7,7 +10,7 @@ go get -u golang.org/x/tools/...
 
 go get -u github.com/davidrjenni/A
 go get -u github.com/rogpeppe/godef
-go get -u github.com/nsf/gocode
+go get -u github.com/stamblerre/gocode
 go get -u github.com/zmb3/gogetdoc
 go get -u github.com/godoctor/godoctor
 go get -u github.com/josharian/impl
@@ -24,7 +27,9 @@ go get -u rsc.io/mailgun/cmd/mailgun-mail
 go get -u rsc.io/mailgun/cmd/mailgun-sendmail
 
 # lang server
+go get -u golang.org/x/tools/cmd/gopls
 go get -u github.com/sourcegraph/go-langserver
-go get github.com/fhs/acme-lsp/cmd/L
-go get github.com/saibing/bingo
+go get -u github.com/fhs/acme-lsp/cmd/acme-lsp
+go get -u github.com/fhs/acme-lsp/cmd/L
+go get -u github.com/saibing/bingo
 
