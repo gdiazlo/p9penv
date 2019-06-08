@@ -2,7 +2,7 @@
 
 source ~/acme/profile
 
-_set_font input-condensed 14 22
+_set_font input-condensed 12 20
 
 if [ -f $HOME/acme.dump ]
 then
