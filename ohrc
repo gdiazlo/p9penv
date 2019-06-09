@@ -33,6 +33,13 @@ define ls: method(: args) = {
 	9 lc @$args
 }
 
+define acd: method(:args) = {
+	cd @$args
+	if (eq $TERM dumb) {
+		command awd
+	}
+}
+
 define tb: method() = {
 	nc termbin.com 9999
 }
@@ -66,7 +73,6 @@ define start-ssh-agent: method() = {
 		ssh-agent | map-line $convert-ssh-agent
 	}
 }
-
 
 define set-font: method(font-family size hidpi-size) = {
 
