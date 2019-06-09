@@ -36,7 +36,11 @@ define ls: method(: args) = {
 export built-in-cd = $cd
 define cd: syntax (: args) e = {
 	define l: cons built-in-cd $args
-	e::eval $l
+	define state: e::eval $l
+	if (ne 0 $state) {
+		echo "$args not found"
+		return
+	}
  	if (eq $TERM dumb) {
 		command awd
 	}   
