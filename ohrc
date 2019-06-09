@@ -30,7 +30,7 @@ if (ne $TERM dumb) {
 # create commands
 
 define ls: method(: args) = {
-	9 lc @$args
+	9 lc -F @$args
 }
 
 export built-in-cd = $cd
