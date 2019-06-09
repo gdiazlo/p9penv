@@ -1,0 +1,151 @@
+# QT auto scale
+export QT_AUTO_SCREEN_SCALE_FACTOR true 
+
+# set plan9 environment
+export PLAN9 /usr/local/plan9
+
+# set golang environment
+export GOROOT /usr/local/go
+export GOPATH "$HOME/go"
+export GO111MODULE on
+
+# set default shell
+export SHELL "$GOPATH/bin/oh"
+
+# set acme environment
+export ACME "$HOME/acme"
+export usebigarrow 1
+export EDITOR editinacme
+export PAGER nobs
+export BROWSER firefox
+
+# java environment
+export JAVA_HOME /usr/lib64/java
+
+# set cursor to a steady bar |
+if (ne $TERM dumb) {
+	/bin/echo -n -e '\x1b[\x36 q'
+}
+
+# create commands
+
+define ls: method(: args) = {
+	9 lc @$args
+}
+
+define tb: method() = {
+	nc termbin.com 9999
+}
+
+define prepend-paths: method(new-paths) = {	
+	while (not: is-null $new-paths) {
+		set PATH: ':'::join (new-paths::head) $PATH
+		set new-paths: new-paths::tail
+	}
+}
+
+define check-proc: method(name) e = {
+	if (_capture_: pgrep $name) {
+		return true
+	}
+	return false
+}
+
+define convert-ssh-agent: method(line) = {
+	define parts = ()
+	set parts: '='::split $line
+	export ($parts::head)  ($parts::tail)
+}
+
+define map-line: method (f) = : while (define line: readline): $f $line
+
+define start-ssh-agent: method() = {
+	if (check-proc ssh-agent) {
+		echo ssh agent already running
+	} else {
+		ssh-agent | map-line $convert-ssh-agent
+	}
+}
+
+
+define set-font: method(font-family size hidpi-size) = {
+
+	define families: map
+	
+	families::set "go": object {
+		export mono = "Go Mono"
+		export sans = "Go Regular"
+	}
+	families::set "cmu": object {
+		export mono = "CMU Typewriter Text Variable Width"
+		export sans = "CMU Concrete Roman"
+	}
+	families::set "ibm": object {
+		export mono = "IBMPlexMono"
+		export sans = "IBMPlexSansCond"
+	}
+	families::set "fira": object {
+		export mono = "FiraMono-Regular"
+		export sans = "FiraSans-Regular"
+	}
+	families::set "lucida": object {
+		export mono = "LucidaConsole"
+		export sans = "LucidaSansUnicode"
+	}
+	families::set "syntax": object {
+		export mono = "SyntaxLTStd-Roman"
+		export sans = "SyntaxLTStd-Roman"
+	}
+	families::set "terminus": object {
+		export mono = "TerminusTTF"
+		export sans = "TerminusTTF"
+	}
+	families::set "book": object {
+		export mono = "GoMono"
+		export sans = "Bitter-Regular"
+	}
+	families::set "input-condensed": object {
+		export mono = "InputMonoCondensed-Medium"
+		export sans = "InputSansCondensed-Medium"
+	}
+	families::set "input": object {
+		export mono = "InputMono-Light"
+		export sans = "InputSans-Light"
+	}
+	
+	define fnt: families::get $font-family
+	define mono = $fnt::mono
+	define sans = $fnt::sans
+	set fixed-font = "/mnt/font/${mono}/${size}a/font"
+	set font = "/mnt/font/${sans}/${size}a/font"
+	set hidpi-fixed-font = "/mnt/font/${mono}/${hidpi-size}a/font"
+	set hidpi-font = "/mnt/font/${sans}/${hidpi-size}a/font"
+}
+
+define acme: method(:args) = {
+	command "$PLAN9/bin/acme" -a -c 1 -f "${font},${hidpi-font}" -F "${fixed-font},${hidpi-fixed-font}" @$args
+}
+
+define new-p9p-session: method() = {
+	define services: list fontsrv factotum plumber
+	while(ne 0: services::length) {
+		define proc: $services::head
+		if(not: check-proc $proc) {
+			echo Starting ${proc}
+			command "$PLAN9/bin/9 ${proc} &"
+		}
+		set services: services::tail
+	}
+}
+
+# initialize session
+export fixed-font = ""
+export font = ""
+export hidpi-fixed-font = ""
+export hidpi-font = ""
+
+prepend-paths: list "$JAVA_HOME/bin" "$GOPATH/bin" "$GOROOT/bin" "$PLAN9/bin" "$ACME/bin" 
+
+start-ssh-agent
+set-font lucida 12 20
+new-p9p-session
