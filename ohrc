@@ -33,11 +33,13 @@ define ls: method(: args) = {
 	9 lc @$args
 }
 
-define acd: method(:args) = {
-	cd @$args
-	if (eq $TERM dumb) {
+export built-in-cd = $cd
+define cd: syntax (: args) e = {
+	define l: cons built-in-cd $args
+	e::eval $l
+ 	if (eq $TERM dumb) {
 		command awd
-	}
+	}   
 }
 
 define tb: method() = {
