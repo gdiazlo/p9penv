@@ -8,6 +8,7 @@ export PLAN9 /usr/local/plan9
 export GOROOT /usr/local/go
 export GOPATH "$HOME/go"
 export GO111MODULE on
+export CGO_LDFLAGS_ALLOW "-Wl,-unresolved_symbols=ignore-all" 
 
 # set default shell
 export SHELL "$GOPATH/bin/oh"
@@ -73,9 +74,7 @@ define convert-ssh-agent: method(line) = {
 define map-line: method (f) = : while (define line: readline): $f $line
 
 define start-ssh-agent: method() = {
-	if (check-proc ssh-agent) {
-		echo ssh agent already running
-	} else {
+	if (not: check-proc ssh-agent) {
 		ssh-agent | map-line $convert-ssh-agent
 	}
 }
@@ -142,9 +141,9 @@ define new-p9p-session: method() = {
 	define services: list fontsrv factotum plumber
 	while(ne 0: services::length) {
 		define proc: $services::head
-		if(not: check-proc $proc) {
+		if(not: check-proc "$proc") {
 			echo Starting ${proc}
-			command "$PLAN9/bin/9 ${proc} &"
+			command "$PLAN9/bin/9" "${proc}" &
 		}
 		set services: services::tail
 	}
