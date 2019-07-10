@@ -16,6 +16,15 @@
 	status = false
 	log = false
 
+[log]
+	abbrevCommit = true
+
+[alias]
+	tree = log --all --graph --decorate=short --format=format:'%h %d\n         [%cr] %an: %s'
+
+[format]
+	pretty = "%h - %an, %ar : %s"
+
 [user]
 	name = Gabriel Diaz
 	email = gdiaz@qswarm.com
