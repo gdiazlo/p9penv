@@ -155,7 +155,7 @@ export font = ""
 export hidpi-fixed-font = ""
 export hidpi-font = ""
 
-prepend-paths: list "$JAVA_HOME/bin" "$GOPATH/bin" "$GOROOT/bin" "$PLAN9/bin" "$ACME/bin" 
+prepend-paths: list "$JAVA_HOME/bin" "$GOPATH/bin" "$GOROOT/bin" "$PLAN9/bin" "$ACME/bin" "$HOME/bin"
 
 start-ssh-agent
 set-font lucida 12 20
