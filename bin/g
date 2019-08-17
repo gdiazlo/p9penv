@@ -1,4 +1,0 @@
-#!/bin/bash
-
-# disable special character whatever
-/usr/bin/git "$@" 2>&1 | 9 cat 
