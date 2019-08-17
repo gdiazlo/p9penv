@@ -1,8 +1,8 @@
 #!/bin/bash
 
-source ~/acme/profile
+source ~/.acme/profile
 
-_set_font input 11 20
+_set_font noto 11 22
 
 if [ -f $HOME/acme.dump ]
 then

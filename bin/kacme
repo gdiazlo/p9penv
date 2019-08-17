@@ -1,8 +1,0 @@
-#!/bin/bash
-
-source ~/acme/profile
-
-_set_font ibm 14
-
-_acme $@
-
