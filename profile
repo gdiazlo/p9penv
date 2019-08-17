@@ -4,15 +4,17 @@
 export QT_AUTO_SCREEN_SCALE_FACTOR=true 
 
 # set plan9 environment
-export PLAN9=/usr/local/plan9
+export PLAN9=~/.plan9
 
 # set golang environment
-export GOROOT=/usr/local/go
+export GOVERSION=$($PLAN9/bin/ls -p ~/.go | tail -n 1)
+export GOROOT=~/.go/$GOVERSION
 export GOPATH=$HOME/go
-export GO111MODULE=on
+
+export GO111MODULE=auto
 
 # set acme environment
-export ACME=$HOME/acme
+export ACME=$HOME/.acme
 export usebigarrow=1
 export EDITOR=editinacme
 export PAGER=nobs
@@ -23,12 +25,9 @@ unset FCEDIT VISUAL
 printf '\033[6 q'
 
 # set aliases
-alias ls="ls -p"
+alias ls="9 lc -F"
 alias tb="nc termbin.com 9999"
 
-if [ -f /usr/bin/google-chrome-stable ]; then
-	export BROWSER=/usr/bin/google-chrome-stable
-fi
 
 # set java environment
 export JAVA_HOME=/usr/lib64/java
@@ -57,10 +56,10 @@ pathappend() {
   done
 }
 
-pathappend "$HOME/bin" "$GOROOT/bin" "$GOPATH/bin" "$PLAN9/bin" "$JAVA_HOME/bin" "$HOME/VSCode-linux-x64/bin/"
+pathappend "$HOME/bin" "$GOPATH/bin" "$PLAN9/bin" "$JAVA_HOME/bin" 
 
-# prepend acme and goroot into path to avoid using gcc-go in system path by default
-export PATH="$ACME/bin:$GOROOT/bin":$PATH
+# prepend ~/bin and goroot into path to avoid using gcc-go in system path by default
+export PATH="~/bin:$GOROOT/bin":$PATH
 
 # ssh agent set up
 
@@ -79,7 +78,6 @@ function start_agent {
 
 if [ -f "${SSH_ENV}" ]; then
     . "${SSH_ENV}" > /dev/null
-    #ps ${SSH_AGENT_PID} doesn't work under cywgin
     ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
         start_agent;
     }
@@ -162,6 +160,10 @@ _set_font() {
 		mono="InputMono-Light"
 		sans="InputSans-Light"
 		;;
+	noto)
+		mono="NotoSansMono-Regular"
+		sans="NotoSans-Regular"
+		;;
 	plan9)
 		export fixedfont="/usr/local/plan9/font/pelm/unicode.9.font"
 		export font="/lib/font/bit/lucsans/euro.8.font"
@@ -176,7 +178,7 @@ _set_font() {
 }
 
 _acme() {
-	SHELL=oh  $PLAN9/bin/acme -a -c 1 -f "$font,$hidpifont" -F "$fixedfont,$hidpifixedfont" "$@"
+	PS1='\$' PS2='>' PROMPT_COMMAND='\$' SHELL=bash  $PLAN9/bin/acme -a -c 1 -f "$font,$hidpifont" -F "$fixedfont,$hidpifixedfont" "$@"
 }
 
 complete -f nospace _cd acme
@@ -196,4 +198,4 @@ if [ ! -z "$DISPLAY" ]; then
 fi
 
 # default font 
-_set_font lucida 12 18
+_set_font noto 12 18
