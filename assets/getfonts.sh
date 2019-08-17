@@ -4,9 +4,7 @@ DEST=~/.fonts
 
 syntax() {
 	fonts=("https://www.wfonts.com/download/data/2016/07/06/syntax-lt-std/syntax-lt-std.zip")
-	for i in $fonts; do
-		install "syntax" "${fonts[@]}"
-	done
+	install "syntax" "${fonts[@]}"
 }
 
 lucida() {
@@ -35,13 +33,25 @@ computer_modern() {
 }
 
 ibm() {
-	fonts=("https://github.com/IBM/plex/releases/download/v1.4.1/TrueType.zip")
+	fonts=("https://github.com/IBM/plex/releases/download/v2.0.0/TrueType.zip")
 	install "ibmplex" "${fonts[@]}"
 }
 
 bitter() {
 	fonts=("https://www.huertatipografica.com/free_download/48")
 	install "bitter" "${fonts[@]}"
+}
+
+# install go font
+go() {
+	fonts=("https://go.googlesource.com/image/+archive/master/font/gofont/ttfs.tar.gz")
+	wget -O gofont.tar.gz ${fonts[0]}
+	copy "go"
+}
+
+noto() {
+	fonts=("https://noto-website-2.storage.googleapis.com/pkgs/Noto-hinted.zip")
+	install "noto" "${fonts[@]}"
 }
 
 copy() {
@@ -64,15 +74,16 @@ install() {
 	done
 }
 
-# install go font
-go() {
-	fonts=("https://go.googlesource.com/image/+archive/master/font/gofont/ttfs.tar.gz")
-	wget -O gofont.tar.gz ${fonts[0]}
-	copy "go"
-}
 
+ALL=(input letter lucida syntax go terminus computer_modern bitter ibm noto)
 
-FONTS=(input letter lucida syntax go terminus computer_modern bitter ibm)
+if [ -z "$1" ]; then
+	echo Select all or one of the following fonts:
+	echo ${ALL[@]}
+	exit
+fi
+
+FONTS=( "$@" )
 
 for font in ${FONTS[@]}; do
 	tmp=$(mktemp -d)
@@ -83,4 +94,5 @@ for font in ${FONTS[@]}; do
 	echo Remove $tmp
 done
 
-fc-cache -f -v
+fc-cache -f 
+
