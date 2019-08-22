@@ -137,8 +137,8 @@ _set_font() {
 		sans="FiraSans-Regular"
 		;;
 	lucida)
-		mono="LucidaConsole"
-		sans="LucidaSansUnicode"
+		mono="LucidaSans-Typewriter"
+		sans="LucidaSans"
 		;;
 	syntax)
 		mono="SyntaxLTStd-Roman"
