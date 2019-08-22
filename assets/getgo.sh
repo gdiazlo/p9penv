@@ -5,7 +5,7 @@ GOVERSION=1.12.9
 if [ ! -d ~/.go/$GOVERSION ]; then
 	echo Installing Go $GOVERSION
 	mkdir -p ~/.go/$GOVERSION
-	curl -O https://dl.google.com/go/go${GOVERSION}.linux-amd64.tar.gz | tar -C ~/.go/${GOVERSION} zx 
+	wget -c "https://dl.google.com/go/go${GOVERSION}.linux-amd64.tar.gz" -O - | tar -zx -C ~/.go/${GOVERSION}/ --strip-components=1
 fi
 
 GOROOT=~/.go/$GOVERSION
