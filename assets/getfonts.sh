@@ -7,6 +7,11 @@ syntax() {
 	install "syntax" "${fonts[@]}"
 }
 
+overpass() {
+	fonts=("https://github.com/RedHatBrand/Overpass/releases/download/3.0.2/overpass-desktop-fonts.zip")
+	install "overpass" "${fonts[@]}"
+}
+
 lucida() {
 	fonts=("https://www.wfonts.com/download/data/2014/11/24/lucida-sans-unicode/lucida-sans-unicode.zip" "https://www.wfonts.com/download/data/2016/07/08/lucida-sans/lucida-sans.zip" "https://www.wfonts.com/download/data/2014/12/30/lucida-sans-typewriter/lucida-sans-typewriter.zip" "https://www.wfonts.com/download/data/2015/10/29/lucida-grande/lucida-grande.zip" "https://www.wfonts.com/download/data/2014/12/30/lucida-calligraphy/lucida-calligraphy.zip" "https://www.wfonts.com/download/data/2014/12/30/lucida-fax/lucida-fax.zip" "https://www.wfonts.com/download/data/2016/05/14/lucida-bright/lucida-bright.zip" "https://www.ffonts.net/Lucida-Console.font.zip")
 	install "lucida" "${fonts[@]}"
@@ -75,7 +80,7 @@ install() {
 }
 
 
-ALL=(input letter lucida syntax go terminus computer_modern bitter ibm noto)
+ALL=(input letter lucida syntax go terminus computer_modern bitter ibm noto overpass)
 
 if [ -z "$1" ]; then
 	echo Select all or one of the following fonts:
