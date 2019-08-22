@@ -2,7 +2,7 @@
 
 source ~/.acme/profile
 
-_set_font noto 11 22
+_set_font lucida 12 23
 
 if [ -f $HOME/acme.dump ]
 then
