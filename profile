@@ -22,7 +22,7 @@ export BROWSER=firefox
 unset FCEDIT VISUAL
 
 # set cursor to a steady bar |
-printf '\033[6 q'
+# printf '\033[6 q'
 
 # set aliases
 alias ls="9 lc -F"
@@ -145,8 +145,8 @@ _set_font() {
 		sans="SyntaxLTStd-Roman"
 		;;
 	terminus)
-		mono="TerminusTTF"
-		sans="TerminusTTF"
+		mono="Terminus"
+		sans="Terminus"
 		;;
 	book)
 		mono="GoMono"
