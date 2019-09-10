@@ -1,6 +1,6 @@
  #!/bin/bash
 
-GOVERSION=1.12.9
+GOVERSION=1.13
 
 if [ ! -d ~/.go/$GOVERSION ]; then
 	echo Installing Go $GOVERSION
