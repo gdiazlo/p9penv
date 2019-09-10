@@ -31,22 +31,20 @@ xterm*faceSize3: 10
 xterm*faceSize4: 12
 xterm*faceSize5: 16
 xterm*faceSize6: 24
-xterm.vt100.printerCommand: xterm -e sh -c 'most -c <&3' 3<&0
-xterm.vt100.translations: #override Ctrl ~Meta ~Shift <Key>slash: print-everything()
+
+XTerm*printerCommand: xterm -T History -e sh -c 'less -r <&3' 3<&0
+xTerm*VT100.Translations: #override \
+	Ctrl <Key> slash: print-everything()
 
 xterm*decTerminalID: vt340
 xterm*numColorRegisters: 256
 xterm*maxGraphicSize: 2560x1440
 xterm*disallowedWindowOps: 20,21,Setxprop
 
-
 xterm*VT100.Translations: #override \
-    Ctrl <Key> minus: smaller-vt-font() \n\
-    Ctrl <Key> plus: larger-vt-font() \n\
-    Ctrl <Key> 0: set-vt-font(d)xterm*VT100.Translations: #override \
-    Ctrl <Key> minus: smaller-vt-font() \n\
-    Ctrl <Key> plus: larger-vt-font() \n\
-    Ctrl <Key> 0: set-vt-font(d)
+	Ctrl <Key> minus: smaller-vt-font() \n\
+	Ctrl <Key> plus: larger-vt-font() \n\
+	Ctrl <Key> 0: set-vt-font(d)
 
 Xft.dpi: 100
 
