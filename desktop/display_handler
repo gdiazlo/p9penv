@@ -1,0 +1,74 @@
+#!/bin/bash
+set -e
+
+if [ "${SRANDRD_EVENT}" != "connected" ]; then
+	echo Nothing to do when ${SRANDRD_EVENT}
+	exit
+fi
+
+# 1.5 scale increase is arbitrary, there should be
+# a better way
+#
+calc_scale() {
+	bc <<< "scale=5;(2-(${ext[0]}/${int[0]}))*1.5"
+	bc <<< "scale=5;(2-(${ext[2]}/${int[2]}))*1.5"
+}
+
+# panning does not support decimals
+calc_panning() {
+	bc <<< "scale=0;${ext[0]}*${scale[0]}" | cut -f1 -d"."
+	bc <<< "scale=0;${ext[2]}*${scale[1]}" | cut -f1 -d"."
+	echo ${int[0]}
+	echo 0
+}
+
+event="${SRANDRD_OUTPUT} ${SRANDRD_EVENT}"
+
+mon=$(xrandr --listmonitors | grep ${SRANDRD_OUTPUT})
+
+# x_res x_dim y_res y_dim x_pad y_pad
+int=(2880 330 1800 210 0 0)
+ext=($(echo $mon | cut -f3 -d" " | tr '/x+' ' ' |  tr ' ' '\n' ))
+scale=($(calc_scale))
+
+echo Detected settings:
+echo "    int ${int[@]}"
+echo "    ext ${ext[@]}"
+echo "    scale ${scale[@]}"
+
+if [ ${ext[0]} -gt ${int[0]} -o ${ext[2]} -gt ${int[2]} ];then
+	echo External display has more resolution than the internal HiDPI display
+	echo the default scale should work. If not, patch this tool
+	exit
+fi
+
+ if [ ${ext[1]} -gt ${int[1]} -o ${ext[3]} -gt ${int[3]} ];then
+	echo External display is smaller than the internal HiDPI display
+	echo the default scale should work. If not, patch this tool.
+	exit
+fi
+
+if [ $(bc -l <<< "${scale[0]} < 1") -ne 0 ]; then
+ 	echo Display in ${SRANDRD_OUTPUT} has more resolution than internal display Try reseting it with xrandr:
+ 	echo
+ 	mode=$(xrandr | grep -A 2 "HDMI3" | fgrep '*' | awk '{print $1}')
+ 	echo xrandr --output ${SRANDRD_OUTPUT} --scale 1x1 --panning 0x0+0+0 --mode $mode --right-of eDP1
+ 	exit
+fi
+
+pan=($(calc_panning int[@] ext[@] scale[@]))
+echo "panning ${pan[@]}"
+
+ratio() {
+	echo xrandr --output ${SRANDRD_OUTPUT} --panning ${pan[0]}x${pan[1]}+${pan[2]}+${pan[3]} --scale ${scale[0]}x${scale[1]} --right-of eDP1
+}
+
+
+case "$event" in
+  "DP1 connected") ratio;;
+  "DP2 connected") ratio;;
+  "HDMI1 connected") ratio;;
+  "HDMI2 connected") ratio;;
+  "HDMI3 connected") ratio;;
+esac
+
