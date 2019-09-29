@@ -1,10 +1,10 @@
 #!/bin/bash
 
-# export JAVA_AWT_WM_NONREPARENTING=1
-# export CLUTTER_BACKEND=wayland
-# export SDL_VIDEODRIVER=wayland
-
-export QT_QPA_PLATFORM=wayland
+export JAVA_AWT_WM_NONREPARENTING=1
+export SDL_VIDEODRIVER=wayland
+export XDG_SESSION_TYPE=wayland
+export QT_QPA_PLATFORM=wayland-egl
 export MOZ_ENABLE_WAYLAND=1
+export QT_WAYLAND_FORCE_DPI=physical
 
 exec ck-launch-session dbus-launch --sh-syntax --exit-with-session sway
