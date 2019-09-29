@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # QT auto scale
-export QT_AUTO_SCREEN_SCALE_FACTOR=true 
+export QT_AUTO_SCREEN_SCALE_FACTOR=true
 
 # set plan9 environment
 export PLAN9=~/.plan9
@@ -10,8 +10,10 @@ export PLAN9=~/.plan9
 export GOVERSION=$($PLAN9/bin/ls -p ~/.go | tail -n 1)
 export GOROOT=~/.go/$GOVERSION
 export GOPATH=$HOME/go
+export GO111MODULE=on
+export CGO_LDFLAGS_ALLOW='-Wl,-unresolved_symbols=ignore-all'
 
-export GO111MODULE=auto
+
 
 # set acme environment
 export ACME=$HOME/.acme
@@ -56,7 +58,7 @@ pathappend() {
   done
 }
 
-pathappend "$HOME/bin" "$GOPATH/bin" "$PLAN9/bin" "$JAVA_HOME/bin" 
+pathappend "$HOME/bin" "$GOPATH/bin" "$PLAN9/bin" "$JAVA_HOME/bin"
 
 # prepend ~/bin and goroot into path to avoid using gcc-go in system path by default
 export PATH="~/bin:$GOROOT/bin":$PATH
@@ -92,7 +94,6 @@ cda () {
         linux!*)
                 ;;
         *!*i*)
-
                 awd
         esac
 }
@@ -178,7 +179,7 @@ _set_font() {
 }
 
 _acme() {
-	PS1='\$' PS2='>' PROMPT_COMMAND='\$' SHELL=bash  $PLAN9/bin/acme -a -c 1 -f "$font,$hidpifont" -F "$fixedfont,$hidpifixedfont" "$@"
+	PS1='>' PS2='>' SHELL=bash  $PLAN9/bin/acme -a -c 1 -f "$font,$hidpifont" -F "$fixedfont,$hidpifixedfont" "$@"
 }
 
 complete -f nospace _cd acme
@@ -197,5 +198,5 @@ if [ ! -z "$DISPLAY" ]; then
 	new_p9p_session
 fi
 
-# default font 
+# default font
 _set_font noto 12 18
