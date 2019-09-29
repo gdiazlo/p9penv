@@ -146,8 +146,8 @@ _set_font() {
 		sans="SyntaxLTStd-Roman"
 		;;
 	terminus)
-		mono="Terminus"
-		sans="Terminus"
+		mono="TerminusTTF"
+		sans="TerminusTTF"
 		;;
 	book)
 		mono="GoMono"
@@ -198,5 +198,5 @@ if [ ! -z "$DISPLAY" ]; then
 	new_p9p_session
 fi
 
-# default font
-_set_font noto 12 18
+# default font 
+_set_font terminus 14 22
