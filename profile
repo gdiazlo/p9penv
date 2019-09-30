@@ -13,8 +13,6 @@ export GOPATH=$HOME/go
 export GO111MODULE=on
 export CGO_LDFLAGS_ALLOW='-Wl,-unresolved_symbols=ignore-all'
 
-
-
 # set acme environment
 export ACME=$HOME/.acme
 export usebigarrow=1
@@ -179,7 +177,7 @@ _set_font() {
 }
 
 _acme() {
-	PS1='>' PS2='>' SHELL=bash  $PLAN9/bin/acme -a -c 1 -f "$font,$hidpifont" -F "$fixedfont,$hidpifixedfont" "$@"
+	SHELL=bash  $PLAN9/bin/acme -a -c 1 -f "$font,$hidpifont" -F "$fixedfont,$hidpifixedfont" "$@"
 }
 
 complete -f nospace _cd acme
@@ -198,5 +196,9 @@ if [ ! -z "$DISPLAY" ]; then
 	new_p9p_session
 fi
 
-# default font 
+# default font
 _set_font terminus 14 22
+
+# source
+source ~/.acme/bin/git-prompt.sh
+export PS1='$(__git_ps1 " (%s)") >'
