@@ -201,4 +201,4 @@ _set_font terminus 14 22
 
 # source
 source ~/.acme/bin/git-prompt.sh
-export PS1='$(__git_ps1 " (%s)") >'
+export PS1='$(__git_ps1 "(%s)")>'
