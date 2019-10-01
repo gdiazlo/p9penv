@@ -6,9 +6,9 @@
 	diff = false
 
 [core]
-	pager = /usr/local/plan9/bin/p
+	pager = 9 p
 
-[color]        
+[color]
 	ui = false
 	branch = false
 	diff = false
