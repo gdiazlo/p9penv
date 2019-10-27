@@ -129,19 +129,11 @@ _set_font() {
 		;;
 	ibm)
 		mono="IBMPlexMono"
-		sans="IBMPlexSansCond"
+		sans="IBMPlexSerif-Medium"
 		;;
 	fira)
 		mono="FiraMono-Regular"
 		sans="FiraSans-Regular"
-		;;
-	lucida)
-		mono="LucidaSans-Typewriter"
-		sans="LucidaSans"
-		;;
-	syntax)
-		mono="SyntaxLTStd-Roman"
-		sans="SyntaxLTStd-Roman"
 		;;
 	terminus)
 		mono="TerminusTTF"
@@ -162,6 +154,10 @@ _set_font() {
 	noto)
 		mono="NotoSansMono-Regular"
 		sans="NotoSans-Regular"
+		;;
+	adobe)
+		mono="SourceCodePro-Medium"
+		sans="SourceSansPro-Regular"
 		;;
 	plan9)
 		export fixedfont="/usr/local/plan9/font/pelm/unicode.9.font"
