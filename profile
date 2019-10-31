@@ -30,7 +30,9 @@ alias tb="nc termbin.com 9999"
 
 
 # set java environment
-export JAVA_HOME=/usr/lib64/java
+export JAVA_HOME=~/.java/jdk/11.0.2/
+export SBT_HOME=~/.java/sbt/1.3.3/
+export MVN_HOME=~/.java/mvn/3.6.2/
 
 # check if something is not there
 dirs=("$HOME/lib" "$PLAN9" "$GOROOT" "$GOPATH" "$ACME")
@@ -56,7 +58,7 @@ pathappend() {
   done
 }
 
-pathappend "$HOME/bin" "$GOPATH/bin" "$PLAN9/bin" "$JAVA_HOME/bin"
+pathappend "$HOME/bin" "$GOPATH/bin" "$PLAN9/bin" "$JAVA_HOME/bin" "$SBT_HOME/bin" "$MVN_HOME/bin"
 
 # prepend ~/bin and goroot into path to avoid using gcc-go in system path by default
 export PATH="~/bin:$GOROOT/bin":$PATH
