@@ -1,6 +1,6 @@
  #!/bin/bash
 
-GOVERSION=1.13
+GOVERSION=1.13.1
 
 if [ ! -d ~/.go/$GOVERSION ]; then
 	echo Installing Go $GOVERSION
@@ -32,4 +32,5 @@ go get -u rsc.io/mailgun/cmd/mailgun-sendmail
 go get -u golang.org/x/tools/cmd/gopls
 go get -u github.com/fhs/acme-lsp/cmd/acme-lsp
 go get -u github.com/fhs/acme-lsp/cmd/L
+go get -u github.com/fhs/acme-lsp/cmd/acmefocused
 
