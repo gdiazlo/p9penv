@@ -21,8 +21,6 @@
 "xbacklight -dec 10"
    XF86MonBrightnessDown
 
-  alt + r
-
 "L comp -e "
   alt + c
 
