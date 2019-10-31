@@ -13,6 +13,14 @@ export GOPATH=$HOME/go
 export GO111MODULE=on
 export CGO_LDFLAGS_ALLOW='-Wl,-unresolved_symbols=ignore-all'
 
+# set java environmant
+export JAVA_VERSION=13.0.1
+export JAVA_HOME=~/.java/$JAVA_VERSION
+
+# set scala environment
+export SBT_VERSION=1.3.3
+export SBT_HOME=~/.sbt/$SBT_VERSION
+
 # set acme environment
 export ACME=$HOME/.acme
 export usebigarrow=1
@@ -27,7 +35,6 @@ unset FCEDIT VISUAL
 # set aliases
 alias ls="9 lc -F"
 alias tb="nc termbin.com 9999"
-
 
 # set java environment
 export JAVA_HOME=~/.java/jdk/11.0.2/

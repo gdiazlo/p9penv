@@ -1,0 +1,6 @@
+#!/bin/bash
+
+flatpak run org.mozilla.FirefoxNightly "$@"
+
+# ~/.firefox/firefox "$@"
+

@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+acme-lsp -v -server "(\.scala)|(\.sbt)$:metals" -workspaces $1

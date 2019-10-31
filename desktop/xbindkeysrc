@@ -21,5 +21,10 @@
 "xbacklight -dec 10"
    XF86MonBrightnessDown
 
-"rofi -theme ~/acme/desktop/rio  -show run -modi run -font 'Lucida Sans 12' -columns 3"
   alt + r
+
+"L comp -e "
+  alt + c
+
+"L sig"
+  alt + i 
