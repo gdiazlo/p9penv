@@ -42,7 +42,11 @@ coursier bootstrap \
   --java-opt -XX:+UseStringDeduplication  \
   --java-opt -Xss4m \
   --java-opt -Xms100m \
+  --java-opt -Dmetals.verbose=on \
+  --java-opt -Dmetals.http=on \
+  --java-opt -Dmetals.java-home=~/.java/jdk/11.0.2 \
+  --java-opt -Dmetals.maven-script=~/.java/mvn/3.6.2/bin/mvn \
+  --java-opt -Dmetals.sbt-script=~/.java/sbt/1.3.3/bin/sbt \
   org.scalameta:metals_2.12:0.7.6 -o metals -f
 mv metals ~/bin
-
 
