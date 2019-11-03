@@ -141,8 +141,8 @@ _set_font() {
 		sans="IBMPlexSerif-Medium"
 		;;
 	fira)
-		mono="FiraMono-Regular"
-		sans="FiraSans-Regular"
+		mono="FiraMono-Medium"
+		sans="FiraSans-Medium"
 		;;
 	terminus)
 		mono="TerminusTTF"

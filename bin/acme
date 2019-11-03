@@ -2,7 +2,7 @@
 
 source ~/.acme/profile
 
-_set_font adobe 13 23
+_set_font fira 13 23
 
 if [ -f $HOME/acme.dump ]
 then
