@@ -1,0 +1,27 @@
+#!/usr/bin/env rc
+##### !/usr/bin/env 9 rc
+fn aread { 9p read acme/$winid/$1 }
+fn awrite { 9p write acme/$winid/$1 }
+
+atag=`{aread tag | awk '{print $1}'  | sed 's/\//#/g'}
+ftmp=`{mktemp /tmp/Ascalafmt.XXXXXX}
+etmp=`{mktemp /tmp/Ascalafmt.XXXXXX}
+if (aread body | scalafmt --stdin $* >$ftmp >[2]$etmp) {
+       # Don't dirty the window if you don't have to
+       if (! aread body | cmp /dev/stdin $ftmp >/dev/null >[2=1]  ) {
+               echo -n mark | awrite ctl
+               echo -n nomark | awrite ctl
+               echo -n , | awrite addr
+               awrite data <$ftmp
+               echo -n mark | awrite ctl
+               # put us at the top of the file, rather than the bottom
+               echo -n '#0' | awrite addr
+               echo -n 'dot=addr' | awrite ctl
+               echo -n show | awrite ctl
+       }
+}
+if not {
+       sed 's|^<standard input>|'^$%^'|' $etmp >[1=2]
+}
+rm -f $ftmp $etmp
+

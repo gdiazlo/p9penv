@@ -1,3 +1,9 @@
 #!/usr/bin/env bash
 rootDir=$(pwd)
-acme-lsp --rootdir $rootDir -v -server "(\.scala)|(\.sbt)$:metals" -workspaces "$rootDir:$1"
+workspaces=$rootDir
+
+if [ ! -z "$1" ]; then
+	workspaces="$rootDir:$1"
+fi
+
+acme-lsp --rootdir $rootDir -v -server "(\.scala)|(\.sbt)$:metals" -workspaces "$workspaces"
