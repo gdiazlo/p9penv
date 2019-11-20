@@ -50,3 +50,9 @@ coursier bootstrap \
   org.scalameta:metals_2.12:0.7.6 -o metals -f
 mv metals ~/bin
 
+# install eclipse jdt lanague server
+JDT_VERSION=0.47.0
+JDT_URL=http://download.eclipse.org/jdtls/milestones/0.47.0/jdt-language-server-0.47.0-201911150945.tar.gz
+mkdir -p ~/.java/jdt/$JDT_VERSION
+wget -c $JDT_URL -O - | tar -zx -C ~/.java/jdt/$JDT_VERSION --strip-components=1
+
