@@ -2,12 +2,16 @@
 
 source ~/.acme/profile
 
-_set_font fira 13 23
+_set_font adobe 13 23
 
 if [ -f $HOME/acme.dump ]
 then
-	_acme -l $HOME/acme.dump $@
+	_acme -l $HOME/acme.dump $@ &
+	acmefocused &
+	xbindkeys
 else
 	_acme $@
+	acmefocused &
+	xbindkeys
 fi
 
