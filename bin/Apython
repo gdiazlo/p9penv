@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+rootDir=$(pwd)
+workspaces=$rootDir
+
+if [ ! -z "$1" ]; then
+	workspaces="$rootDir:$1"
+fi
+
+acme-lsp --rootdir $rootDir -v -server "(\.py)$:pyls" -workspaces "$workspaces"
