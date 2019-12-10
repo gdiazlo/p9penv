@@ -55,11 +55,11 @@ Xft.antialias: 1
 Xft.rgba: rgb
 Xcursor.size: 32
 
-st.font: xft:Terminus TTF:size=12
-st.bold_font:	xft:Terminus TTF:size=12:style=bold
-st.background:          #ffffff
+st.font: Source Code Pro:size=12
+st.bold_font:	Source Code Pro:size=12:style=bold
+st.background:          #ff0000
 st.foreground:			#171717
-st.cursorColor:         #8d9b53
+st.cursorColor:         #ff0000
 st.termname:			xterm-256color
 st.shell:			/bin/sh
 st.bellvolume:			100
