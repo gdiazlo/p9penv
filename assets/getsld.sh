@@ -53,7 +53,7 @@ patch < dmenu-mousesupport-4.7.diff
 patch < dmenu-fuzzymatch-4.9.diff
 sed -i 's/monospace:size=10/Source Code Pro:size 12/g' config.def.h
 make
-cp dmenu dmenu_run dmenu_path $SLD/bin
+cp dmenu dmenu_run dmenu_path stest $SLD/bin
 cd $SLD/src
 fi
 
