@@ -6,6 +6,7 @@ mkdir -p $SLD/bin
 mkdir -p $SLD/src
 cd $SLD/src
 
+if [ ! -d st ]; then
 # st
 git clone https://git.suckless.org/st
 cd st
@@ -25,8 +26,10 @@ patch < st-bold-is-not-bright-20190127-3be4cf1.diff
 patch < st-boxdraw_v2-0.8.2.diff
 make
 cp st  $SLD/bin
-
 cd $SLD/src
+fi
+
+if [ ! -d dwm ]; then
 git clone https://git.suckless.org/dwm
 cd dwm
 git branch config
@@ -43,9 +46,36 @@ patch < dwm-fancybar-2019018-b69c870.diff
 patch < dwm-dmenumatchtop-6.2.diff
 make
 cp dwm $SLD/bin
-
 cd $SLD/src
+fi
+
+if [ ! -d dmenu ]; then
 git clone https://git.suckless.org/dmenu
 cd dmenu
 make
 cp dmenu $SLD/bin
+fi
+
+if [ ! -d slstatus ]; then
+git clone https://git.suckless.org/slstatus
+cd slstatus
+make
+cp slstatus $SLD/bin
+fi
+
+if [ ! -d slock ]; then
+git clone https://git.suckless.org/slock
+cd slock
+git branch config
+git checkout config
+wget https://tools.suckless.org/slock/patches/message/slock-message-20191002-b46028b.diff
+wget https://tools.suckless.org/slock/patches/xresources/slock-xresources-20191126-53e56c7.diff
+wget https://tools.suckless.org/slock/patches/mediakeys/slock-mediakeys-20170111-2d2a21a.diff
+wget https://tools.suckless.org/slock/patches/dpms/slock-dpms-1.4.diff
+patch < slock-dpms-1.4.diff
+patch < slock-message-20191002-b46028b.diff
+patch < slock-xresources-20191126-53e56c7.diff
+patch < slock-mediakeys-20170111-2d2a21a.diff
+make
+cp slock $SLD/bin
+fi

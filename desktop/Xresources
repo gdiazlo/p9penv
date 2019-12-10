@@ -55,8 +55,8 @@ Xft.antialias: 1
 Xft.rgba: rgb
 Xcursor.size: 32
 
-st.font: xft:Fira Mono:size=12
-st.bold_font:	xft:Source Code Pro:size=12:style=bold
+st.font: xft:Terminus TTF:size=12
+st.bold_font:	xft:Terminus TTF:size=12:style=bold
 st.background:          #ffffff
 st.foreground:			#171717
 st.cursorColor:         #8d9b53
@@ -67,7 +67,7 @@ st.tabspaces:			8
 st.chscale:			1.0
 st.cwscale:			1.0
 
-st.color0:			#353540
+st.color0:			#ffffff
 st.color8:			#545466
 st.color1:			#8c5760
 st.color9:			#b26f7a
@@ -81,5 +81,5 @@ st.color5:			#7b5e7d
 st.color13:			#9c77b2
 st.color6:			#66808c
 st.color14:			#82a2b2
-st.color7:			#8c8b8b
+st.color7:			#171717
 st.color15:			#b8b8c8
