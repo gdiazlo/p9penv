@@ -27,6 +27,7 @@ go get -u github.com/mpl/xplor
 
 go get -u rsc.io/mailgun/cmd/mailgun-mail
 go get -u rsc.io/mailgun/cmd/mailgun-sendmail
+go get -u github.com/marguerite/linux-bing-wallpaper
 
 # lang server
 go get -u golang.org/x/tools/cmd/gopls
