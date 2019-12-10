@@ -71,12 +71,8 @@ cd slock
 
 git branch config
 git checkout config
-wget https://tools.suckless.org/slock/patches/message/slock-message-20191002-b46028b.diff
-wget https://tools.suckless.org/slock/patches/xresources/slock-xresources-20191126-53e56c7.diff
 wget https://tools.suckless.org/slock/patches/dpms/slock-dpms-1.4.diff
 
-# patch < slock-message-20191002-b46028b.diff
-patch < slock-xresources-20191126-53e56c7.diff
 patch < slock-dpms-1.4.diff
 
 make
