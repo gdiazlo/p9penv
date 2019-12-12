@@ -36,6 +36,7 @@ wget http://dwm.suckless.org/patches/fancybar/dwm-fancybar-2019018-b69c870.diff
 patch < dwm-xrdb-6.2.diff
 patch < dwm-fakefullscreen-20170508-ceac8c9.diff
 patch < dwm-fancybar-2019018-b69c870.diff
+sed -i 's/monospace:size=10/Source Code Pro:size=12/g' config.def.h
 make
 cp dwm $SLD/bin
 cd $SLD/src
