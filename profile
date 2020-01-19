@@ -138,11 +138,11 @@ _set_font() {
 		;;
 	ibm)
 		mono="IBMPlexMono"
-		sans="IBMPlexSerif-Medium"
+		sans="IBMPlexSans-Medium"
 		;;
 	fira)
-		mono="FiraMono-Medium"
-		sans="FiraSans-Medium"
+		mono="FiraMono-Regular"
+		sans="FiraSans-Regular"
 		;;
 	terminus)
 		mono="TerminusTTF"
