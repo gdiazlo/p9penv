@@ -47,7 +47,7 @@ coursier bootstrap \
   --java-opt -Dmetals.java-home=~/.java/jdk/11.0.2 \
   --java-opt -Dmetals.maven-script=~/.java/mvn/3.6.2/bin/mvn \
   --java-opt -Dmetals.sbt-script=~/.java/sbt/1.3.3/bin/sbt \
-  org.scalameta:metals_2.12:0.7.6 -o metals -f
+  org.scalameta:metals_2.12:0.8.0 -o metals -f
 mv metals ~/bin
 
 # install eclipse jdt lanague server
