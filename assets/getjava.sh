@@ -10,16 +10,16 @@ JAVA_HOME=~/.java/jdk/$JAVA_VERSION
 PATH=~/.java/jdk/$JAVA_VERSION/bin:$PATH
 
 # Install maven
-MVN_VERSION=3.6.2
-MVN_URL=http://apache.uvigo.es/maven/maven-3/3.6.2/binaries/apache-maven-3.6.2-bin.tar.gz
+MVN_VERSION=3.6.3
+MVN_URL=http://apache.uvigo.es/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz
 mkdir -p ~/.java/mvn/$MVN_VERSION
 wget -c $MVN_URL -O - | tar -zx -C ~/.java/mvn/$MVN_VERSION --strip-components=1
 
 PATH=$PATH:~/.java/mvn/$MVN_VERSION/bin
 
 # Install SBT
-SBT_VERSION=1.3.3
-SBT_URL=https://piccolo.link/sbt-1.3.3.tgz
+SBT_VERSION=1.3.8
+SBT_URL=https://piccolo.link/sbt-1.3.8.tgz
 mkdir -p ~/.java/sbt/$SBT_VERSION
 wget -c $SBT_URL -O - | tar -zx -C ~/.java/sbt/$SBT_VERSION --strip-components=1
 
@@ -47,7 +47,7 @@ coursier bootstrap \
   --java-opt -Dmetals.java-home=~/.java/jdk/11.0.2 \
   --java-opt -Dmetals.maven-script=~/.java/mvn/3.6.2/bin/mvn \
   --java-opt -Dmetals.sbt-script=~/.java/sbt/1.3.3/bin/sbt \
-  org.scalameta:metals_2.12:0.8.0 -o metals -f
+  org.scalameta:metals_2.12:0.8.1 -o metals -f
 mv metals ~/bin
 
 # install eclipse jdt lanague server
