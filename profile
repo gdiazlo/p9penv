@@ -14,11 +14,11 @@ export GO111MODULE=on
 export CGO_LDFLAGS_ALLOW='-Wl,-unresolved_symbols=ignore-all'
 
 # set java environmant
-export JAVA_VERSION=13.0.1
+export JAVA_VERSION=11.0.2
 export JAVA_HOME=~/.java/$JAVA_VERSION
 
 # set scala environment
-export SBT_VERSION=1.3.3
+export SBT_VERSION=1.3.8
 export SBT_HOME=~/.sbt/$SBT_VERSION
 
 # set acme environment
@@ -38,8 +38,8 @@ alias tb="nc termbin.com 9999"
 
 # set java environment
 export JAVA_HOME=~/.java/jdk/11.0.2/
-export SBT_HOME=~/.java/sbt/1.3.3/
-export MVN_HOME=~/.java/mvn/3.6.2/
+export SBT_HOME=~/.java/sbt/1.3.8/
+export MVN_HOME=~/.java/mvn/3.6.3/
 
 # check if something is not there
 dirs=("$HOME/lib" "$PLAN9" "$GOROOT" "$GOPATH" "$ACME")
@@ -206,4 +206,4 @@ _set_font terminus 14 22
 
 # source
 source ~/.acme/bin/git-prompt.sh
-export PS1='$(__git_ps1 "(%s)")→'
+export PS1='$(__git_ps1 "(%s)")→ '
