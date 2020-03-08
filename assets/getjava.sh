@@ -32,8 +32,7 @@ mkdir -p ~/bin
 curl -Lo  ~/bin/coursier $COURSIER_URL
 chmod +x ~/bin/coursier
 
-
-export PATH
+export PATH=$PATH:~/bin/
 
 # Install metals
 
