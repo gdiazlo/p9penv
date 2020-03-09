@@ -88,6 +88,11 @@ noto() {
 	install "noto" "${fonts[@]}"
 }
 
+lora() {
+	fonts=("https://www.fontsquirrel.com/fonts/download/lora")
+	install "lora" "${fonts[@]}"
+}
+
 copy() {
 	name=$1
 	shift
@@ -112,7 +117,7 @@ install() {
 	done
 }
 
-ALL=(overpass adobe copper input charter terminus computer_modern ibm bitter fira go noto)
+ALL=(overpass adobe copper input charter terminus computer_modern ibm bitter fira go noto lora)
 
 if [ -z "$1" ]; then
 	echo Select all or one of the following fonts:
