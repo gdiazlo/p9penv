@@ -65,7 +65,7 @@ pathappend() {
   done
 }
 
-pathappend "$HOME/bin" "$GOPATH/bin" "$PLAN9/bin" "$JAVA_HOME/bin" "$SBT_HOME/bin" "$MVN_HOME/bin" "$HOME/.local/bin" "$HOME/.sld/bin" "$HOME/racket/bin"
+pathappend "$HOME/bin" "$GOPATH/bin" "$PLAN9/bin" "$JAVA_HOME/bin" "$SBT_HOME/bin" "$MVN_HOME/bin" "$HOME/.local/bin" "$HOME/.sld/bin" "$HOME/.racket/bin"
 
 # prepend ~/bin and goroot into path to avoid using gcc-go in system path by default
 export PATH="~/bin:$GOROOT/bin":$HOME/.firefox/:$PATH
