@@ -93,6 +93,16 @@ lora() {
 	install "lora" "${fonts[@]}"
 }
 
+orbitron() {
+	fonts=("https://github.com/theleagueof/orbitron/archive/master.zip")
+	install "orbitron" "${fonts[@]}"
+}
+
+montserrat() {
+	fonts=("https://github.com/JulietaUla/Montserrat/archive/v7.200.zip")
+	install "monserrat" "${fonts[@]}"
+}
+
 copy() {
 	name=$1
 	shift
@@ -117,7 +127,7 @@ install() {
 	done
 }
 
-ALL=(overpass adobe copper input charter terminus computer_modern ibm bitter fira go noto lora)
+ALL=(overpass adobe copper input charter terminus computer_modern ibm bitter fira go noto lora orbitron montserrat)
 
 if [ -z "$1" ]; then
 	echo Select all or one of the following fonts:
