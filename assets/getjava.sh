@@ -49,6 +49,12 @@ coursier bootstrap \
   org.scalameta:metals_2.12:0.8.1 -o metals -f
 mv metals ~/bin
 
+# Install scalafmt
+
+coursier bootstrap org.scalameta:scalafmt-cli_2.12:2.4.2 \
+  -r sonatype:snapshots \
+  -o ~/bin/scalafmt --standalone --main org.scalafmt.cli.Cli
+
 # install eclipse jdt lanague server
 JDT_VERSION=0.47.0
 JDT_URL=http://download.eclipse.org/jdtls/milestones/0.47.0/jdt-language-server-0.47.0-201911150945.tar.gz
