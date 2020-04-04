@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+nx="$1"
+if [ -z "$nx" ]; then
+	nx=1
+fi
+
+fsize=$(echo $font | cut -f1 -d',' | cut -f5 -d '/' | tr -d A-Za-z )
+hsize=$(echo $font | cut -f2 -d',' | cut -f5 -d '/' | tr -d A-Za-z )
+
+fname=$(echo $font | cut -f1 -d',' | cut -f4 -d '/' )
+hfname=$(echo $font | cut -f2 -d',' | cut -f4 -d '/' )
+
+fsizes=($(9p ls font/$fname | grep a | tr -d a | sort -n))
+hfsizes=($(9p ls font/$hfname | grep a | tr -d a | sort -n))
+
+
+for i in "${!fsizes[@]}"; do
+	if [ "${fsizes[$i]}" -eq $fsize ]; then
+		echo " Font /mnt/font/${fname}/${fsizes[${i}+${nx}]}a/font" | 9 9p write acme/$winid/tag
+	fi
+done
+
