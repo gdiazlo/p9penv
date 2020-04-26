@@ -127,6 +127,8 @@ install() {
 	done
 }
 
+# https://raw.githubusercontent.com/Zygo/xscreensaver/master/OSX/gallant12x22.ttf
+
 ALL=(overpass adobe copper input charter terminus computer_modern ibm bitter fira go noto lora orbitron montserrat)
 
 if [ -z "$1" ]; then
