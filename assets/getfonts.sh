@@ -57,7 +57,7 @@ computer_modern() {
 # Open source fonts by IBM
 # https://github.com/IBM/plex
 ibm() {
-	fonts=("https://github.com/IBM/plex/releases/download/v2.0.0/TrueType.zip")
+	fonts=("https://github.com/IBM/plex/releases/download/v4.0.2/OpenType.zip" )
 	install "ibmplex" "${fonts[@]}"
 }
 
@@ -127,9 +127,15 @@ install() {
 	done
 }
 
-# https://raw.githubusercontent.com/Zygo/xscreensaver/master/OSX/gallant12x22.ttf
+# "https://raw.githubusercontent.com/Zygo/xscreensaver/master/OSX/gallant12x22.ttf"
+old() {
+	fonts=("https://dl.dafont.com/dl/?f=dec_terminal_modern" "https://github.com/rbanffy/3270font/releases/download/v2.0.4/3270_fonts_ece94f6.zip"  )
+	install "vintage" "${fonts[@]}"
+}
 
-ALL=(overpass adobe copper input charter terminus computer_modern ibm bitter fira go noto lora orbitron montserrat)
+#
+
+ALL=(overpass adobe copper input charter terminus computer_modern ibm bitter fira go noto lora orbitron montserrat old)
 
 if [ -z "$1" ]; then
 	echo Select all or one of the following fonts:
