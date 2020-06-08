@@ -1,7 +1,6 @@
 # to update: cat $HOME/lib/plumbing | 9p write plumb/rules
 
-editor = /home/gdiazlo/acme/bin/acme
-include basic
+editor = acme
 
 kind is text
 data matches '[a-zA-Z0-9_\-./~{}@]+('$addr')?'
@@ -20,3 +19,18 @@ plumb start rc -c 'cd '''$wdir'''; root=`{git rev-parse --show-toplevel}; rev=''
 # declarations of ports without rules
 plumb to lsp
 
+type is text
+data matches '[a-zA-Z¡-￿0-9_\-./@]+'
+data matches '([a-zA-Z¡-￿0-9_\-./@]+)\.(pdf|PDF|epub|XPS|xps)'
+arg isfile	$0
+plumb to pdf
+plumb start mupdf $file
+
+type is text
+data matches '[a-zA-Z¡-￿0-9_\-./@]+'
+data matches '([a-zA-Z¡-￿0-9_\-./@]+)\.(jpe?g|JPE?G|gif|GIF|tiff?|TIFF?|ppm|bit|png|PNG)'
+arg isfile	$0
+plumb to image
+plumb start imv $file
+
+include basic
