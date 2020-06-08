@@ -1,7 +1,7 @@
  #!/bin/bash
 
-JAVA_VERSION=11.0.2
-JAVA_URL=https://download.java.net/java/GA/jdk11/9/GPL/openjdk-11.0.2_linux-x64_bin.tar.gz
+JAVA_VERSION=11.0.7
+JAVA_URL=https://github.com/AdoptOpenJDK/openjdk11-upstream-binaries/releases/download/jdk-11.0.7%2B10/OpenJDK11U-jdk_x64_linux_11.0.7_10.tar.gz
 
 mkdir -p ~/.java/jdk/$JAVA_VERSION
 wget -c $JAVA_URL -O - | tar -zx -C ~/.java/jdk/${JAVA_VERSION}/ --strip-components=1
@@ -18,8 +18,8 @@ wget -c $MVN_URL -O - | tar -zx -C ~/.java/mvn/$MVN_VERSION --strip-components=1
 PATH=$PATH:~/.java/mvn/$MVN_VERSION/bin
 
 # Install SBT
-SBT_VERSION=1.3.8
-SBT_URL=https://piccolo.link/sbt-1.3.8.tgz
+SBT_VERSION=1.3.10
+SBT_URL=https://piccolo.link/sbt-1.3.10.tgz
 mkdir -p ~/.java/sbt/$SBT_VERSION
 wget -c $SBT_URL -O - | tar -zx -C ~/.java/sbt/$SBT_VERSION --strip-components=1
 
@@ -46,18 +46,16 @@ coursier bootstrap \
   --java-opt -Dmetals.java-home=~/.java/jdk/11.0.2 \
   --java-opt -Dmetals.maven-script=~/.java/mvn/3.6.2/bin/mvn \
   --java-opt -Dmetals.sbt-script=~/.java/sbt/1.3.3/bin/sbt \
-  org.scalameta:metals_2.12:0.8.1 -o metals -f
-mv metals ~/bin
+  org.scalameta:metals_2.12:0.9.0 -o ~/.local/bin/metals -f
+
 
 # Install scalafmt
-
-coursier bootstrap org.scalameta:scalafmt-cli_2.12:2.4.2 \
-  -r sonatype:snapshots \
-  -o ~/bin/scalafmt --standalone --main org.scalafmt.cli.Cli
+VERSION=2.5.3
+curl https://raw.githubusercontent.com/scalameta/scalafmt/master/bin/install-scalafmt-native.sh | bash -s -- $VERSION ~/.local/bin/scalafmt
 
 # install eclipse jdt lanague server
-JDT_VERSION=0.47.0
-JDT_URL=http://download.eclipse.org/jdtls/milestones/0.47.0/jdt-language-server-0.47.0-201911150945.tar.gz
+JDT_VERSION=0.55.0
+JDT_URL=http://download.eclipse.org/jdtls/milestones/0.55.0/jdt-language-server-0.55.0-202004300028.tar.gz
 mkdir -p ~/.java/jdt/$JDT_VERSION
 wget -c $JDT_URL -O - | tar -zx -C ~/.java/jdt/$JDT_VERSION --strip-components=1
 

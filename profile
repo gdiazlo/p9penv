@@ -5,6 +5,9 @@ export QT_AUTO_SCREEN_SCALE_FACTOR=true
 
 # set plan9 environment
 export PLAN9=~/.plan9
+# mk max concurrent procs
+# only valid for linux
+export nproc=$(cat /proc/cpuinfo | grep processor | wc -l)
 
 # set golang environment
 export GOVERSION=$($PLAN9/bin/ls -p ~/.go | tail -n 1)
@@ -31,9 +34,11 @@ unset FCEDIT VISUAL
 
 # set cursor to a steady bar |
 # printf '\033[6 q'
+# set cursor to a steady block
+echo -e -n "\x1b[\x30 q"
+export GNUTERM="sixelgd size 1280,720 truecolor font 'DEC Terminal Modern' 14"
 
 # set aliases
-alias ls="9 lc -F"
 alias tb="nc termbin.com 9999"
 
 # set java environment
@@ -65,7 +70,7 @@ pathappend() {
   done
 }
 
-pathappend "$HOME/bin" "$GOPATH/bin" "$PLAN9/bin" "$JAVA_HOME/bin" "$SBT_HOME/bin" "$MVN_HOME/bin" "$HOME/.local/bin" "$HOME/.sld/bin" "$HOME/.racket/bin"
+pathappend "$HOME/bin" "$GOPATH/bin" "$PLAN9/bin" "$JAVA_HOME/bin" "$SBT_HOME/bin" "$MVN_HOME/bin" "$HOME/.local/bin" "$HOME/.sld/bin"  "/usr/sbin" "/sbin" "$HOME/.acme/bin" "$HOME/.local/bin"
 
 # prepend ~/bin and goroot into path to avoid using gcc-go in system path by default
 export PATH="~/bin:$GOROOT/bin":$HOME/.firefox/:$PATH
@@ -161,8 +166,8 @@ _set_font() {
 		sans="InputSans-Light"
 		;;
 	noto)
-		mono="NotoSansMono-Regular"
-		sans="NotoSans-Regular"
+		mono="NotoSansMono"
+		sans="NotoSans"
 		;;
 	adobe)
 		mono="SourceCodePro-Medium"
@@ -202,8 +207,11 @@ if [ ! -z "$DISPLAY" ]; then
 fi
 
 # default font
-_set_font terminus 14 22
+_set_font adobe 14 22
 
 # source
 source ~/.acme/bin/git-prompt.sh
-export PS1='$(__git_ps1 "(%s)")→ '
+export PS1='$(__git_ps1 "(%s)")\$ '
+
+# opam configuration
+test -r /home/gdiazlo/.opam/opam-init/init.sh && . /home/gdiazlo/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
