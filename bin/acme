@@ -2,8 +2,6 @@
 
 source ~/.acme/profile
 
-_set_font fira 13 23
-
 if [ -f $HOME/acme.dump ]
 then
 	_acme -l $HOME/acme.dump $@ &

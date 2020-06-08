@@ -1,7 +1,12 @@
 #!/bin/bash
+# wayland
+# export QT_QPA_PLATFORM=wayland-egl
+# export MOZ_ENABLE_WAYLAND=1
+# export SDL_VIDEODRIVER=wayland
+export VDPAU_DRIVER=radeonsi
 
 # QT auto scale
-export QT_AUTO_SCREEN_SCALE_FACTOR=true
+# export QT_AUTO_SCREEN_SCALE_FACTOR=true
 
 # set plan9 environment
 export PLAN9=~/.plan9
@@ -17,12 +22,12 @@ export GO111MODULE=on
 export CGO_LDFLAGS_ALLOW='-Wl,-unresolved_symbols=ignore-all'
 
 # set java environmant
-export JAVA_VERSION=11.0.2
-export JAVA_HOME=~/.java/$JAVA_VERSION
+export JAVA_VERSION=11.0.7
+export JAVA_HOME=~/.java/jdk/$JAVA_VERSION
 
 # set scala environment
-export SBT_VERSION=1.3.8
-export SBT_HOME=~/.sbt/$SBT_VERSION
+export SBT_VERSION=1.3.10
+export SBT_HOME=~/.java/sbt/$SBT_VERSION
 
 # set acme environment
 export ACME=$HOME/.acme
@@ -41,10 +46,9 @@ export GNUTERM="sixelgd size 1280,720 truecolor font 'DEC Terminal Modern' 14"
 # set aliases
 alias tb="nc termbin.com 9999"
 
-# set java environment
-export JAVA_HOME=~/.java/jdk/11.0.2/
-export SBT_HOME=~/.java/sbt/1.3.8/
-export MVN_HOME=~/.java/mvn/3.6.3/
+# set Maven Home
+export MVN_VERSION=3.6.3
+export MVN_HOME=~/.java/mvn/$MVN_VERSION/
 
 # check if something is not there
 dirs=("$HOME/lib" "$PLAN9" "$GOROOT" "$GOPATH" "$ACME")
@@ -70,10 +74,10 @@ pathappend() {
   done
 }
 
-pathappend "$HOME/bin" "$GOPATH/bin" "$PLAN9/bin" "$JAVA_HOME/bin" "$SBT_HOME/bin" "$MVN_HOME/bin" "$HOME/.local/bin" "$HOME/.sld/bin"  "/usr/sbin" "/sbin" "$HOME/.acme/bin" "$HOME/.local/bin"
+pathappend "$HOME/bin" "$GOPATH/bin" "$PLAN9/bin" "$JAVA_HOME/bin" "$SBT_HOME/bin" "$MVN_HOME/bin" "$HOME/.sld/bin"  "/usr/sbin" "/sbin" "$HOME/.acme/bin"
 
 # prepend ~/bin and goroot into path to avoid using gcc-go in system path by default
-export PATH="~/bin:$GOROOT/bin":$HOME/.firefox/:$PATH
+export PATH="~/bin:$HOME/.local/bin:$GOROOT/bin":$PATH
 
 # ssh agent set up
 
@@ -133,6 +137,10 @@ _set_font() {
 	fi
 
 	case $family in
+	dejavu)
+		mono="DejaVuSansMono"
+		sans="DejaVuSans"
+		;;
 	go)
 		mono="Go Mono"
 		sans="Go Regular"
@@ -143,11 +151,11 @@ _set_font() {
 		;;
 	ibm)
 		mono="IBMPlexMono"
-		sans="IBMPlexSans-Medium"
+		sans="IBMPlexSans"
 		;;
 	fira)
-		mono="FiraMono-Regular"
-		sans="FiraSans-Regular"
+		mono="FiraMono"
+		sans="FiraSans"
 		;;
 	terminus)
 		mono="TerminusTTF"
@@ -162,8 +170,8 @@ _set_font() {
 		sans="InputSansCondensed-Medium"
 		;;
 	input)
-		mono="InputMono-Light"
-		sans="InputSans-Light"
+		mono="InputMono"
+		sans="InputSans"
 		;;
 	noto)
 		mono="NotoSansMono"
@@ -194,7 +202,7 @@ complete -f nospace _cd acme
 
 # start new p9p session
 new_p9p_session() {
-	for proc in fontsrv factotum plumber; do
+	for proc in fontsrv secstored factotum plumber; do
 		pgrep $proc 2>&1 > /dev/null
 		if [ $? -ne 0 ]; then
 			$PLAN9/bin/9 $proc &
@@ -202,9 +210,13 @@ new_p9p_session() {
 	done
 }
 
-if [ ! -z "$DISPLAY" ]; then
-	new_p9p_session
-fi
+#if [ ! -z "$DISPLAY" ]; then
+#	new_p9p_session
+#fi
+
+export NAMESPACE=/tmp/ns.gdiazlo.sway
+mkdir -p $NAMESPACE
+new_p9p_session
 
 # default font
 _set_font adobe 14 22
@@ -214,4 +226,20 @@ source ~/.acme/bin/git-prompt.sh
 export PS1='$(__git_ps1 "(%s)")\$ '
 
 # opam configuration
-test -r /home/gdiazlo/.opam/opam-init/init.sh && . /home/gdiazlo/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
+test -r $HOME/.opam/opam-init/init.sh && . $HOME/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
+
+_set_color() {
+        declare -A colors
+        colors[black]="#313131"
+        colors[gray]="#777777"
+        colors[purple]="#bfb1d5"
+        colors[green]="#adddcf"
+        colors[blue]="#abe1fd"
+        colors[orange]="#fed1be"
+        colors[yellow]="#f0e0a2"
+        colors[lightgray]="#e8e7e5"
+        colors[white]="#fafafa"
+
+        echo -ne "\033]11;${colors[$1]}\007"
+        echo -ne "\033]10;${colors[$2]}\007"
+}
