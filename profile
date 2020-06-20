@@ -5,32 +5,29 @@
 # export SDL_VIDEODRIVER=wayland
 export VDPAU_DRIVER=radeonsi
 
-# QT auto scale
-# export QT_AUTO_SCREEN_SCALE_FACTOR=true
-
 # set plan9 environment
-export PLAN9=~/.plan9
+export PLAN9=$HOME/.local/plan9
+
 # mk max concurrent procs
 # only valid for linux
 export nproc=$(cat /proc/cpuinfo | grep processor | wc -l)
 
 # set golang environment
-export GOVERSION=$($PLAN9/bin/ls -p ~/.go | tail -n 1)
-export GOROOT=~/.go/$GOVERSION
+export GOVERSION=$($PLAN9/bin/ls -p $HOME/.local/go | tail -n 1)
+export GOROOT=$HOME/.local/go/$GOVERSION
 export GOPATH=$HOME/go
 export GO111MODULE=on
-export CGO_LDFLAGS_ALLOW='-Wl,-unresolved_symbols=ignore-all'
 
 # set java environmant
 export JAVA_VERSION=11.0.7
-export JAVA_HOME=~/.java/jdk/$JAVA_VERSION
+export JAVA_HOME=$HOME/.local/java/jdk/$JAVA_VERSION
 
 # set scala environment
 export SBT_VERSION=1.3.10
-export SBT_HOME=~/.java/sbt/$SBT_VERSION
+export SBT_HOME=$HOME/.local/java/sbt/$SBT_VERSION
 
 # set acme environment
-export ACME=$HOME/.acme
+export ACME=$HOME/.config/acme
 export usebigarrow=1
 export EDITOR=editinacme
 export PAGER=nobs
@@ -48,7 +45,7 @@ alias tb="nc termbin.com 9999"
 
 # set Maven Home
 export MVN_VERSION=3.6.3
-export MVN_HOME=~/.java/mvn/$MVN_VERSION/
+export MVN_HOME=$HOME/.local/java/mvn/$MVN_VERSION/
 
 # check if something is not there
 dirs=("$HOME/lib" "$PLAN9" "$GOROOT" "$GOPATH" "$ACME")
@@ -74,10 +71,10 @@ pathappend() {
   done
 }
 
-pathappend "$HOME/bin" "$GOPATH/bin" "$PLAN9/bin" "$JAVA_HOME/bin" "$SBT_HOME/bin" "$MVN_HOME/bin" "$HOME/.sld/bin"  "/usr/sbin" "/sbin" "$HOME/.acme/bin"
+pathappend "$GOPATH/bin" "$PLAN9/bin" "$JAVA_HOME/bin" "$SBT_HOME/bin" "$MVN_HOME/bin" "/usr/sbin" "/sbin" "$ACME/bin"
 
 # prepend ~/bin and goroot into path to avoid using gcc-go in system path by default
-export PATH="~/bin:$HOME/.local/bin:$GOROOT/bin":$PATH
+export PATH="$HOME/bin:$HOME/.local/bin:$GOROOT/bin":$PATH
 
 # ssh agent set up
 
@@ -210,19 +207,19 @@ new_p9p_session() {
 	done
 }
 
-#if [ ! -z "$DISPLAY" ]; then
-#	new_p9p_session
-#fi
-
-export NAMESPACE=/tmp/ns.gdiazlo.sway
+NAMESPACE=/tmp/ns.$USER
+if [ -d "$XDG_RUNTIME_DIR" ]; then
+	NAMESPACE=$XDG_RUNTIME_DIR/ns
+fi
+export NAMESPACE
 mkdir -p $NAMESPACE
 new_p9p_session
 
 # default font
-_set_font adobe 14 22
+_set_font ibm 12 22
 
 # source
-source ~/.acme/bin/git-prompt.sh
+source $ACME/bin/git-prompt.sh
 export PS1='$(__git_ps1 "(%s)")\$ '
 
 # opam configuration

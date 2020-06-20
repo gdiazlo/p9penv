@@ -1,6 +1,6 @@
  #!/bin/bash
 
-DEST=~/.fonts
+DEST=$HOME/.local/share/fonts
 
 # Opensource font sponsored by Red Hat
 # http://overpassfont.org/
@@ -128,14 +128,23 @@ install() {
 }
 
 # "https://raw.githubusercontent.com/Zygo/xscreensaver/master/OSX/gallant12x22.ttf"
-old() {
-	fonts=("https://dl.dafont.com/dl/?f=dec_terminal_modern" "https://github.com/rbanffy/3270font/releases/download/v2.0.4/3270_fonts_ece94f6.zip"  )
-	install "vintage" "${fonts[@]}"
+sun() {
+	wget "https://raw.githubusercontent.com/Zygo/xscreensaver/master/OSX/gallant12x22.ttf" -O $DEST/
+}
+
+dec() {
+	fonts=("https://dl.dafont.com/dl/?f=dec_terminal_modern")
+	install "dec" "${fonts[@]}"
+}
+
+ibm3270() {
+	fonts=("https://github.com/rbanffy/3270font/releases/download/v2.0.4/3270_fonts_ece94f6.zip"  )
+	install "3270" "${fonts[@]}"
 }
 
 #
 
-ALL=(overpass adobe copper input charter terminus computer_modern ibm bitter fira go noto lora orbitron montserrat old)
+ALL=(overpass adobe copper input charter terminus computer_modern ibm bitter fira go noto lora orbitron montserrat sun dec ibm3270)
 
 if [ -z "$1" ]; then
 	echo Select all or one of the following fonts:

@@ -1,15 +1,15 @@
  #!/bin/bash
 
 GOVERSION=1.14.4
-
-if [ ! -d ~/.go/$GOVERSION ]; then
+GOROOT=$HOME/.local/go/$GOVERSION
+if [ ! -d $GOROOT ]; then
 	echo Installing Go $GOVERSION
-	mkdir -p ~/.go/$GOVERSION
-	wget -c "https://dl.google.com/go/go${GOVERSION}.linux-amd64.tar.gz" -O - | tar -zx -C ~/.go/${GOVERSION}/ --strip-components=1
+	mkdir -p $GOROOT
+	wget -c "https://dl.google.com/go/go${GOVERSION}.linux-amd64.tar.gz" -O - | tar -zx -C $GOROOT --strip-components=1
 fi
 
-GOROOT=~/.go/$GOVERSION
-PATH=~/.go/$GOVERSION/bin:$PATH
+
+PATH=$GOROOT/bin:$PATH
 
 # Download and update golang tools
 

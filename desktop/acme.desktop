@@ -1,11 +1,10 @@
 [Desktop Entry]
 Comment=Plan9 Text Editor
-Exec=/home/gdiazlo/.acme/bin/acme
-GenericName=acme editor
-Icon=/home/gdiazlo/.plan9/mac/spaceglenda.png
+Exec=acme
+GenericName=acme
+Icon=spaceglenda
 Name=acme
 NoDisplay=false
-Path[$e]=$HOME/
 StartupNotify=true
 Terminal=0
 TerminalOptions=
