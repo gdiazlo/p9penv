@@ -17,10 +17,9 @@ PATH=$GOROOT/bin:$PATH
 go get -u golang.org/x/tools/...
 
 # 3rd party
-
-go get -u github.com/9fans/go/acme/editinacme
-go get -u github.com/9fans/go/acme/acmego
-go get -u github.com/9fans/go/acme/Watch
+go get -u 9fans.net/go/acme/editinacme
+go get -u 9fans.net/go/acme/Watch
+go get -u 9fans.net/go/acme/Dict
 go get -u github.com/mpl/xplor
 
 # other tools
