@@ -71,7 +71,7 @@ pathappend() {
   done
 }
 
-pathappend "$GOPATH/bin" "$PLAN9/bin" "$JAVA_HOME/bin" "$SBT_HOME/bin" "$MVN_HOME/bin" "/usr/sbin" "/sbin" "$ACME/bin"
+pathappend "$GOPATH/bin" "$PLAN9/bin" "$PLAN9/bin/upas" "$JAVA_HOME/bin" "$SBT_HOME/bin" "$MVN_HOME/bin" "/usr/sbin" "/sbin" "$ACME/bin"
 
 # prepend ~/bin and goroot into path to avoid using gcc-go in system path by default
 export PATH="$HOME/bin:$HOME/.local/bin:$GOROOT/bin":$PATH
