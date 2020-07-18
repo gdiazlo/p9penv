@@ -1,4 +1,4 @@
-xterm*faceName: Source Code Pro
+xterm*faceName: IBM Plex Mono
 xterm*renderFont: true
 xterm*faceSize: 12
 
@@ -55,31 +55,3 @@ Xft.antialias: 1
 Xft.rgba: rgb
 Xcursor.size: 32
 
-st.font: Source Code Pro:size=12
-st.bold_font:	Source Code Pro:size=12:style=bold
-st.background:          #ff0000
-st.foreground:			#171717
-st.cursorColor:         #ff0000
-st.termname:			xterm-256color
-st.shell:			/bin/sh
-st.bellvolume:			100
-st.tabspaces:			8
-st.chscale:			1.0
-st.cwscale:			1.0
-
-st.color0:			#ffffff
-st.color8:			#545466
-st.color1:			#8c5760
-st.color9:			#b26f7a
-st.color2:			#7b8c58
-st.color10:			#9db270
-st.color3:			#8c6e43
-st.color11:			#b28c55
-st.color4:			#58698c
-st.color12:			#7086b2
-st.color5:			#7b5e7d
-st.color13:			#9c77b2
-st.color6:			#66808c
-st.color14:			#82a2b2
-st.color7:			#171717
-st.color15:			#b8b8c8
