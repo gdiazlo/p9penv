@@ -33,3 +33,8 @@ go get -u github.com/fhs/acme-lsp/cmd/acme-lsp
 go get -u github.com/fhs/acme-lsp/cmd/L
 go get -u github.com/fhs/acme-lsp/cmd/acmefocused
 
+# filesystems
+go get -u github.com/sirnewton01/ghfs
+
+# libraries 9p 2000 library for go
+go get -u github.com/hugelgupf/p9
