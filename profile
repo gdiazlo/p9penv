@@ -198,8 +198,10 @@ _acme() {
 complete -f nospace _cd acme
 
 # start new p9p session
+# start factotum before secstore so it does not prompt for a password
+# load secrets manually using ipso
 new_p9p_session() {
-	for proc in fontsrv secstored factotum plumber; do
+	for proc in fontsrv factotum secstored plumber; do
 		pgrep $proc 2>&1 > /dev/null
 		if [ $? -ne 0 ]; then
 			$PLAN9/bin/9 $proc &
