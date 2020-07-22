@@ -8,7 +8,7 @@ fi
 ctl=($(9p read acme/$winid/ctl))
 
 size=$(echo ${ctl[6]} | tr -d -c 0-9)
-newSize=$(($size+$nx))
+newSize=$(($size-$nx))
 newfont=$(echo ${ctl[6]} | tr $size $newSize)
 
 echo "font $newfont"  | 9p write acme/$winid/ctl
