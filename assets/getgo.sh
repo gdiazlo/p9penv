@@ -1,6 +1,6 @@
  #!/bin/bash
 
-GOVERSION=1.14.4
+GOVERSION=1.14.6
 GOROOT=$HOME/.local/go/$GOVERSION
 if [ ! -d $GOROOT ]; then
 	echo Installing Go $GOVERSION
