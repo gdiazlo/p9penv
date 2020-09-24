@@ -1,11 +1,15 @@
  #!/bin/bash
+OS=linux
+if [[ $OSTYPE == "darwin"* ]]; then
+	OS=darwin
+fi
 
-GOVERSION=1.14.6
+GOVERSION=1.15.2
 GOROOT=$HOME/.local/go/$GOVERSION
 if [ ! -d $GOROOT ]; then
 	echo Installing Go $GOVERSION
 	mkdir -p $GOROOT
-	wget -c "https://dl.google.com/go/go${GOVERSION}.linux-amd64.tar.gz" -O - | tar -zx -C $GOROOT --strip-components=1
+	curl -L "https://dl.google.com/go/go${GOVERSION}.$OS-amd64.tar.gz" | tar -zx -C $GOROOT --strip-components=1
 fi
 
 

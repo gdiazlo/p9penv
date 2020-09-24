@@ -1,15 +1,17 @@
-#!/usr/bin/env bash
+#!/usr/bin/env rc
 
-nx="$1"
-if [ -z "$nx" ]; then
-	nx=1
-fi
+. 9.rc
+. $PLAN9/lib/acme.rc
 
-ctl=($(9p read acme/$winid/ctl))
+nx=1
+if(test $#* -gt 0) {
+	nx=$1
+}
 
-size=$(echo ${ctl[6]} | tr -d -c 0-9)
-newSize=$(($size-$nx))
-newfont=$(echo ${ctl[6]} | tr $size $newSize)
+ctl=(`{9p read acme/$winid/ctl})
 
-echo "font $newfont"  | 9p write acme/$winid/ctl
+size=`{echo $ctl(7) | tr -d -c 0-9}
+newSize=`{echo $size-$nx | bc}
+newfont=`{echo $ctl(7) | tr $size $newSize}
 
+echo font $newfont  | 9p write acme/$winid/ctl

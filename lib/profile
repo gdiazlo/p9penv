@@ -1,0 +1,200 @@
+
+# wayland
+# QT_QPA_PLATFORM=wayland-egl
+# MOZ_ENABLE_WAYLAND=1
+# SDL_VIDEODRIVER=wayland
+VDPAU_DRIVER=radeonsi
+
+# set plan9 environment
+PLAN9=$home/.local/plan9
+
+# mk max concurrent procs
+# only valid for linux
+nproc=8
+
+# set golang environment
+GOVERSION=`{$PLAN9/bin/ls -p $home/.local/go | tail -n 1}
+GOROOT=$home/.local/go/$GOVERSION
+GOPATH=$home/go
+GO111MODULE=on
+
+# set java environmant
+JAVA_VERSION=11.0.7
+JAVA_home=$home/.local/java/jdk/$JAVA_VERSION
+
+# set scala environment
+SBT_VERSION=1.3.10
+SBT_home=$home/.local/java/sbt/$SBT_VERSION
+
+# set acme environment
+ACME=$home/.config/acme
+usebigarrow=1
+EDITOR=editinacme
+PAGER=nobs
+BROWSER=firefox
+
+
+# set cursor to a steady bar |
+# printf '\033[6 q'
+# set cursor to a steady block
+# echo -e -n '\x1b[\x30 q'
+# GNUTERM='sixelgd size 1280,720 truecolor font 'DEC Terminal Modern' 14'
+
+# set aliases
+fn tb { nc termbin.com 9999 }
+
+# set Maven Home
+MVN_VERSION=3.6.3
+MVN_home=$home/.local/java/mvn/$MVN_VERSION/
+
+# check if something is not there
+dirs=($home/lib $PLAN9 $GOROOT $GOPATH $ACME)
+for(d in $dirs) {
+	if(test  ! -d $d) {
+		echo '$d does not exists. Verify set up'
+		exit
+	}
+}
+
+files=($home/lib/plumbing)
+for(f in $files) {
+	if (test ! -f $f) {
+		echo '$f does not exists. Verify set up'
+	}
+}
+
+
+# Prepare PATH environment
+#   append custom tools at the end of the current path
+#   prepend ~/bin and goroot into path to avoid using gcc-go in system path by default
+pathappend=($GOPATH/bin $PLAN9/bin $PLAN9/bin/upas $JAVA_home/bin $SBT_home/bin $MVN_home/bin /usr/sbin /sbin $ACME/bin /usr/local/bin )
+pathprepend=($home/bin $home/.local/bin $GOROOT/bin)
+path=($pathprepend $path $pathappend)
+
+# ssh agent set up
+
+SSH_ENV=$home/.ssh/environment
+
+fn export {}
+
+fn startsshagent {
+	echo 'Initialising new SSH agent...'
+	/usr/bin/ssh-agent | sed 's/^echo/#echo/' > $SSH_ENV
+	echo succeeded
+	chmod 600 $SSH_ENV
+	. $SSH_ENV> /dev/null
+	/usr/bin/ssh-add;
+}
+
+# Source SSH settings, if applicable
+
+if(test -f $SSH_ENV) {
+	. $SSH_ENV> /dev/null
+	pgrep ssh-agent > /dev/null
+	switch($status) {
+		case 1
+        			startsshagentt
+	}
+}
+if not {
+    startsshagent
+}
+
+# set cd to execute awd when in acme win
+fn cd  {
+        builtin cd $* &&
+        switch($TERM) {
+		case xterm-256color
+		case dumb
+                		awd
+       }
+}
+
+
+fn _set_font {
+	family=$1
+	shift
+	size=$1
+	shift
+	hidpi=$1
+	shift
+
+	echo Settingn $family font family
+
+	switch($family) {
+	case dejavu
+		mono='DejaVuSansMono'
+		sans='DejaVuSans'
+	case go
+		mono='GoMono'
+		sans='GoRegular'
+	case cmu
+		mono='CMUTypewriter-Regular'
+		sans='CMUSansSerif'
+	case ibm
+		mono='IBMPlexMono'
+		sans='IBMPlexSans'
+	case fira
+		mono='FiraMono'
+		sans='FiraSans'
+	case terminus
+		mono='TerminusTTF'
+		sans='TerminusTTF'
+	case book
+		mono='GoMono'
+		sans='Bitter-Regular'
+	case input-condensed
+		mono='InputMonoCondensed-Medium'
+		sans='InputSansCondensed-Medium'
+	case input
+		mono='InputMono'
+		sans='InputSans'
+	case noto
+		mono='NotoSansMono'
+		sans='NotoSans'
+	case adobe
+		mono='SourceCodePro-Medium'
+		sans='SourceSansPro-Regular'
+	case *
+		mono='GoMono'
+		sans='GoRegular'
+	}
+
+	fixedfont='/mnt/font/'$mono'/'$size'a/font'
+	font='/mnt/font/'$sans'/'$size'a/font'
+	hidpifixedfont='/mnt/font/'$mono'/'$hidpi'a/font'
+	hidpifont='/mnt/font/'$sans'/'$hidpi'a/font'
+
+
+
+}
+
+# start new p9p session
+# start factotum before secstore so it does not prompt for a password
+# load secrets manually using ipso
+fn new_p9p_session {
+
+	NAMESPACE=$home/.ns
+	if(test $XDG_RUNTIME_DIR) {
+		NAMESPACE=$XDG_RUNTIME_DIR/ns
+	}
+
+	mkdir -p $NAMESPACE
+
+	for(proc in fontsrv factotum secstored plumber) {
+		pgrep $proc > /dev/null
+		switch($status) {
+			case 1
+				$PLAN9/bin/9 $proc &
+		}
+	}
+}
+
+new_p9p_session
+
+# default font
+_set_font ibm 14 28
+
+fn acme {
+	$PLAN9/bin/acme -a -c 1 -f $font,$hidpifont -F $fixedfont,$hidpifixedfont $*
+}

@@ -1,13 +1,16 @@
  #!/bin/bash
 
-JAVA_VERSION=11.0.7
-JAVA_URL=https://github.com/AdoptOpenJDK/openjdk11-upstream-binaries/releases/download/jdk-11.0.7%2B10/OpenJDK11U-jdk_x64_linux_11.0.7_10.tar.gz
+JAVA_URL=https://github.com/AdoptOpenJDK/openjdk11-upstream-binaries/releases/download/jdk-11.0.8%2B10/OpenJDK11U-jdk_x64_linux_11.0.8_10.tar.gz
+if [[ $OSTYPE == "darwin"* ]]; then
+        JAVA_URL=https://github.com/AdoptOpenJDK/openjdk11-binaries/releases/download/jdk-11.0.8%2B10/OpenJDK11U-jdk_x64_mac_hotspot_11.0.8_10.tar.gz
+fi
 
+JAVA_VERSION=11.0.8
 
 JAVA_HOME=$HOME/.local/java/jdk/$JAVA_VERSION
 
 mkdir -p $JAVA_HOME
-wget -c $JAVA_URL -O - | tar -zx -C $JAVA_HOME --strip-components=1
+curl -L $JAVA_URL | tar -zx -C $JAVA_HOME --strip-components=1
 
 PATH=$JAVA_HOME/bin:$PATH
 
@@ -16,7 +19,7 @@ MVN_VERSION=3.6.3
 MVN_URL=http://apache.uvigo.es/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz
 MVN_HOME=$HOME/.local/java/mvn/$MVN_VERSION
 mkdir -p  $MVN_HOME
-wget -c $MVN_URL -O - | tar -zx -C $MVN_HOME --strip-components=1
+curl -L $MVN_URL | tar -zx -C $MVN_HOME --strip-components=1
 
 PATH=$PATH:$MVN_HOME
 
@@ -25,7 +28,7 @@ SBT_VERSION=1.3.10
 SBT_URL=https://piccolo.link/sbt-1.3.10.tgz
 SBT_HOME=$HOME/.local/java/sbt/$SBT_VERSION
 mkdir -p $SBT_HOME
-wget -c $SBT_URL -O - | tar -zx -C $SBT_HOME --strip-components=1
+curl -L $SBT_URL | tar -zx -C $SBT_HOME --strip-components=1
 
 PATH=$PATH:$SBT_HOME/bin
 
@@ -52,12 +55,12 @@ coursier bootstrap \
 
 # Install scalafmt
 VERSION=2.5.3
-curl https://raw.githubusercontent.com/scalameta/scalafmt/master/bin/install-scalafmt-native.sh | bash -s -- $VERSION $HOME/.local/bin/scalafmt
+curl -L https://raw.githubusercontent.com/scalameta/scalafmt/master/bin/install-scalafmt-native.sh | bash -s -- $VERSION $HOME/.local/bin/scalafmt
 
 # install eclipse jdt lanague server
 JDT_VERSION=0.55.0
 JDT_URL=http://download.eclipse.org/jdtls/milestones/0.55.0/jdt-language-server-0.55.0-202004300028.tar.gz
 JDT_HOME=$HOME/.local/java/jdt/$JDT_VERSION
 mkdir -p $JDT_HOME
-wget -c $JDT_URL -O - | tar -zx -C $JDT_HOME --strip-components=1
+curl -L $JDT_URL  | tar -zx -C $JDT_HOME --strip-components=1
 

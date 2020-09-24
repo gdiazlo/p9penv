@@ -1,6 +1,11 @@
  #!/bin/bash
 
+set -e
+
 DEST=$HOME/.local/share/fonts
+if [[ $OSTYPE == "darwin"* ]]; then
+        DEST=$HOME/Library/Fonts
+fi
 
 # Opensource font sponsored by Red Hat
 # http://overpassfont.org/
@@ -78,7 +83,7 @@ fira() {
 # https://blog.golang.org/go-fonts
 go() {
 	fonts=("https://go.googlesource.com/image/+archive/master/font/gofont/ttfs.tar.gz")
-	wget -O gofont.tar.gz ${fonts[0]}
+	curl -L -o gofont.tar.gz ${fonts[0]}
 	copy "go"
 }
 
@@ -117,7 +122,7 @@ install() {
 	fonts="$@"
 	for i in "${!fonts[@]}"; do
 		echo Downloading ${fonts[$i]} into $i.zip
-		wget -O $i.zip ${fonts[$i]}
+		curl -L -o $i.zip ${fonts[$i]}
 		echo Uncompressing $i.zip
 		unzip -o $i.zip
 		echo Copying into $name
@@ -129,7 +134,7 @@ install() {
 
 # "https://raw.githubusercontent.com/Zygo/xscreensaver/master/OSX/gallant12x22.ttf"
 sun() {
-	wget "https://raw.githubusercontent.com/Zygo/xscreensaver/master/OSX/gallant12x22.ttf" -O $DEST/
+	curl "https://raw.githubusercontent.com/Zygo/xscreensaver/master/OSX/gallant12x22.ttf" > $DEST/gallant12x22.ttf
 }
 
 dec() {
@@ -162,6 +167,4 @@ for font in ${FONTS[@]}; do
 	cd
 	echo Remove $tmp
 done
-
-fc-cache -f
 
