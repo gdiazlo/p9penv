@@ -1,8 +1,9 @@
 
+# session
+XDG_DATA_DIRS=$home/.local/share:$home/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share
+
 # wayland
-# QT_QPA_PLATFORM=wayland-egl
-# MOZ_ENABLE_WAYLAND=1
-# SDL_VIDEODRIVER=wayland
+SDL_VIDEODRIVER=wayland
 VDPAU_DRIVER=radeonsi
 
 # set plan9 environment
@@ -10,7 +11,7 @@ PLAN9=$home/.local/plan9
 
 # mk max concurrent procs
 # only valid for linux
-nproc=8
+nproc=16
 
 # set golang environment
 GOVERSION=`{$PLAN9/bin/ls -p $home/.local/go | tail -n 1}
@@ -130,30 +131,33 @@ fn _set_font {
 		sans='GoRegular'
 	case cmu
 		mono='CMUTypewriter-Regular'
-		sans='CMUSansSerif'
+		sans='CMUSansSerif-Regular'
 	case ibm
-		mono='IBMPlexMono'
-		sans='IBMPlexSans'
+		mono='IBMPlexMono-Regular'
+		sans='IBMPlexSans-Regular'
 	case fira
-		mono='FiraMono'
-		sans='FiraSans'
+		mono='FiraMono-Regular'
+		sans='FiraSans-Regular'
 	case terminus
 		mono='TerminusTTF'
 		sans='TerminusTTF'
 	case book
 		mono='GoMono'
 		sans='Bitter-Regular'
+	case ibarra
+		mono='CMUTypewriter-Regular'
+		sans='IbarraRealNova-SemiBold'
 	case input-condensed
-		mono='InputMonoCondensed-Medium'
-		sans='InputSansCondensed-Medium'
+		mono='InputMono-Regular'
+		sans='InputSans-Regular'
 	case input
-		mono='InputMono'
-		sans='InputSans'
+		mono='InputMono-Regular'
+		sans='InputSans-Regular'
 	case noto
-		mono='NotoSansMono'
-		sans='NotoSans'
+		mono='NotoSansMono-Regular'
+		sans='NotoSans-Regular'
 	case adobe
-		mono='SourceCodePro-Medium'
+		mono='SourceCodePro-Regular'
 		sans='SourceSansPro-Regular'
 	case *
 		mono='GoMono'
@@ -164,9 +168,6 @@ fn _set_font {
 	font='/mnt/font/'$sans'/'$size'a/font'
 	hidpifixedfont='/mnt/font/'$mono'/'$hidpi'a/font'
 	hidpifont='/mnt/font/'$sans'/'$hidpi'a/font'
-
-
-
 }
 
 # start new p9p session
@@ -193,7 +194,7 @@ fn new_p9p_session {
 new_p9p_session
 
 # default font
-_set_font ibm 14 28
+_set_font fira 14 28
 
 fn acme {
 	$PLAN9/bin/acme -a -c 1 -f $font,$hidpifont -F $fixedfont,$hidpifixedfont $*
