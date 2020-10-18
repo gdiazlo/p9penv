@@ -1,5 +1,5 @@
 "xbindkeys_show"
-  alt + k
+  Alt + k
 
 # Increase volume
 "pactl set-sink-volume @DEFAULT_SINK@ +1000"
@@ -22,7 +22,16 @@
    XF86MonBrightnessDown
 
 "L comp -e "
-  alt + c
+  Alt + c
 
 "L sig"
-  alt + i 
+  Alt + i
+
+"rofi -show drun"
+  Alt + d
+
+"9 9term"
+  Alt + Return
+
+"xterm bash -l"
+  Shift+Alt + Return
