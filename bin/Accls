@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+rootDir=$(pwd)
+workspaces=$rootDir
+
+if [ ! -z "$1" ]; then
+	workspaces="$rootDir:$1"
+fi
+
+exec 1> /tmp/$(mktemp acme-lsp.log.XXX)
+exec 2>&1
+
+acme-lsp --rootdir $rootDir -v -server "(\.c)|(\.ccp)$:ccls" -workspaces "$workspaces"
