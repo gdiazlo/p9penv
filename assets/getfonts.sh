@@ -6,7 +6,10 @@ DEST=$HOME/.local/share/fonts
 if [[ $OSTYPE == "darwin"* ]]; then
         DEST=$HOME/Library/Fonts
 fi
-
+atkinson() {
+	fonts=('https://www.brailleinstitute.org/wp-content/uploads/atkinson-hyperlegible-font/Atkinson-Hyperlegible-Font-Print-and-Web-2020-0514.zip')
+	install "atkinson" $fonts
+}
 # Opensource font sponsored by Red Hat
 # http://overpassfont.org/
 overpass() {
@@ -149,7 +152,7 @@ ibm3270() {
 
 #
 
-ALL=(overpass adobe copper input charter terminus computer_modern ibm bitter fira go noto lora orbitron montserrat sun dec ibm3270)
+ALL=(atkinson overpass adobe copper input charter terminus computer_modern ibm bitter fira go noto lora orbitron montserrat sun dec ibm3270)
 
 if [ -z "$1" ]; then
 	echo Select all or one of the following fonts:

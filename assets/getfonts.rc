@@ -1,3 +1,4 @@
+!#/usr/bin/env rc
 
 DEST=''
 os=`{uname}
@@ -9,6 +10,11 @@ case 'Linux'
 }
 
 
+#
+fn atkinson {
+	fonts=('https://www.brailleinstitute.org/wp-content/uploads/atkinson-hyperlegible-font/Atkinson-Hyperlegible-Font-Print-and-Web-2020-0514.zip')
+	install 'atkinson' $fonts
+}
 
 # Opensource font sponsored by Red Hat
 # http://overpassfont.org/
@@ -126,13 +132,18 @@ fn ibm3270 {
 	install '3270' $fonts
 }
 
+fn ibarra {
+	fonts=('https://github.com/googlefonts/ibarrareal/archive/master.zip')
+	install 'ibarra' $fonts
+}
+
 fn copy {
 	name=$1
 	shift
 	mkdir -p $DEST/$name
-	files=`{du -a | grep -ie 'ttf$' -ie 'otf$' | awk '{print $2}' }
+	files=`{du -a | grep -ie 'ttf$' -ie 'otf$' | awk '{$1=""; print $0}' }
 	for(f in $files) {
-		cp $f $DEST/$name
+		cp $"f $DEST/$name
 	}
 }
 
@@ -152,7 +163,7 @@ fn install {
 	}
 }
 
-ALL=(overpass adobe copper input charter terminus computermodern ibm bitter fira gofont noto lora orbitron montserrat sun dec ibm3270)
+ALL=(atkinson ibarra overpass adobe copper input charter terminus computermodern ibm bitter fira gofont noto lora orbitron montserrat sun dec ibm3270)
 
 if(test -z $1 ) {
 	echo Select all or one of the following fonts:
