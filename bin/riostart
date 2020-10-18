@@ -1,22 +1,18 @@
-#!/bin/bash
+#!/usr/bin/env rc
 
-source ~/.profile
+if( test -x `{which xbindkeys}) {
+	exec xbindkeys -f $home/.config/acme/desktop/xbindkeysrc &
+}
 
-set_font lucida 12 20
+#exec 9 rio -font -*-lucida-medium-r-normal-sans-17-*-100-100-*-*-*-* -term 9term -virtuals 4 &
+exec 9 rio -font 'Fira Sans 12' -term 9term -virtuals 4 &
 
-if [ -x "$(which xbindkeys)" ]; then
-	exec xbindkeys &
-fi
-
-exec 9 rio -font -*-lucida-medium-r-normal-sans-17-*-100-100-*-*-*-* -term xterm -virtuals 4 &
-
-if [ -x "$(which compton)" ]; then
+if( test -x `{which compton}) {
 	exec	compton &
-fi
+}
 
-if [ -x "$(which dunst)" ]; then
-	exec	dunst -conf ~/acme/desktop/dunstrc &
-fi
+if( test -x `{which dunst}) {
+	exec	dunst -conf $home/.config/acme/desktop/dunstrc &
+}
 
-xconsole
-
+exec winwatch -f $font -s -W 150x800 
