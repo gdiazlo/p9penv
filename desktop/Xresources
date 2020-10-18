@@ -1,4 +1,5 @@
-xterm*faceName: IBM Plex Mono
+xterm*faceName: Fira Mono:style=Regular
+xterm*boldFont: Fira Mono:style=Medium
 xterm*renderFont: true
 xterm*faceSize: 12
 
