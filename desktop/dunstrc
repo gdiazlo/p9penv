@@ -1,5 +1,5 @@
 [global]
-font = Lucida Sans 12
+font = Fira Sans 12
 
 # Allow a small subset of html markup:
 #   <b>bold</b>
