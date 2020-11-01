@@ -27,6 +27,16 @@ JAVA_home=$home/.local/java/jdk/$JAVA_VERSION
 SBT_VERSION=1.3.10
 SBT_home=$home/.local/java/sbt/$SBT_VERSION
 
+# set ocaml environment
+OCAML=$home/.opam/4.11.1
+OPAM_SWITCH_PREFIX=$OCAML
+CAML_LD_LIBRARY_PATH=$home/.opam/4.11.1/lib/stublibs:$home/.opam/4.11.1/lib/ocaml/stublibs:$home/.opam/4.11.1/lib/ocaml
+OCAML_TOPLEVEL_PATH=$home/.opam/4.11.1/lib/toplevel
+MANPATH=:$home/.opam/4.11.1/man
+
+# set rust environment
+CARGO=$home/.cargo
+
 # set acme environment
 ACME=$home/.config/acme
 usebigarrow=1
@@ -68,8 +78,8 @@ for(f in $files) {
 # Prepare PATH environment
 #   append custom tools at the end of the current path
 #   prepend ~/bin and goroot into path to avoid using gcc-go in system path by default
-pathappend=($GOPATH/bin $PLAN9/bin $PLAN9/bin/upas $JAVA_home/bin $SBT_home/bin $MVN_home/bin /usr/sbin /sbin $ACME/bin /usr/local/bin )
-pathprepend=($home/bin $home/.local/bin $GOROOT/bin)
+pathappend=($GOPATH/bin $PLAN9/bin $PLAN9/bin/upas $JAVA_home/bin $SBT_home/bin $MVN_home/bin /usr/sbin /sbin $ACME/bin $CARGO/bin /usr/local/bin )
+pathprepend=($home/bin $home/.local/bin $GOROOT/bin $OCAML/bin)
 path=($pathprepend $path $pathappend)
 
 # ssh agent set up
@@ -148,8 +158,8 @@ fn _set_font {
 		mono='CMUTypewriter-Regular'
 		sans='IbarraRealNova-SemiBold'
 	case input-condensed
-		mono='InputMono-Regular'
-		sans='InputSans-Regular'
+		mono='InputMonoCondensed-Regular'
+		sans='InputSansCondensed-Regular'
 	case input
 		mono='InputMono-Regular'
 		sans='InputSans-Regular'
@@ -160,8 +170,8 @@ fn _set_font {
 		mono='SourceCodePro-Regular'
 		sans='SourceSansPro-Regular'
 	case *
-		mono='GoMono'
-		sans='GoRegular'
+		mono='InputMonoCondensed-Regular'
+		sans='FiraSans-Regular'
 	}
 
 	fixedfont='/mnt/font/'$mono'/'$size'a/font'
@@ -194,7 +204,7 @@ fn new_p9p_session {
 new_p9p_session
 
 # default font
-_set_font fira 14 28
+_set_font input-condensed 14 28
 
 fn acme {
 	$PLAN9/bin/acme -a -c 1 -f $font,$hidpifont -F $fixedfont,$hidpifixedfont $*
