@@ -4,7 +4,7 @@ if [[ $OSTYPE == "darwin"* ]]; then
 	OS=darwin
 fi
 
-GOVERSION=1.15.2
+GOVERSION=1.15.3
 GOROOT=$HOME/.local/go/$GOVERSION
 if [ ! -d $GOROOT ]; then
 	echo Installing Go $GOVERSION
@@ -12,10 +12,10 @@ if [ ! -d $GOROOT ]; then
 	curl -L "https://dl.google.com/go/go${GOVERSION}.$OS-amd64.tar.gz" | tar -zx -C $GOROOT --strip-components=1
 fi
 
-
 PATH=$GOROOT/bin:$PATH
 
 # Download and update golang tools
+GO111MODULE=on
 
 # Download go lang tools and helpers
 go get -u golang.org/x/tools/...
@@ -34,8 +34,9 @@ go get -u go get github.com/emersion/hydroxide/cmd/hydroxide
 # lang server
 go get -u golang.org/x/tools/cmd/gopls
 go get -u github.com/fhs/acme-lsp/cmd/acme-lsp
-go get -u github.com/fhs/acme-lsp/cmd/L
-go get -u github.com/fhs/acme-lsp/cmd/acmefocused
+go get -u github.com/fhs/acme-lsp/cmd/acme-lsp@latest
+go get -u github.com/fhs/acme-lsp/cmd/L@latest
+
 
 # filesystems
 go get -u github.com/sirnewton01/ghfs
