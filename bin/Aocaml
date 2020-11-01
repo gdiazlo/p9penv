@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+rootDir=$(pwd)
+workspaces=$rootDir
+
+source ~/.profile
+
+if [ ! -z "$1" ]; then
+	workspaces="$rootDir:$1"
+fi
+
+exec 1> /tmp/$(mktemp acme-lsp.log.XXX)
+exec 2>&1
+
+acme-lsp  --rootdir $rootDir -v -server '\.ml$@ocaml,\.mli$@ocaml,\.rml$@reasonml:ocamllsp'  -workspaces "$workspaces"
+
