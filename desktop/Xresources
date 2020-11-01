@@ -1,5 +1,5 @@
-xterm*faceName: Fira Mono:style=Regular
-xterm*boldFont: Fira Mono:style=Medium
+xterm*faceName: Input Mono:style=Regular
+xterm*boldFont: Input Mono:style=Medium
 xterm*renderFont: true
 xterm*faceSize: 12
 
