@@ -1,8 +1,4 @@
 #!/bin/bash
-# wayland
-# export QT_QPA_PLATFORM=wayland-egl
-# export MOZ_ENABLE_WAYLAND=1
-# export SDL_VIDEODRIVER=wayland
 export VDPAU_DRIVER=radeonsi
 
 # set plan9 environment
@@ -19,12 +15,23 @@ export GOPATH=$HOME/go
 export GO111MODULE=on
 
 # set java environmant
-export JAVA_VERSION=11.0.7
+export JAVA_VERSION=11.0.8
 export JAVA_HOME=$HOME/.local/java/jdk/$JAVA_VERSION
 
 # set scala environment
 export SBT_VERSION=1.3.10
 export SBT_HOME=$HOME/.local/java/sbt/$SBT_VERSION
+
+# set Maven Home
+export MVN_VERSION=3.6.3
+export MVN_HOME=$HOME/.local/java/mvn/$MVN_VERSION/
+
+# set rust environment
+CARGO=$home/.cargo
+
+
+# ocaml opam environment
+test -r $HOME/.opam/opam-init/init.sh && . $HOME/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
 
 # set acme environment
 export ACME=$HOME/.config/acme
@@ -42,10 +49,6 @@ export GNUTERM="sixelgd size 1280,720 truecolor font 'DEC Terminal Modern' 14"
 
 # set aliases
 alias tb="nc termbin.com 9999"
-
-# set Maven Home
-export MVN_VERSION=3.6.3
-export MVN_HOME=$HOME/.local/java/mvn/$MVN_VERSION/
 
 # check if something is not there
 dirs=("$HOME/lib" "$PLAN9" "$GOROOT" "$GOPATH" "$ACME")
@@ -74,7 +77,7 @@ pathappend() {
 pathappend "$GOPATH/bin" "$PLAN9/bin" "$PLAN9/bin/upas" "$JAVA_HOME/bin" "$SBT_HOME/bin" "$MVN_HOME/bin" "/usr/sbin" "/sbin" "$ACME/bin"
 
 # prepend ~/bin and goroot into path to avoid using gcc-go in system path by default
-export PATH="$HOME/bin:$HOME/.local/bin:$GOROOT/bin":$PATH
+export PATH="$HOME/bin:$HOME/.local/bin:$GOROOT/bin:$CARGO/bin":$PATH
 
 # ssh agent set up
 
@@ -163,8 +166,8 @@ _set_font() {
 		sans="Bitter-Regular"
 		;;
 	input-condensed)
-		mono="InputMonoCondensed-Medium"
-		sans="InputSansCondensed-Medium"
+		mono="InputMonoCondensed-Regular"
+		sans="InputSansCondensed-Regular"
 		;;
 	input)
 		mono="InputMono"
@@ -178,9 +181,9 @@ _set_font() {
 		mono="SourceCodePro-Medium"
 		sans="SourceSansPro-Regular"
 		;;
-	plan9)
-		export fixedfont="/usr/local/plan9/font/pelm/unicode.9.font"
-		export font="/lib/font/bit/lucsans/euro.8.font"
+	*)
+		mono='InputMonoCondensed-Regular'
+		sans='FiraSans-Regular'
 		return
 		;;
 	esac
@@ -201,6 +204,14 @@ complete -f nospace _cd acme
 # start factotum before secstore so it does not prompt for a password
 # load secrets manually using ipso
 new_p9p_session() {
+
+	NAMESPACE=/tmp/ns.$USER
+	if [ -d "$XDG_RUNTIME_DIR" ]; then
+		NAMESPACE=$XDG_RUNTIME_DIR/ns
+	fi
+	export NAMESPACE
+	mkdir -p $NAMESPACE
+	
 	for proc in fontsrv factotum secstored plumber; do
 		pgrep $proc 2>&1 > /dev/null
 		if [ $? -ne 0 ]; then
@@ -209,36 +220,11 @@ new_p9p_session() {
 	done
 }
 
-NAMESPACE=/tmp/ns.$USER
-if [ -d "$XDG_RUNTIME_DIR" ]; then
-	NAMESPACE=$XDG_RUNTIME_DIR/ns
-fi
-export NAMESPACE
-mkdir -p $NAMESPACE
-new_p9p_session
-
 # default font
-_set_font ibm 12 22
+_set_font input-condensed 14 28
 
 # source
 source $ACME/bin/git-prompt.sh
 export PS1='$(__git_ps1 "(%s)")\$ '
 
-# opam configuration
-test -r $HOME/.opam/opam-init/init.sh && . $HOME/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
 
-_set_color() {
-        declare -A colors
-        colors[black]="#313131"
-        colors[gray]="#777777"
-        colors[purple]="#bfb1d5"
-        colors[green]="#adddcf"
-        colors[blue]="#abe1fd"
-        colors[orange]="#fed1be"
-        colors[yellow]="#f0e0a2"
-        colors[lightgray]="#e8e7e5"
-        colors[white]="#fafafa"
-
-        echo -ne "\033]11;${colors[$1]}\007"
-        echo -ne "\033]10;${colors[$2]}\007"
-}
