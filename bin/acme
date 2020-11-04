@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ~/.acme/profile
+source ~/.config/acme/lib/profile.sh
 
 if [ -f $HOME/acme.dump ]
 then
