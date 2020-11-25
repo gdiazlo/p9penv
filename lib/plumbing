@@ -12,7 +12,7 @@ plumb to gitfileedit
 plumb client Gitfiles
 
 type is text
-data matches '[a-zA-Z¡-�0-9_\-./]+'
+data matches '[a-zA-Z0-9_\-./]+'
 data matches '([0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f])[0-9a-f]*'
 plumb start rc -c 'cd '''$wdir'''; root=`{git rev-parse --show-toplevel}; rev='''$1'''; {gitfileshow $rev} >[2=1] | nobs | plumb -i -d edit -a ''action=showdata filename=''$root/+$rev'
 
@@ -20,15 +20,15 @@ plumb start rc -c 'cd '''$wdir'''; root=`{git rev-parse --show-toplevel}; rev=''
 plumb to lsp
 
 type is text
-data matches '[a-zA-Z¡-￿0-9_\-./@]+'
-data matches '([a-zA-Z¡-￿0-9_\-./@]+)\.(pdf|PDF|epub|XPS|xps)'
+data matches '[a-zA-Z0-9_\-./@]+'
+data matches '([a-zA-Z0-9_\-./@]+)\.(pdf|PDF|epub|XPS|xps)'
 arg isfile	$0
 plumb to pdf
 plumb start mupdf $file
 
 type is text
-data matches '[a-zA-Z¡-￿0-9_\-./@]+'
-data matches '([a-zA-Z¡-￿0-9_\-./@]+)\.(jpe?g|JPE?G|gif|GIF|tiff?|TIFF?|ppm|bit|png|PNG)'
+data matches '[a-zA-Z0-9_\-./@]+'
+data matches '([a-zA-Z0-9_\-./@]+)\.(jpe?g|JPE?G|gif|GIF|tiff?|TIFF?|ppm|bit|png|PNG)'
 arg isfile	$0
 plumb to image
 plumb start imv $file

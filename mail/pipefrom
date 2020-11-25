@@ -1,0 +1,16 @@
+#!/usr/bin/env rc
+#
+# Search $upasname in factotum as if it were an user. If the service
+# of the user is smtp, use that server to send emails.
+#
+path=($PLAN9/bin $path)
+ifs='
+'
+server=`{9p read factotum/ctl | 9 sed 's/([a-z]+)=//g' |  grep smtp | grep $upasname | awk '{print  $4 }'  }
+switch($#server) {
+	case 0
+		echo "Fill factotum with smtp credentials for $upasname user"
+		exit
+	case *
+		cat | $PLAN9/bin/upas/smtp -sa -u $upasname $server $upasname $*
+}

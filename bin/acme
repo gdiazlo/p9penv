@@ -1,15 +1,10 @@
-#!/bin/bash
+#!/usr/bin/env rc
 
-source ~/.config/acme/lib/profile.sh
+. $home/lib/profile
 
-if [ -f $HOME/acme.dump ]
-then
-	_acme -l $HOME/acme.dump $@ &
-	acmefocused &
-	xbindkeys
-else
-	_acme $@
-	acmefocused &
-	xbindkeys
-fi
-
+if(test -r $home/acme.dump) {
+	acme -l $home/acme.dump $*
+}
+if not {
+	acme $*
+}

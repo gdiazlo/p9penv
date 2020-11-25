@@ -1,12 +1,15 @@
-#!/bin/bash
-export VDPAU_DRIVER=radeonsi
+#!/usr/bin/env bash
+
+# session
+export XDG_DATA_DIRS=/home/gdiazlo/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share:/home/gdiazlo/.local/share/flatpak/exports/share
 
 # set plan9 environment
 export PLAN9=$HOME/.local/plan9
+export P9PENV=$HOME/.local/p9penv
 
 # mk max concurrent procs
 # only valid for linux
-export nproc=$(cat /proc/cpuinfo | grep processor | wc -l)
+export nproc=16
 
 # set golang environment
 export GOVERSION=$($PLAN9/bin/ls -p $HOME/.local/go | tail -n 1)
@@ -15,6 +18,7 @@ export GOPATH=$HOME/go
 export GO111MODULE=on
 
 # set java environmant
+export _JAVA_OPTIONS='-Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dawt.useSystemAAFontSettings=on'
 export JAVA_VERSION=11.0.8
 export JAVA_HOME=$HOME/.local/java/jdk/$JAVA_VERSION
 
@@ -27,14 +31,12 @@ export MVN_VERSION=3.6.3
 export MVN_HOME=$HOME/.local/java/mvn/$MVN_VERSION/
 
 # set rust environment
-CARGO=$home/.cargo
-
+CARGO=$HOME/.cargo
 
 # ocaml opam environment
 test -r $HOME/.opam/opam-init/init.sh && . $HOME/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
 
 # set acme environment
-export ACME=$HOME/.config/acme
 export usebigarrow=1
 export EDITOR=editinacme
 export PAGER=nobs
@@ -51,7 +53,7 @@ export GNUTERM="sixelgd size 1280,720 truecolor font 'DEC Terminal Modern' 14"
 alias tb="nc termbin.com 9999"
 
 # check if something is not there
-dirs=("$HOME/lib" "$PLAN9" "$GOROOT" "$GOPATH" "$ACME")
+dirs=("$HOME/lib" "$HOME/mail" "$PLAN9" "$GOROOT" "$GOPATH" "$P9PENV")
 for d in $dirs; do
 	if [ ! -d ${d} ]; then
 		echo "$d does not exists. Verify set up"
@@ -65,19 +67,12 @@ for f in $files; do
 	fi
 done
 
-pathappend() {
-  for ARG in "$@"
-  do
-    if [ -d "$ARG" ] && [[ ":$PATH:" != *":$ARG:"* ]]; then
-        PATH="${PATH:+"$PATH:"}$ARG"
-    fi
-  done
-}
-
-pathappend "$GOPATH/bin" "$PLAN9/bin" "$PLAN9/bin/upas" "$JAVA_HOME/bin" "$SBT_HOME/bin" "$MVN_HOME/bin" "/usr/sbin" "/sbin" "$ACME/bin"
-
-# prepend ~/bin and goroot into path to avoid using gcc-go in system path by default
-export PATH="$HOME/bin:$HOME/.local/bin:$GOROOT/bin:$CARGO/bin":$PATH
+# Prepare PATH environment
+#   append custom tools at the end of the current path
+#   prepend ~/bin and goroot into path to avoid using gcc-go in system path by default
+pathappend="$P9PENV/bin:$P9PENV/mail:$GOPATH/bin:$PLAN9/bin:$PLAN9/bin/upas:$JAVA_HOME/bin:$SBT_HOME/bin:$MVN_HOME/bin:/usr/sbin:/sbin"
+pathprepend="$HOME/bin:$HOME/.local/bin:$GOROOT/bin:$CARGO/bin"
+export PATH=$pathprepend:$PATH:$pathappend
 
 # ssh agent set up
 
@@ -113,6 +108,7 @@ cda () {
                 awd
         esac
 }
+
 alias cd=cda
 complete -f nospace _cd cda
 
@@ -154,8 +150,8 @@ _set_font() {
 		sans="IBMPlexSans"
 		;;
 	fira)
-		mono="FiraMono"
-		sans="FiraSans"
+		mono="FiraMono-Regular"
+		sans="FiraSans-Regular"
 		;;
 	terminus)
 		mono="TerminusTTF"
@@ -170,19 +166,19 @@ _set_font() {
 		sans="InputSansCondensed-Regular"
 		;;
 	input)
-		mono="InputMono"
-		sans="InputSans"
+		mono="InputMono-Regular"
+		sans="InputSans-Regular"
 		;;
 	noto)
-		mono="NotoSansMono"
-		sans="NotoSans"
+		mono="NotoSansMono-Regular"
+		sans="NotoSans-Regular"
 		;;
 	adobe)
-		mono="SourceCodePro-Medium"
+		mono="SourceCodePro-Regular"
 		sans="SourceSansPro-Regular"
 		;;
 	*)
-		mono='InputMonoCondensed-Regular'
+		mono='FiraMono-Regulat'
 		sans='FiraSans-Regular'
 		return
 		;;
@@ -193,12 +189,6 @@ _set_font() {
 	export hidpifixedfont="/mnt/font/${mono}/${acme_font_size_hidpi}a/font"
 	export hidpifont="/mnt/font/${sans}/${acme_font_size_hidpi}a/font"
 }
-
-_acme() {
-	SHELL=bash  $PLAN9/bin/acme -a -c 1 -f "$font,$hidpifont" -F "$fixedfont,$hidpifixedfont" "$@"
-}
-
-complete -f nospace _cd acme
 
 # start new p9p session
 # start factotum before secstore so it does not prompt for a password
@@ -211,7 +201,7 @@ new_p9p_session() {
 	fi
 	export NAMESPACE
 	mkdir -p $NAMESPACE
-	
+
 	for proc in fontsrv factotum secstored plumber; do
 		pgrep $proc 2>&1 > /dev/null
 		if [ $? -ne 0 ]; then
@@ -221,10 +211,8 @@ new_p9p_session() {
 }
 
 # default font
-_set_font input-condensed 14 28
+_set_font ibm 13 26
 
-# source
-source $ACME/bin/git-prompt.sh
-export PS1='$(__git_ps1 "(%s)")\$ '
-
-
+_acme() {
+	SHELL=rc  $PLAN9/bin/acme -a -c 1 -f "$font,$hidpifont" -F "$fixedfont,$hidpifixedfont" "$@"
+}

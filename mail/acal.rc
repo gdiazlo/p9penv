@@ -1,0 +1,96 @@
+#!/usr/bin/env rc
+#
+# Reads a calendar invitation from stdin
+# and writes a temporary file with a calendar event  answering
+# to the event invitation with an accept, a decline, or
+# tentatively accepted.
+#
+#
+timestamp=`{date +%Y%m%dT%H%M%SZ}
+
+path=($PLAN9/bin $path)
+
+switch($*){
+	case -a
+		answer="ACCEPTED"
+	case -d
+		answer="DECLINED"
+	case *
+		answer="TENTATIVE"
+}
+
+
+# fold and unfold
+# https://tools.ietf.org/html/rfc5545#section-3.1
+fn fold {
+	awk '{gsub(/.{75}/,"&\r\n")}1'
+}
+
+fn unfold {
+	tr '\x0d\x0a ' '%' | sed 's/%%%//g' | sed 's/%%/\n/g' | sed 's/%/ /g'
+}
+
+
+# How to start an ical event reply
+fn begin {
+	echo -n 'BEGIN:VCALENDAR
+VERSION:2.0
+METHOD:REPLY
+PRODID:-//p9penv//plan9port AWK//EN
+BEGIN:VEVENT
+'
+}
+
+fn answer {
+	awk -v answer=$answer -v ts=$timestamp -v upasname=$upasname -v answer="ACCEPT" '
+		BEGIN {
+			fparams["ATTENDEE"]=1
+			fparams["RSVP"]=1
+			fparams["ROLE"]=1
+			fparams["X-NUM-GUESTS"]=1
+			fparams["CUTYPE"]=1
+		}
+		/^UID/ { printf "%s\r\n", $0 }
+		/^DTSTART/ { printf "%s\r\n", $0 }
+		/^DTEND/ { printf "%s\r\n", $0 }
+		/^ATTENDEE/ {
+			# attendee is params:mailto:email address
+			split($0, attendee,":")
+			# params is attendee;key1=value1;key2=value2....
+			split(attendee[1],params,";")
+			for(k in params) {
+				split(params[k],param,"=")
+				if (!(param[1] in fparams)) {
+					validparams[param[1]]=param[2]
+				}
+			}
+			validparams["PARTSTAT"]=answer
+			if (attendee[3] ~ upasname) {
+				str="ATTENDEE"
+				for(k in validparams) {
+					str = str ";" k "=" validparams[k]
+				}
+				printf "%s:mailto:%s\r\n", str,upasname
+			}
+		}
+		/^DTSTAMP/ {
+			printf "DTSTAMP:%s\r\n", ts
+		}
+		/^ORGANIZER/ { printf "%s\r\n", $0 }
+		/^SUMMARY/ { printf "%s\r\n", $0 }
+		'
+}
+
+fn end {
+	echo '
+END:VEVENT
+END:VCALENDAR
+'
+}
+
+
+{
+begin
+unfold | answer
+end
+} | fold | grep -v -e '^$'

@@ -1,8 +1,8 @@
 #!/usr/bin/env rc
 
-# apython:   
+# apython:
 # Executes python  command and alters stderr to produce Acme-friendly error messages
 # Based on Perl script Created 02-JUL-1996, Luther Huffman,  lutherh@stratcom.com
 
-python $* |[2]  9 sed 's/File "([A-Za-z_\-.\/]+)", line ([0-9]+)/\1:\2 /g'  >[1=2]
+python3 $* |[2]  9 sed 's/File "([A-Za-z_\-.\/]+)", line ([0-9]+)/\1:\2 /g'  >[1=2]
 

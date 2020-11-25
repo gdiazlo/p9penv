@@ -1,0 +1,19 @@
+borderwidth 5
+color inactiveborder "#161616"
+color activeborder "#198038"
+
+fontname "IBM Plex Sans:pixelsize=18:style=Regular"
+
+sticky yes
+snapdist 5
+gap 5 5 5 5
+
+bind-key M-Print "xfce4-screenshooter"
+bind-key M-Enter "alacritty"
+bind-key M-Shift-Enter "9term rc -l"
+bind-key M-r restart
+
+bind-key M-KP_Right group-cycle
+bind-key M-KP_Left rgroup-rcycle
+bind-key M-KP_Up window-raise
+bind-key M-KP_Down window-lower

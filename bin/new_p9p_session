@@ -1,0 +1,6 @@
+#!/usr/bin/env rc
+
+. $home/lib/profile
+
+new_p9p_session
+

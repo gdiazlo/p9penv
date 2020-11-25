@@ -1,13 +1,11 @@
+#!/usr/bin/env rc
 
 # session
 XDG_DATA_DIRS=$home/.local/share:$home/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share
 
-# wayland
-SDL_VIDEODRIVER=wayland
-VDPAU_DRIVER=radeonsi
-
 # set plan9 environment
 PLAN9=$home/.local/plan9
+P9PENV=$home/.local/p9penv
 
 # mk max concurrent procs
 # only valid for linux
@@ -20,12 +18,20 @@ GOPATH=$home/go
 GO111MODULE=on
 
 # set java environmant
-JAVA_VERSION=11.0.7
+_JAVA_OPTIONS='-Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dawt.useSystemAAFontSettings=on'
+JAVA_VERSION=11.0.8
 JAVA_home=$home/.local/java/jdk/$JAVA_VERSION
 
 # set scala environment
 SBT_VERSION=1.3.10
 SBT_home=$home/.local/java/sbt/$SBT_VERSION
+
+# set Maven Home
+MVN_VERSION=3.6.3
+MVN_home=$home/.local/java/mvn/$MVN_VERSION/
+
+# set rust environment
+CARGO=$home/.cargo
 
 # set ocaml environment
 OCAML=$home/.opam/4.11.1
@@ -34,16 +40,11 @@ CAML_LD_LIBRARY_PATH=$home/.opam/4.11.1/lib/stublibs:$home/.opam/4.11.1/lib/ocam
 OCAML_TOPLEVEL_PATH=$home/.opam/4.11.1/lib/toplevel
 MANPATH=:$home/.opam/4.11.1/man
 
-# set rust environment
-CARGO=$home/.cargo
-
 # set acme environment
-ACME=$home/.config/acme
 usebigarrow=1
 EDITOR=editinacme
 PAGER=nobs
 BROWSER=firefox
-
 
 # set cursor to a steady bar |
 # printf '\033[6 q'
@@ -54,12 +55,8 @@ BROWSER=firefox
 # set aliases
 fn tb { nc termbin.com 9999 }
 
-# set Maven Home
-MVN_VERSION=3.6.3
-MVN_home=$home/.local/java/mvn/$MVN_VERSION/
-
 # check if something is not there
-dirs=($home/lib $PLAN9 $GOROOT $GOPATH $ACME)
+dirs=($home/lib $PLAN9 $GOROOT $GOPATH $P9PENV)
 for(d in $dirs) {
 	if(test  ! -d $d) {
 		echo '$d does not exists. Verify set up'
@@ -74,12 +71,11 @@ for(f in $files) {
 	}
 }
 
-
 # Prepare PATH environment
 #   append custom tools at the end of the current path
 #   prepend ~/bin and goroot into path to avoid using gcc-go in system path by default
-pathappend=($GOPATH/bin $PLAN9/bin $PLAN9/bin/upas $JAVA_home/bin $SBT_home/bin $MVN_home/bin /usr/sbin /sbin $ACME/bin $CARGO/bin /usr/local/bin )
-pathprepend=($home/bin $home/.local/bin $GOROOT/bin $OCAML/bin)
+pathappend=($P9PENV/bin $P9PENV/mail $GOPATH/bin $PLAN9/bin $PLAN9/bin/upas $JAVA_home/bin $SBT_home/bin $MVN_home/bin /usr/sbin /sbin $CARGO/bin /usr/local/bin )
+pathprepend=($home/.local/bin $GOROOT/bin $OCAML/bin)
 path=($pathprepend $path $pathappend)
 
 # ssh agent set up
@@ -117,7 +113,7 @@ fn cd  {
         switch($TERM) {
 		case xterm-256color
 		case dumb
-                		awd
+			awd
        }
 }
 
@@ -143,8 +139,8 @@ fn _set_font {
 		mono='CMUTypewriter-Regular'
 		sans='CMUSansSerif-Regular'
 	case ibm
-		mono='IBMPlexMono-Regular'
-		sans='IBMPlexSans-Regular'
+		mono='IBMPlexMono'
+		sans='IBMPlexSans'
 	case fira
 		mono='FiraMono-Regular'
 		sans='FiraSans-Regular'
@@ -170,8 +166,8 @@ fn _set_font {
 		mono='SourceCodePro-Regular'
 		sans='SourceSansPro-Regular'
 	case *
-		mono='InputMonoCondensed-Regular'
-		sans='FiraSans-Regular'
+		mono='DejaVuSansMono'
+		sans='DejaVuSans'
 	}
 
 	fixedfont='/mnt/font/'$mono'/'$size'a/font'
@@ -201,11 +197,9 @@ fn new_p9p_session {
 	}
 }
 
-new_p9p_session
-
 # default font
-_set_font input-condensed 14 28
+_set_font ibm 13 26
 
 fn acme {
-	$PLAN9/bin/acme -a -c 1 -f $font,$hidpifont -F $fixedfont,$hidpifixedfont $*
+	SHELL=rc $PLAN9/bin/acme -a -c 1 -f $font,$hidpifont -F $fixedfont,$hidpifixedfont $*
 }

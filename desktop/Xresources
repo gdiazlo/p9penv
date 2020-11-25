@@ -1,5 +1,5 @@
-xterm*faceName: Input Mono:style=Regular
-xterm*boldFont: Input Mono:style=Medium
+xterm*faceName: Terminus (TTF):style=Regular
+xterm*boldFont: Terminus (TTF):style=Medium
 xterm*renderFont: true
 xterm*faceSize: 12
 

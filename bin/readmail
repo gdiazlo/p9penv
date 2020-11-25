@@ -1,0 +1,7 @@
+#!/usr/bin/env rc
+
+mailfs -s work -t -u g.diaz.lopezllave@bbva.com imap.gmail.com
+mailfs -s personal -t -u gdiaz@qswarm.com imap.migadu.com
+
+9pfuse $NAMESPACE/work $home/mail/work
+9pfuse $NAMESPACE/personal $home/mail/personal
