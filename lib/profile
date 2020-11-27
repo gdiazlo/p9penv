@@ -1,5 +1,9 @@
 #!/usr/bin/env rc
 
+umask 077
+home=/home/gdiazlo
+path=(/usr/sbin /sbin  /usr/local/bin /bin /usr/bin)
+
 # session
 XDG_DATA_DIRS=$home/.local/share:$home/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share
 
@@ -55,6 +59,13 @@ BROWSER=firefox
 # set aliases
 fn tb { nc termbin.com 9999 }
 
+# Prepare PATH environment
+#   append custom tools at the end of the current path
+#   prepend ~/bin and goroot into path to avoid using gcc-go in system path by default
+pathappend=($P9PENV/bin $P9PENV/mail $GOPATH/bin $PLAN9/bin $PLAN9/bin/upas $JAVA_home/bin $SBT_home/bin $MVN_home/bin  $CARGO/bin)
+pathprepend=($home/.local/bin $GOROOT/bin $OCAML/bin)
+path=($pathprepend $path $pathappend)
+
 # check if something is not there
 dirs=($home/lib $PLAN9 $GOROOT $GOPATH $P9PENV)
 for(d in $dirs) {
@@ -70,13 +81,6 @@ for(f in $files) {
 		echo '$f does not exists. Verify set up'
 	}
 }
-
-# Prepare PATH environment
-#   append custom tools at the end of the current path
-#   prepend ~/bin and goroot into path to avoid using gcc-go in system path by default
-pathappend=($P9PENV/bin $P9PENV/mail $GOPATH/bin $PLAN9/bin $PLAN9/bin/upas $JAVA_home/bin $SBT_home/bin $MVN_home/bin /usr/sbin /sbin $CARGO/bin /usr/local/bin )
-pathprepend=($home/.local/bin $GOROOT/bin $OCAML/bin)
-path=($pathprepend $path $pathappend)
 
 # ssh agent set up
 
@@ -100,7 +104,7 @@ if(test -f $SSH_ENV) {
 	pgrep ssh-agent > /dev/null
 	switch($status) {
 		case 1
-        			startsshagentt
+			startsshagentt
 	}
 }
 if not {
@@ -179,13 +183,13 @@ fn _set_font {
 # start new p9p session
 # start factotum before secstore so it does not prompt for a password
 # load secrets manually using ipso
-fn new_p9p_session {
-
-	NAMESPACE=$home/.ns
-	if(test $XDG_RUNTIME_DIR) {
-		NAMESPACE=$XDG_RUNTIME_DIR/ns
+fn p9p_session {
+	xdg=/run/user/`{id -u}
+	NAMESPACE=$xdg/ns
+	mountpoint -q $xdg
+	if(! $status) {
+		NAMESPACE=`{namespace}
 	}
-
 	mkdir -p $NAMESPACE
 
 	for(proc in fontsrv factotum secstored plumber) {
@@ -199,6 +203,10 @@ fn new_p9p_session {
 
 # default font
 _set_font ibm 13 26
+
+# always set up the p9p session,
+# this will start services only if there are not started yet
+p9p_session
 
 fn acme {
 	SHELL=rc $PLAN9/bin/acme -a -c 1 -f $font,$hidpifont -F $fixedfont,$hidpifixedfont $*

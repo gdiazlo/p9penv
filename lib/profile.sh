@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+umask 077
 # session
 export XDG_DATA_DIRS=/home/gdiazlo/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share:/home/gdiazlo/.local/share/flatpak/exports/share
 
@@ -110,7 +111,7 @@ cda () {
 }
 
 alias cd=cda
-complete -f nospace _cd cda
+# complete -f nospace _cd cda
 
 _set_font() {
 	family="$1"
@@ -193,25 +194,28 @@ _set_font() {
 # start new p9p session
 # start factotum before secstore so it does not prompt for a password
 # load secrets manually using ipso
-new_p9p_session() {
+p9p_session() {
+	xdg=/run/user/$(id -u)
+	NAMESPACE=$xdg/ns
+	mountpoint -q $xdg || NAMESPACE=`namespace`;
 
-	NAMESPACE=/tmp/ns.$USER
-	if [ -d "$XDG_RUNTIME_DIR" ]; then
-		NAMESPACE=$XDG_RUNTIME_DIR/ns
-	fi
-	export NAMESPACE
 	mkdir -p $NAMESPACE
+	export NAMESPACE
 
 	for proc in fontsrv factotum secstored plumber; do
 		pgrep $proc 2>&1 > /dev/null
 		if [ $? -ne 0 ]; then
-			$PLAN9/bin/9 $proc &
+			$proc &
 		fi
 	done
 }
 
 # default font
 _set_font ibm 13 26
+
+# always set up the p9p session,
+# this will start services only if there are not started yet
+p9p_session
 
 _acme() {
 	SHELL=rc  $PLAN9/bin/acme -a -c 1 -f "$font,$hidpifont" -F "$fixedfont,$hidpifixedfont" "$@"
