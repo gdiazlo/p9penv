@@ -2,7 +2,7 @@
 
 umask 077
 home=/home/gdiazlo
-path=(/usr/sbin /sbin  /usr/local/bin /bin /usr/bin)
+path=(/usr/sbin /sbin /usr/local/bin /bin /usr/bin)
 
 # session
 XDG_DATA_DIRS=$home/.local/share:$home/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share
@@ -27,7 +27,7 @@ JAVA_VERSION=11.0.8
 JAVA_home=$home/.local/java/jdk/$JAVA_VERSION
 
 # set scala environment
-SBT_VERSION=1.3.10
+SBT_VERSION=1.4.4
 SBT_home=$home/.local/java/sbt/$SBT_VERSION
 
 # set Maven Home
@@ -68,9 +68,9 @@ path=($pathprepend $path $pathappend)
 
 # check if something is not there
 dirs=($home/lib $PLAN9 $GOROOT $GOPATH $P9PENV)
-for(d in $dirs) {
-	if(test  ! -d $d) {
-		echo '$d does not exists. Verify set up'
+for(dir in $dirs) {
+	if(test  ! -d $dir) {
+		echo '$dir does not exists. Verify set up.'
 		exit
 	}
 }
@@ -184,11 +184,11 @@ fn _set_font {
 # start factotum before secstore so it does not prompt for a password
 # load secrets manually using ipso
 fn p9p_session {
+	NAMESPACE=`{namespace}
 	xdg=/run/user/`{id -u}
-	NAMESPACE=$xdg/ns
 	mountpoint -q $xdg
-	if(! $status) {
-		NAMESPACE=`{namespace}
+	if($status) {
+		NAMESPACE=$xdg/ns
 	}
 	mkdir -p $NAMESPACE
 
