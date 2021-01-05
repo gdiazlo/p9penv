@@ -4,7 +4,7 @@ if [[ $OSTYPE == "darwin"* ]]; then
 	OS=darwin
 fi
 
-GOVERSION=1.15.5
+GOVERSION=1.15.6
 GOROOT=$HOME/.local/go/$GOVERSION
 if [ ! -d $GOROOT ]; then
 	echo Installing Go $GOVERSION
@@ -25,11 +25,11 @@ go get -u 9fans.net/go/acme/editinacme
 go get -u 9fans.net/go/acme/Watch
 go get -u 9fans.net/go/acme/Dict
 go get -u github.com/mpl/xplor
+go get -u github.com/rogpeppe/agitlink
 
 # other tools
 go get -u rsc.io/mailgun/cmd/mailgun-mail
 go get -u rsc.io/mailgun/cmd/mailgun-sendmail
-go get -u go get github.com/emersion/hydroxide/cmd/hydroxide
 
 # lang server
 go get -u golang.org/x/tools/cmd/gopls
