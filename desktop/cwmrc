@@ -4,16 +4,29 @@ color activeborder "#198038"
 
 fontname "IBM Plex Sans:pixelsize=18:style=Regular"
 
+command menu "rofi -show drun"
+command spotify "flatpak run com.spotify.Client"
+command telegram "flatpak run org.telegram.desktop"
+
 sticky yes
 snapdist 5
 gap 5 5 5 5
 
-bind-key M-Print "xfce4-screenshooter"
-bind-key M-Enter "alacritty"
-bind-key M-Shift-Enter "9term rc -l"
-bind-key M-r restart
+bind-key M-Print "screenshot"
+bind-key M-Return "xterm"
+bind-key MS-Return "9term rc -l"
+bind-key MS-r restart
+bind-key M-d "rofi -show drun"
+bind-key M-l lock
+bind-key M-c window-close
 
 bind-key M-KP_Right group-cycle
 bind-key M-KP_Left rgroup-rcycle
 bind-key M-KP_Up window-raise
 bind-key M-KP_Down window-lower
+
+bind-key M-1		group-only-1
+bind-key M-2		group-only-2
+bind-key M-3		group-only-3
+bind-key M-4		group-only-4
+bind-key M-5		group-only-5
