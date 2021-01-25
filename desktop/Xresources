@@ -1,7 +1,50 @@
-xterm*faceName: Terminus (TTF):style=Regular
-xterm*boldFont: Terminus (TTF):style=Medium
-xterm*renderFont: true
-xterm*faceSize: 12
+*faceName: IBM Plex Mono:style=Regular
+*boldFont: IBM Plex Mono:style=Medium
+*renderFont: true
+*faceSize: 10
+
+*background: #f4f4f4
+*foreground: #161616
+*cursorColor: #ff0000
+! dark gray
+*color0: #161616
+! red
+*color1: #8d8d8d
+! green
+*color2: #198038
+! yellow
+*color3: #8a3ffc
+! blue
+*color4: #0f62fe
+! magenta
+*color5: #d12771
+! teal
+*color6: #004144
+! gray
+*color7: #f4f4f4
+! black
+*color8: #000000
+! dark red
+*color9: #750e13
+! dark green
+*color10: #044317
+! dark yellow
+*color11: #491d8b
+! dark blue
+*color12: #002d9c
+! dark magenta
+*color13: #740937
+! dark teal
+*color14: #007d79
+! white
+*color15: #ffffff
+
+*faceSize1: 6
+*faceSize2: 8
+*faceSize3: 10
+*faceSize4: 12
+*faceSize5: 16
+*faceSize6: 24
 
 xterm*utf8: true
 xterm*vt100*geometry: 80x25
@@ -15,26 +58,9 @@ xterm.underlineURLs: true
 xterm*inheritPixmap: true
 xterm*dynamicColors: true
 
-xterm*ScrollBar: on
-*XTerm*scrollBar: true
+xterm*scrollBar: on
 xterm*multiScroll: on
 xterm*jumpScroll: on
-
-! xterm*background: #ffffea
-xterm*background: #ffffff
-xterm*foreground: #171717
-xterm*cursorColor: #ff0000
-
-xterm*faceSize1: 6
-xterm*faceSize2: 8
-xterm*faceSize3: 10
-xterm*faceSize4: 12
-xterm*faceSize5: 16
-xterm*faceSize6: 24
-
-XTerm*printerCommand: xterm -T History -e sh -c 'less -r <&3' 3<&0
-xTerm*VT100.Translations: #override \
-	Ctrl <Key> slash: print-everything()
 
 xterm*decTerminalID: vt340
 xterm*numColorRegisters: 256
