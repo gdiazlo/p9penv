@@ -19,7 +19,7 @@ export GOPATH=$HOME/go
 export GO111MODULE=on
 
 # set java environmant
-export _JAVA_OPTIONS='-Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dawt.useSystemAAFontSettings=on'
+# export _JAVA_OPTIONS='-Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dawt.useSystemAAFontSettings=on'
 export JAVA_VERSION=11.0.8
 export JAVA_HOME=$HOME/.local/java/jdk/$JAVA_VERSION
 
