@@ -5,8 +5,8 @@ JAVA_VERSION=11.0.8
 JAVA_HOME=$HOME/.local/java/jdk/$JAVA_VERSION
 
 # Install SBT
-SBT_VERSION=1.4.4
-SBT_URL=https://github.com/sbt/sbt/releases/download/v1.4.4/sbt-1.4.4.tgz
+SBT_VERSION=1.4.8
+SBT_URL=https://github.com/sbt/sbt/releases/download/v1.4.4/sbt-1.4.8.tgz
 SBT_HOME=$HOME/.local/java/sbt/$SBT_VERSION
 mkdir -p $SBT_HOME
 curl -L $SBT_URL | tar -zx -C $SBT_HOME --strip-components=1

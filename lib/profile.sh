@@ -24,7 +24,7 @@ export JAVA_VERSION=11.0.8
 export JAVA_HOME=$HOME/.local/java/jdk/$JAVA_VERSION
 
 # set scala environment
-export SBT_VERSION=1.4.4
+export SBT_VERSION=1.4.8
 export SBT_HOME=$HOME/.local/java/sbt/$SBT_VERSION
 
 # set Maven Home

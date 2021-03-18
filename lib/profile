@@ -1,7 +1,7 @@
 #!/usr/bin/env rc
 
 umask 077
-home=/home/gdiazlo
+home=/Users/e044542
 path=(/usr/sbin /sbin /usr/local/bin /bin /usr/bin)
 
 # session
@@ -27,7 +27,7 @@ JAVA_VERSION=11.0.8
 JAVA_home=$home/.local/java/jdk/$JAVA_VERSION
 
 # set scala environment
-SBT_VERSION=1.4.4
+SBT_VERSION=1.4.8
 SBT_home=$home/.local/java/sbt/$SBT_VERSION
 
 # set Maven Home
