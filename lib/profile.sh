@@ -41,7 +41,6 @@ test -r $HOME/.opam/opam-init/init.sh && . $HOME/.opam/opam-init/init.sh > /dev/
 export usebigarrow=1
 export EDITOR=editinacme
 export PAGER=nobs
-export BROWSER=firefox
 unset FCEDIT VISUAL
 
 # set cursor to a steady bar |
