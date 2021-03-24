@@ -1,0 +1,16 @@
+#!/usr/bin/env rc
+
+. 9.rc
+. $PLAN9/lib/acme.rc
+
+nx=1
+if(test $#* -gt 0) {
+	nx=$1
+}
+
+ctl=(`{9p read acme/$winid/ctl})
+
+size=`{echo $ctl(7) | tr -d -c 0-9}
+newfont='/mnt/font/DejaVuSansCondensed/'^$size^'a/font'
+
+echo font $newfont  | 9p write acme/$winid/ctl
