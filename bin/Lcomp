@@ -1,2 +1,2 @@
-#!/bin/sh
-exec L comp "$@"
+#!/home/gdiazlo/.local/plan9/bin/rc
+L comp -e | 9p write acme/`{dial unix!`{namespace}/acmefocused}/errors
