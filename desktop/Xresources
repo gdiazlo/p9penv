@@ -1,50 +1,50 @@
-*faceName: IBM Plex Mono:style=Regular
-*boldFont: IBM Plex Mono:style=Medium
-*renderFont: true
-*faceSize: 10
+xterm*faceName: IBM Plex Mono:style=Regular
+xterm*boldFont: IBM Plex Mono:style=Medium
+xterm*renderFont: true
+xterm*faceSize: 10
 
-*background: #f4f4f4
-*foreground: #161616
+xterm*background: #f4f4f4
+xterm*foreground: #161616
 *cursorColor: #ff0000
 ! dark gray
-*color0: #161616
+xterm*color0: #161616
 ! red
-*color1: #8d8d8d
+xterm*color1: #8d8d8d
 ! green
-*color2: #198038
+xterm*color2: #198038
 ! yellow
-*color3: #8a3ffc
+xterm*color3: #8a3ffc
 ! blue
-*color4: #0f62fe
+xterm*color4: #0f62fe
 ! magenta
-*color5: #d12771
+xterm*color5: #d12771
 ! teal
-*color6: #004144
+xterm*color6: #004144
 ! gray
-*color7: #f4f4f4
+xterm*color7: #f4f4f4
 ! black
-*color8: #000000
+xterm*color8: #000000
 ! dark red
-*color9: #750e13
+xterm*color9: #750e13
 ! dark green
-*color10: #044317
+xterm*color10: #044317
 ! dark yellow
-*color11: #491d8b
+xterm*color11: #491d8b
 ! dark blue
-*color12: #002d9c
+xterm*color12: #002d9c
 ! dark magenta
-*color13: #740937
+xterm*color13: #740937
 ! dark teal
-*color14: #007d79
+xterm*color14: #007d79
 ! white
-*color15: #ffffff
+xterm*color15: #161616
 
-*faceSize1: 6
-*faceSize2: 8
-*faceSize3: 10
-*faceSize4: 12
-*faceSize5: 16
-*faceSize6: 24
+xterm*faceSize1: 6
+xterm*faceSize2: 8
+xterm*faceSize3: 10
+xterm*faceSize4: 12
+xterm*faceSize5: 16
+xterm*faceSize6: 24
 
 xterm*utf8: true
 xterm*vt100*geometry: 80x25
