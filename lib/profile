@@ -48,7 +48,6 @@ MANPATH=:$home/.opam/4.11.1/man
 usebigarrow=1
 EDITOR=editinacme
 PAGER=nobs
-BROWSER=firefox
 
 # set cursor to a steady bar |
 # printf '\033[6 q'
