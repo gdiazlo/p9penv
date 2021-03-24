@@ -4,7 +4,7 @@ if [[ $OSTYPE == "darwin"* ]]; then
 	OS=darwin
 fi
 
-GOVERSION=1.15.7
+GOVERSION=1.16.2
 GOROOT=$HOME/.local/go/$GOVERSION
 if [ ! -d $GOROOT ]; then
 	echo Installing Go $GOVERSION
