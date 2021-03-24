@@ -35,7 +35,7 @@ $HOME/.local/bin/coursier bootstrap \
   --java-opt -Dmetals.java-home=$JAVA_HOME \
   --java-opt -Dmetals.maven-script=$MVN \
   --java-opt -Dmetals.sbt-script=$SBT \
-  org.scalameta:metals_2.12:0.9.6 -o $HOME/.local/bin/metals -f
+  org.scalameta:metals_2.12:0.10.0 -o $HOME/.local/bin/metals -f
 
 
 # Install scalafmt
