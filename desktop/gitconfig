@@ -1,6 +1,6 @@
 [gui]
-	fontui = -family \"Lucida Sans Unicode\" -size 10 -weight normal -slant roman -underline 0 -overstrike 0
-	fontdiff = -family \"Lucida Console\" -size 10 -weight normal -slant roman -underline 0 -overstrike 0
+	fontui = -family \"IBM Plex Sans\" -size 10 -weight normal -slant roman -underline 0 -overstrike 0
+	fontdiff = -family \"IBM Plex Mono\" -size 10 -weight normal -slant roman -underline 0 -overstrike 0
 
 [pager]
 	diff = false
@@ -28,3 +28,5 @@
 [user]
 	name = Gabriel Diaz
 	email = gdiaz@qswarm.com
+[credential "https://github.com"]
+	helper = !gh auth git-credential
