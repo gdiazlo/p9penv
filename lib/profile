@@ -1,7 +1,7 @@
 #!/usr/bin/env rc
 
 umask 077
-home=/Users/e044542
+home=/home/gdiazlo
 path=(/usr/sbin /sbin /usr/local/bin /bin /usr/bin)
 
 # session
