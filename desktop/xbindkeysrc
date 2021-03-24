@@ -21,14 +21,20 @@
 "xbacklight -dec 10"
    XF86MonBrightnessDown
 
-"L comp -e "
+"L comp -e | 9p write acme/`{dial unix!`{namespace}/acmefocused}/errors"
   Alt + c
+
+"L refs | 9p write acme/`{dial unix!`{namespace}/acmefocused}/errors"
+  Alt + r
+
+"L def | 9p write acme/`{dial unix!`{namespace}/acmefocused}/errors"
+  Alt + d
 
 "L sig"
   Alt + i
 
 "rofi -show drun"
-  Alt + d
+  Alt + m
 
 "9 9term"
   Alt + Return
