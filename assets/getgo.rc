@@ -1,21 +1,19 @@
- #!/bin/bash
-OS=linux
-if [[ $OSTYPE == "darwin"* ]]; then
-	OS=darwin
-fi
+ #!/usr/local/plan9/bin/rc
 
-GOVERSION=1.16.2
-GOROOT=$HOME/.local/go/$GOVERSION
-if [ ! -d $GOROOT ]; then
+os=`{uname | 9 tr [A-Z] [a-z]}
+
+GOVERSION=1.16.3
+DEST=$HOME/.local/go/
+GOROOT=$DEST'/'$GOVERSION
+if(test ! -d $GOROOT) {
 	echo Installing Go $GOVERSION
-	mkdir -p $GOROOT
-	curl -L "https://dl.google.com/go/go${GOVERSION}.$OS-amd64.tar.gz" | tar -zx -C $GOROOT --strip-components=1
-fi
+	mkdir -p $DEST
+	cd $DEST
+	curl -L 'https://dl.google.com/go/go'$GOVERSION'.'$os'-amd64.tar.gz' | 9 gunzip | 9 tar x
+	mv go $GOVERSION
+}
 
-PATH=$GOROOT/bin:$PATH
-
-# Download and update golang tools
-GO111MODULE=on
+path=($GOROOT/bin $PATH)
 
 # Download go lang tools and helpers
 go get -u golang.org/x/tools/...
