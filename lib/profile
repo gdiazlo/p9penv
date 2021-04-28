@@ -71,8 +71,8 @@ fn tb { nc termbin.com 9999 }
 # Prepare PATH environment
 #   append custom tools at the end of the current path
 #   prepend ~/bin and goroot into path to avoid using gcc-go in system path by default
-pathappend=($P9PENV/bin $P9PENV/mail $GOPATH/bin $PLAN9/bin $PLAN9/bin/upas $JAVA_HOME/bin $SBT_HOME/bin $MVN_HOME/bin  $CARGO/bin)
-pathprepend=($home/.local/bin $GOROOT/bin $OCAML/bin)
+pathappend=($P9PENV/bin $P9PENV/mail $GOPATH/bin $PLAN9/bin/upas $JAVA_HOME/bin $SBT_HOME/bin $MVN_HOME/bin  $CARGO/bin)
+pathprepend=($PLAN9/bin $home/.local/bin $GOROOT/bin $OCAML/bin)
 path=($pathprepend $path $pathappend)
 
 # check if something is not there
@@ -206,7 +206,7 @@ fn p9p_session {
 }
 
 # default font is dejavu sans
-_set_font default 16 32
+_set_font default 12 24
 
 # always set up the p9p session,
 # this will start services only if there are not started yet
