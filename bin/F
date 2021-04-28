@@ -1,0 +1,40 @@
+#!/usr/bin/env rc
+
+if(test $#* -eq 0) {
+	exit
+}
+
+. 9.rc
+. $PLAN9/lib/acme.rc
+
+nx=0
+if(test $#* -gt 1) {
+	nx=$2
+}
+
+newfont=(`{9p ls font | 9 grep '^'$1'$'})
+if (test $#newfont -eq 1) {
+	ctl=(`{9p read acme/$winid/ctl})
+	size=`{echo $ctl(7) | tr -d -c 0-9}
+	newSize=`{echo $size+$nx | bc}
+	msg='/mnt/font/'$newfont'/'$newSize'a/font'
+	echo font $msg  | 9p write acme/$winid/ctl
+	exit
+}
+
+
+fonts=(`{9p ls font | 9 grep -i $1})
+if ( test $#fonts -eq 0 ) {
+
+	echo Font $1 not found!
+	exit
+}
+echo Select font by it exact name:
+for(f in $fonts) {
+	echo $f
+}
+
+
+
+
+
