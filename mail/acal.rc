@@ -1,4 +1,4 @@
-#!/usr/bin/env rc
+#!/usr/local/plan9/bin/rc
 #
 # Reads a calendar invitation from stdin
 # and writes a temporary file with a calendar event  answering
