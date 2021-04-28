@@ -1,4 +1,4 @@
-!#/usr/bin/env rc
+!#~/.local/plan9/bin/rc
 
 DEST=''
 os=`{uname}
@@ -9,12 +9,16 @@ case 'Linux'
 	DEST=$home/.local/share/fonts
 }
 
+fn nimbus {
+	fonts=('https://github.com/ArtifexSoftware/urw-base35-fonts/archive/refs/tags/20200910.zip')
+	install 'nimbus' $fonts
+}
 
 fn minion {
 	fonts=('https://www.wfonts.com/download/data/2016/05/26/minion-pro/minion-pro.zip')
 	install 'minion' $fonts
 }
-#
+
 fn atkinson {
 	fonts=('https://www.brailleinstitute.org/wp-content/uploads/atkinson-hyperlegible-font/Atkinson-Hyperlegible-Font-Print-and-Web-2020-0514.zip')
 	install 'atkinson' $fonts
@@ -155,7 +159,8 @@ fn install {
 	name=$1
 	shift
 	fonts=$*
-	for(i in `{seq 1 1 $#fonts}) {
+
+	for(i in `{9 seq 1 1 $#fonts}) {
 		echo Downloading $fonts($i) into $i.zip
 		curl -L -o $i.zip $fonts($i)
 		echo Uncompressing $i.zip
