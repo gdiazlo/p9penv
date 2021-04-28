@@ -1,5 +1,5 @@
-xterm*faceName: IBM Plex Mono:style=Regular
-xterm*boldFont: IBM Plex Mono:style=Medium
+xterm*faceName: DejaVu Sans Mono:style=Regular
+xterm*boldFont: DejaVu Sans Mono:style=Medium
 xterm*renderFont: true
 xterm*faceSize: 10
 

@@ -1,13 +1,19 @@
 [Desktop Entry]
-Comment=Plan9 Text Editor
-Exec=acme
-GenericName=acme
-Icon=spaceglenda
+Comment[en_US]=starts acme using a plan9port session
+Comment=starts acme using a plan9port session
+Exec=echo exec acme | /usr/local/plan9/bin/rc -l
+GenericName[en_US]=acme editor on a plan9port session
+GenericName=acme editor on a plan9port session
+Icon=/usr/local/plan9/dist/spaceglenda100.png
+MimeType=
+Name[en_US]=acme
 Name=acme
-NoDisplay=false
+Path=
 StartupNotify=true
-Terminal=0
+Terminal=false
 TerminalOptions=
 Type=Application
+X-DBUS-ServiceName=
+X-DBUS-StartupType=
 X-KDE-SubstituteUID=false
 X-KDE-Username=

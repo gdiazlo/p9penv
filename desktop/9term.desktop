@@ -1,0 +1,19 @@
+[Desktop Entry]
+Comment[en_US]=It stars a plan9port session with rc -l
+Comment=It stars a plan9port session with rc -l
+Exec=echo exec /usr/local/plan9/bin/9term rc | /usr/local/plan9/bin/rc -l\n
+GenericName[en_US]=plan9port terminal\s
+GenericName=plan9port terminal\s
+Icon=/usr/local/plan9/dist/glendacircle.png
+MimeType=
+Name[en_US]=9term
+Name=9term
+Path=
+StartupNotify=true
+Terminal=false
+TerminalOptions=
+Type=Application
+X-DBUS-ServiceName=
+X-DBUS-StartupType=none
+X-KDE-SubstituteUID=false
+X-KDE-Username=
