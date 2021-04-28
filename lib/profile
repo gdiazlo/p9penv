@@ -1,22 +1,32 @@
 #!/usr/bin/env rc
 
 umask 077
-home=/home/gdiazlo
+
+# assume the parent shell set up a HOME and USER variable
+# correctly, in case of using rc as a login shell
+# this might not work
+home=$HOME
+user=$USER
+
 path=(/usr/sbin /sbin /usr/local/bin /bin /usr/bin)
 
-# session
-XDG_DATA_DIRS=$home/.local/share:$home/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share
+fn nssetup {
+	if(test ! -d $home/.ns/$1) {
+		mkdir -p $home/.ns/$1
+	}
+	echo $home/.ns/$1
+}
 
 # set plan9 environment
-PLAN9=$home/.local/plan9
+PLAN9=/usr/local/plan9
 P9PENV=$home/.local/p9penv
+NAMESPACE=`{nssetup 0}
 
 # mk max concurrent procs
-# only valid for linux
 nproc=16
 
 # set golang environment
-GOVERSION=`{$PLAN9/bin/ls -p $home/.local/go | tail -n 1}
+GOVERSION=1.16.3
 GOROOT=$home/.local/go/$GOVERSION
 GOPATH=$home/go
 GO111MODULE=on
@@ -48,6 +58,7 @@ usebigarrow=1
 EDITOR=editinacme
 PAGER=nobs
 
+# things for xterm
 # set cursor to a steady bar |
 # printf '\033[6 q'
 # set cursor to a steady block
@@ -65,10 +76,10 @@ pathprepend=($home/.local/bin $GOROOT/bin $OCAML/bin)
 path=($pathprepend $path $pathappend)
 
 # check if something is not there
-dirs=($home/lib $PLAN9 $GOROOT $GOPATH $P9PENV)
+dirs=($home/lib $PLAN9 $P9PENV)
 for(dir in $dirs) {
 	if(test  ! -d $dir) {
-		echo '$dir does not exists. Verify set up.'
+		echo $dir 'does not exists. Verify set up.'
 		exit
 	}
 }
@@ -76,7 +87,7 @@ for(dir in $dirs) {
 files=($home/lib/plumbing)
 for(f in $files) {
 	if (test ! -f $f) {
-		echo '$f does not exists. Verify set up'
+		echo $f 'does not exists. Verify set up'
 	}
 }
 
@@ -102,7 +113,7 @@ if(test -f $SSH_ENV) {
 	pgrep ssh-agent > /dev/null
 	switch($status) {
 		case 1
-			startsshagentt
+			startsshagent
 	}
 }
 if not {
@@ -194,13 +205,14 @@ fn p9p_session {
 	}
 }
 
-# default font
+# default font is dejavu sans
 _set_font default 16 32
 
 # always set up the p9p session,
 # this will start services only if there are not started yet
 p9p_session
 
+# default acme options
 fn acme {
 	SHELL=rc $PLAN9/bin/acme -a -c 1 -f $font,$hidpifont -F $fixedfont,$hidpifixedfont $*
 }
