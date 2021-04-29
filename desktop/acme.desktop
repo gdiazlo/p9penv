@@ -1,7 +1,7 @@
 [Desktop Entry]
 Comment[en_US]=starts acme using a plan9port session
 Comment=starts acme using a plan9port session
-Exec=echo exec acme | /usr/local/plan9/bin/rc -l
+Exec=/usr/local/plan9/bin/rc -c 'echo exec acme | /usr/local/plan9/bin/rc -l'
 GenericName[en_US]=acme editor on a plan9port session
 GenericName=acme editor on a plan9port session
 Icon=/usr/local/plan9/dist/spaceglenda100.png

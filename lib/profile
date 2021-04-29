@@ -11,7 +11,7 @@ user=$USER
 path=(/usr/sbin /sbin /usr/local/bin /bin /usr/bin)
 
 fn nssetup {
-	if(test ! -d $home/.ns/$1) {
+	if(9 test ! -d $home/.ns/$1) {
 		mkdir -p $home/.ns/$1
 	}
 	echo $home/.ns/$1
@@ -20,7 +20,6 @@ fn nssetup {
 # set plan9 environment
 PLAN9=/usr/local/plan9
 P9PENV=$home/.local/p9penv
-NAMESPACE=`{nssetup 0}
 
 # mk max concurrent procs
 nproc=16
@@ -71,14 +70,14 @@ fn tb { nc termbin.com 9999 }
 # Prepare PATH environment
 #   append custom tools at the end of the current path
 #   prepend ~/bin and goroot into path to avoid using gcc-go in system path by default
-pathappend=($P9PENV/bin $P9PENV/mail $GOPATH/bin $PLAN9/bin/upas $JAVA_HOME/bin $SBT_HOME/bin $MVN_HOME/bin  $CARGO/bin)
-pathprepend=($PLAN9/bin $home/.local/bin $GOROOT/bin $OCAML/bin)
+pathappend=($P9PENV/mail $GOPATH/bin $PLAN9/bin/upas $JAVA_HOME/bin $SBT_HOME/bin $MVN_HOME/bin  $CARGO/bin)
+pathprepend=($P9PENV/bin $PLAN9/bin $home/.local/bin $GOROOT/bin $OCAML/bin)
 path=($pathprepend $path $pathappend)
 
 # check if something is not there
 dirs=($home/lib $PLAN9 $P9PENV)
 for(dir in $dirs) {
-	if(test  ! -d $dir) {
+	if(9 test  ! -r $dir) {
 		echo $dir 'does not exists. Verify set up.'
 		exit
 	}
@@ -86,10 +85,12 @@ for(dir in $dirs) {
 
 files=($home/lib/plumbing)
 for(f in $files) {
-	if (test ! -f $f) {
+	if (9 test ! -f $f) {
 		echo $f 'does not exists. Verify set up'
 	}
 }
+
+NAMESPACE=`{nssetup 0}
 
 # ssh agent set up
 
@@ -138,8 +139,6 @@ fn _set_font {
 	shift
 	hidpi=$1
 	shift
-
-	echo Settingn $family font family
 
 	switch($family) {
 	case dejavu
