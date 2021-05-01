@@ -1,4 +1,4 @@
-!#~/.local/plan9/bin/rc
+#!/usr/local/plan9/bin/rc
 
 DEST=''
 os=`{uname}
@@ -174,7 +174,7 @@ fn install {
 
 ALL=(minion atkinson ibarra overpass adobe copper input charter terminus computermodern ibm bitter fira gofont noto lora orbitron montserrat sun dec ibm3270)
 
-if(test -z $1 ) {
+if(test $#* -eq 0 ) {
 	echo Select all or one of the following fonts:
 	echo $ALL
 	exit
