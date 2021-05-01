@@ -164,7 +164,7 @@ fn install {
 		echo Downloading $fonts($i) into $i.zip
 		curl -L -o $i.zip $fonts($i)
 		echo Uncompressing $i.zip
-		unzip -o $i.zip
+		unzip -f $i.zip
 		echo Copying into $name
 		copy $name
 		echo Remove $i.zip
