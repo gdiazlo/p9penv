@@ -25,21 +25,21 @@ P9PENV=$home/.local/p9penv
 nproc=16
 
 # set golang environment
-GOVERSION=1.16.3
+GOVERSION=1.16.5
 GOROOT=$home/.local/go/$GOVERSION
 GOPATH=$home/go
 GO111MODULE=on
 
 # set java environmant
-JAVA_VERSION=11.0.8
+JAVA_VERSION=11.0.11
 JAVA_HOME=$home/.local/java/jdk/$JAVA_VERSION
 
 # set scala environment
-SBT_VERSION=1.4.8
+SBT_VERSION=1.5.2
 SBT_HOME=$home/.local/java/sbt/$SBT_VERSION
 
 # set Maven Home
-MVN_VERSION=3.6.3
+MVN_VERSION=3.8.1
 MVN_HOME=$home/.local/java/mvn/$MVN_VERSION
 
 # set rust environment

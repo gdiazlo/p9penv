@@ -1,0 +1,45 @@
+#!/usr/local/plan9/bin/rc
+
+os=`{uname | 9 tr [A-Z] [a-z]}
+
+JAVA_VERSION=11.0.11
+
+JAVA_HOME=$HOME'/.local/java/jdk/'$JAVA_VERSION
+
+# Install SBT
+SBT_VERSION=1.5.3
+SBT_URL='https://github.com/sbt/sbt/releases/download/v'$SBT_VERSION'/sbt-'$SBT_VERSION'.tgz'
+SBT_HOME=$HOME'/.local/java/sbt/'$SBT_VERSION
+mkdir -p $SBT_HOME
+curl -L $SBT_URL | gunzip | @{cd $SBT_HOME && tar xRT && mv sbt/* . && rmdir sbt}
+
+path=( $path $SBT_HOME/bin)
+MVN=$MVN_HOME/bin/mvn
+SBT=$SBT_HOME/bin/sbt
+
+# Install Courier
+COURSIER_VERSION=current
+COURSIER_URL=https://git.io/coursier-cli
+curl -Lo  $home'/.local/bin/coursier' $COURSIER_URL
+chmod +x $home'/.local/bin/coursier'
+
+path=($path $JAVA_HOME/bin $HOME/.local/bin $MVN_HOME/bin $SBT_HOME/bin)
+
+# Install metals
+
+$home/.local/bin/coursier bootstrap \
+  --java-opt -XX:+UseG1GC \
+  --java-opt -XX:+UseStringDeduplication  \
+  --java-opt -Xss4m \
+  --java-opt -Xms100m \
+  --java-opt -Dmetals.verbose=on \
+  --java-opt -Dmetals.http=on \
+  --java-opt -Dmetals.java-home=$JAVA_HOME \
+  --java-opt -Dmetals.maven-script=$MVN \
+  --java-opt -Dmetals.sbt-script=$SBT \
+  org.scalameta:metals_2.12:0.10.4 -o $home'/.local/bin/metals' -f
+
+
+# Install scalafmt
+VERSION=3.0.0
+curl --fail -Lo $home'/.local/bin/scalafmt' https://github.com/scalameta/scalafmt/releases/download/v3.0.0-RC4/scalafmt-linux-glibc

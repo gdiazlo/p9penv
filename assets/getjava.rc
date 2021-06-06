@@ -1,0 +1,38 @@
+#!/usr/local/plan9/bin/rc
+
+os=`{uname | 9 tr [A-Z] [a-z]}
+switch($os) {
+	case linux
+		JAVA_URL=https://github.com/AdoptOpenJDK/openjdk11-binaries/releases/download/jdk-11.0.11%2B9/OpenJDK11U-jdk_x64_linux_hotspot_11.0.11_9.tar.gz
+	case darwin
+		JAVA_URL=https://github.com/AdoptOpenJDK/openjdk11-binaries/releases/download/jdk-11.0.11%2B9/OpenJDK11U-jdk_x64_mac_hotspot_11.0.11_9.tar.gz
+	case *
+		echo $OS not supported
+		exit
+}
+
+JAVA_VERSION=11.0.11
+
+JAVA_HOME=$HOME'/.local/java/jdk/'$JAVA_VERSION
+
+mkdir -p $JAVA_HOME
+curl -L $JAVA_URL | gunzip | @{cd $JAVA_HOME && tar xRT && mv jdk-11.0.11+9/* . && rmdir jdk-11.0.11+9}
+
+PATH=$JAVA_HOME/bin:$PATH
+
+# Install maven
+MVN_VERSION=3.8.1
+MVN_URL=http://apache.uvigo.es/maven/maven-3/3.8.1/binaries/apache-maven-3.8.1-bin.tar.gz
+MVN_HOME=$HOME/.local/java/mvn/$MVN_VERSION
+mkdir -p  $MVN_HOME
+curl -L $MVN_URL | gunzip | @{cd $MVN_HOME && tar xRT && mv apache-maven-3.8.1/* . && rmdir apache-maven-3.8.1}
+
+PATH=$PATH:$MVN_HOME
+
+# install eclipse jdt lanague server
+JDT_VERSION=1.1.2
+JDT_URL=http://download.eclipse.org/jdtls/milestones/1.1.2/jdt-language-server-1.1.2-202105191944.tar.gz
+JDT_HOME=$HOME/.local/java/jdt/$JDT_VERSION
+mkdir -p $JDT_HOME
+curl -L $JDT_URL  | gunzip | @{cd $JDT_HOME && tar xRT}
+
