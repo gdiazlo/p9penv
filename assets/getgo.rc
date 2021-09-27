@@ -2,7 +2,7 @@
 
 os=`{uname | 9 tr [A-Z] [a-z]}
 
-GOVERSION=1.16.5
+GOVERSION=1.17.1
 DEST=$HOME/.local/go/
 GOROOT=$DEST'/'$GOVERSION
 if(test ! -d $GOROOT) {
@@ -15,29 +15,24 @@ if(test ! -d $GOROOT) {
 
 path=($GOROOT/bin $path)
 
-# Download go lang tools and helpers
-go get -u golang.org/x/tools/...
-
 # 3rd party
-go get -u 9fans.net/go/acme/editinacme
-go get -u 9fans.net/go/acme/Watch
-go get -u 9fans.net/go/acme/Dict
-go get -u github.com/mpl/xplor
-go get -u github.com/rogpeppe/agitlink
+go install 9fans.net/go/acme/editinacme@latest
+go install 9fans.net/go/acme/Watch@latest
+go install 9fans.net/go/acme/Dict@latest
+go install github.com/mpl/xplor@latest
+go install github.com/rogpeppe/agitlink@latest
 
 # other tools
-go get -u rsc.io/mailgun/cmd/mailgun-mail
-go get -u rsc.io/mailgun/cmd/mailgun-sendmail
+go install rsc.io/mailgun/cmd/mailgun-mail@latest
+go install rsc.io/mailgun/cmd/mailgun-sendmail@latest
 
 # lang server
-go get -u golang.org/x/tools/cmd/gopls
-go get -u github.com/fhs/acme-lsp/cmd/acme-lsp
-go get -u github.com/fhs/acme-lsp/cmd/acme-lsp@latest
-go get -u github.com/fhs/acme-lsp/cmd/L@latest
+go install golang.org/x/tools/cmd/gopls@latest
+go install github.com/fhs/acme-lsp/cmd/acme-lsp@latest
+go install github.com/fhs/acme-lsp/cmd/acme-lsp@latest
+go install github.com/fhs/acme-lsp/cmd/L@latest
 
 
 # filesystems
-go get -u github.com/sirnewton01/ghfs
+go install github.com/sirnewton01/ghfs@latest
 
-# libraries 9p 2000 library for go
-go get -u github.com/hugelgupf/p9
