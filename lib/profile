@@ -25,7 +25,7 @@ P9PENV=$home/.local/p9penv
 nproc=16
 
 # set golang environment
-GOVERSION=1.16.5
+GOVERSION=1.17.1
 GOROOT=$home/.local/go/$GOVERSION
 GOPATH=$home/go
 GO111MODULE=on
