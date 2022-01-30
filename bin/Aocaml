@@ -4,6 +4,8 @@ workspaces=$rootDir
 
 source ~/.profile
 
+eval $(opam env)
+
 if [ ! -z "$1" ]; then
 	workspaces="$rootDir:$1"
 fi

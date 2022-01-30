@@ -2,7 +2,7 @@
 
 os=`{uname | 9 tr [A-Z] [a-z]}
 
-GOVERSION=1.17.1
+GOVERSION=1.17.6
 DEST=$HOME/.local/go/
 GOROOT=$DEST'/'$GOVERSION
 if(test ! -d $GOROOT) {
