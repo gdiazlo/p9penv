@@ -1,0 +1,17 @@
+#!/usr/bin/env rc
+
+. 9.rc
+. $PLAN9/lib/acme.rc
+
+# this needs a plumbing rule for URLS like:
+#
+# type is text
+# data matches '(https?|ftp|file|news|nntp|telnet|wais|prospero)://.*'
+# plumb to web
+# plumb start firefox $0
+
+rm /tmp/Amd*.html
+file=`{winread tag | awk -F ' Del Snarf ' '{print $1}' | sed 1q}
+tmpfile=`{mktemp /tmp/Amd.XXXXXX.html}
+cat $"file | pandoc -f gfm -t html  --self-contained  -o $tmpfile >[2]/dev/null
+plumb file://$tmpfile

@@ -33,4 +33,15 @@ arg isfile	$0
 plumb to image
 plumb start imv $file
 
+type is text
+data matches '.*.md'
+arg isfile $0
+plumb to editor
+plumb start B $file
+
+type is text
+data matches '(https?|ftp|file|news|nntp|telnet|wais|prospero)://.*'
+plumb to web
+plumb start firefox $0
+
 include basic
