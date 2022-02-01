@@ -196,7 +196,7 @@ fn p9p_session {
 	mkdir -p $NAMESPACE
 
 	for(proc in fontsrv factotum secstored plumber) {
-		pgrep $proc > /dev/null
+		pgrep '^'^$proc > /dev/null
 		switch($status) {
 			case 1
 				$PLAN9/bin/9 $proc &
@@ -205,7 +205,8 @@ fn p9p_session {
 }
 
 # default font is dejavu sans
-_set_font default 12 24
+# _set_font default 8 16
+_set_font ibm 14 18
 
 # always set up the p9p session,
 # this will start services only if there are not started yet

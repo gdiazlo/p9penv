@@ -3,6 +3,7 @@
 os=`{uname | 9 tr [A-Z] [a-z]}
 
 GOVERSION=1.17.6
+
 DEST=$HOME/.local/go/
 GOROOT=$DEST'/'$GOVERSION
 if(test ! -d $GOROOT) {
@@ -35,4 +36,3 @@ go install github.com/fhs/acme-lsp/cmd/L@latest
 
 # filesystems
 go install github.com/sirnewton01/ghfs@latest
-

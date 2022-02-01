@@ -10,7 +10,7 @@
 # plumb to web
 # plumb start firefox $0
 
-rm /tmp/Amd*.html
+rm /tmp/Amd*.html >[2]/dev/null
 file=`{winread tag | awk -F ' Del Snarf ' '{print $1}' | sed 1q}
 tmpfile=`{mktemp /tmp/Amd.XXXXXX.html}
 cat $"file | pandoc -f gfm -t html  --self-contained  -o $tmpfile >[2]/dev/null
