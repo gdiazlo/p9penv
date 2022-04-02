@@ -2,7 +2,7 @@
 
 os=`{uname | 9 tr [A-Z] [a-z]}
 
-GOVERSION=1.17.6
+GOVERSION=1.18
 
 DEST=$HOME/.local/go/
 GOROOT=$DEST'/'$GOVERSION
@@ -10,7 +10,7 @@ if(test ! -d $GOROOT) {
 	echo Installing Go $GOVERSION
 	mkdir -p $DEST
 	cd $DEST
-	curl -L 'https://dl.google.com/go/go'$GOVERSION'.'$os'-amd64.tar.gz' | 9 gunzip | 9 tar x
+	curl -L 'https://go.dev/dl/go'$GOVERSION'.'$os'-amd64.tar.gz' | 9 gunzip | 9 tar x
 	mv go $GOVERSION
 }
 
