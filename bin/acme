@@ -1,10 +1,11 @@
-#!/usr/bin/env rc
+#!/usr/local/plan9/bin/rc
 
 . $home/lib/profile
 
 if(test -r $home/acme.dump) {
-	acme -l $home/acme.dump $*
+	$PLAN9/bin/acme -a -c 1 -f $hidpifont -F $hidpifixedfont  -l $home/acme.dump $*
 }
 if not {
-	acme $*
+	$PLAN9/bin/acme -a -c 1 -f $hidpifont -F $hidpifixedfont $*
 }
+
