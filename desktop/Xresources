@@ -1,10 +1,10 @@
-xterm*faceName: DejaVu Sans Mono:style=Regular
-xterm*boldFont: DejaVu Sans Mono:style=Medium
+xterm*faceName: DEC Terminal Modern:style=Regular
+xterm*boldFont: DEC Terminal Modern:style=Bold
 xterm*renderFont: true
-xterm*faceSize: 10
+xterm*faceSize: 15
 
-xterm*background: #f4f4f4
-xterm*foreground: #161616
+xterm*background: #262626
+xterm*foreground: #fcc000
 *cursorColor: #ff0000
 ! dark gray
 xterm*color0: #161616

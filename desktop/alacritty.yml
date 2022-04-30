@@ -99,7 +99,8 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    family: IBM Plex Mono
+    #family: IBM Plex Mono
+    family: IBM 3270 
 
     # The `style` can be specified to pick a specific face.
     #style: Regular
@@ -138,7 +139,7 @@ font:
     #style: Bold Italic
 
   # Point size
-  size: 10.0
+  size: 16.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -165,9 +166,10 @@ font:
 # Colors (Tomorrow Night)
 colors:
   # Default colors
-  #primary:
-  background: '#161616'
-  foreground: '#f4f4f4'
+  primary: 
+    background: '#161616'
+    #foreground: '#f4f4f4'
+    foreground: '#ffc000'
 
   # Cursor colors
   #
@@ -206,7 +208,8 @@ colors:
     # Allowed values are CellForeground and CellBackground, which reference the
     # affected cell, or hexadecimal colors like #ff00ff.
     matches:
-      foreground: '#000000'
+      #foreground: '#000000'
+      foreground: '#ffc000'
       background: '#ffffff'
 
     #bar:
