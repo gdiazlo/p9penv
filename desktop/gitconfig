@@ -28,5 +28,10 @@
 [user]
 	name = Gabriel Diaz
 	email = gdiaz@qswarm.com
+	signingkey = 0413D4D41C7F7267D5F7BF9EE2F33E24C7042D30
 [credential "https://github.com"]
 	helper = !gh auth git-credential
+[commit]
+	gpgsign = true
+[gpg]
+	program = /usr/bin/gpg
