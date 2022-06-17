@@ -206,7 +206,7 @@ fn p9p_session {
 
 # default font is dejavu sans
 # _set_font default 8 16
-_set_font ibm 12 12
+_set_font dejavu 12 12
 
 # always set up the p9p session,
 # this will start services only if there are not started yet
