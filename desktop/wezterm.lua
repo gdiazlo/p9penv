@@ -17,4 +17,5 @@ return {
           args = {"/usr/local/plan9/bin/rc","-l"},
         },
     },
+  enable_wayland = true,
 }
