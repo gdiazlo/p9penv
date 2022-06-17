@@ -24,14 +24,14 @@ data matches '[a-zA-Z0-9_\-./@]+'
 data matches '([a-zA-Z0-9_\-./@]+)\.(pdf|PDF|epub|XPS|xps)'
 arg isfile	$0
 plumb to pdf
-plumb start mupdf $file
+plumb start xdg-open $file
 
 type is text
 data matches '[a-zA-Z0-9_\-./@]+'
 data matches '([a-zA-Z0-9_\-./@]+)\.(jpe?g|JPE?G|gif|GIF|tiff?|TIFF?|ppm|bit|png|PNG)'
 arg isfile	$0
 plumb to image
-plumb start imv $file
+plumb start xdg-open $file
 
 type is text
 data matches '.*.md'
@@ -42,6 +42,6 @@ plumb start B $file
 type is text
 data matches '(https?|ftp|file|news|nntp|telnet|wais|prospero)://.*'
 plumb to web
-plumb start firefox $0
+plumb start xdg-open $0
 
 include basic
