@@ -49,12 +49,14 @@ case *
 
 ifs=$nl
 servers=`{srvargs $dom}
+ifs=' ' sa=`{echo -n $servers(1)}
+upasname=$sa(2)
+server=$sa(3)
+
 if(! test -r $NAMESPACE/mail.$dom) {
-	ifs=' ' sa=`{echo -n $servers(1)}
-	upasname=$sa(2)
-	server=$sa(3)
 	mailfs -s mail.$dom -t -u $upasname $server
 }
 
+echo $dom as $upasname
 exec nedmail -S mail.$dom $*
 
