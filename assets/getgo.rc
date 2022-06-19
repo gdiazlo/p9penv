@@ -28,11 +28,11 @@ go install rsc.io/mailgun/cmd/mailgun-mail@latest
 go install rsc.io/mailgun/cmd/mailgun-sendmail@latest
 
 # lang server
-go install golang.org/x/tools/cmd/gopls@latest
-go install github.com/fhs/acme-lsp/cmd/acme-lsp@latest
+go install golang.org/x/tools/gopls@latest
 go install github.com/fhs/acme-lsp/cmd/acme-lsp@latest
 go install github.com/fhs/acme-lsp/cmd/L@latest
-
+go install github.com/fhs/acme-lsp/cmd/acmefocused@latest
 
 # filesystems
 go install github.com/sirnewton01/ghfs@latest
+
