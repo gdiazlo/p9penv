@@ -120,13 +120,23 @@ if(test -f $SSH_ENV) {
 if not {
     startsshagent
 }
-
+ps1='
+➜ '
 # set cd to execute awd when in acme win
 fn cd  {
         builtin cd $* &&
         switch($TERM) {
 		case xterm-256color
 		case dumb
+			if ( test -x /usr/local/bin/starship) {
+				TERM=xterm
+				text=`{starship prompt -P `{pwd} }
+				TERM=dumb
+			}
+			if not {
+				text=`{pwd}
+			}
+			prompt=( $"text^$ps1  '➜')
 			awd
        }
 }
