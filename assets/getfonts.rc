@@ -9,6 +9,11 @@ case 'Linux'
 	DEST=$home/.local/share/fonts
 }
 
+fn nerdfonts {
+	fonts=('https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Go-Mono.zip' 'https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/3270.zip' 'https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/BigBlueTerminal.zip' 'https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraMono.zip' 'https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Monoid.zip' 'https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/SourceCodePro.zip' 'https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Terminus.zip')
+	install 'nerdfonts' $fonts
+}
+
 fn juliamono {
 	fonts=('https://github.com/cormullion/juliamono/releases/download/v0.038/JuliaMono.zip')
 	install 'juliamono' $fonts
@@ -60,7 +65,7 @@ fn input {
 # Opensource font by
 # https://practicaltypography.com/fonts/charter.zip
 fn charter {
-	fonts=('https://practicaltypography.com/fonts/charter.zip')
+	fonts=('https://practicaltypography.com/fonts/Charter%20210112.zip')
 	install 'charter' $fonts
 }
 
@@ -91,7 +96,7 @@ fn ibm {
 # Free font by Huerta Tipografica
 # https://www.huertatipografica.com
 fn bitter {
-	fonts=('https://www.huertatipografica.com/free_download/48')
+	fonts=('https://www.huertatipografica.com/free_download/144')
 	install 'bitter' $fonts
 }
 
@@ -154,12 +159,8 @@ fn copy {
 	name=$1
 	shift
 	mkdir -p $DEST/$name
-	ifs='
-	'
-	files=`{du -a | grep -ie 'ttf$' -ie 'otf$' | awk '{$1=""; print $0}' | sed 's/^ +//g' }
-	for(f in $files) {
-		cp $"f $DEST/$name
-	}
+
+	cp *.otf $DEST/$name || cp *.ttf $DEST/$name
 }
 
 fn install {
@@ -171,7 +172,7 @@ fn install {
 		echo Downloading $fonts($i) into $i.zip
 		curl -L -o $i.zip $fonts($i)
 		echo Uncompressing $i.zip
-		/usr/bin/unzip $i.zip
+		/usr/bin/unzip -j $i.zip
 		echo Copying into $name
 		copy $name
 		echo Remove $i.zip
@@ -179,7 +180,7 @@ fn install {
 	}
 }
 
-ALL=(juliamono nimbus minion atkinson ibarra overpass adobe copper input charter terminus computermodern ibm bitter fira gofont noto lora orbitron montserrat sun dec ibm3270)
+ALL=(nerdfonts juliamono nimbus minion atkinson ibarra overpass adobe copper input charter terminus computermodern ibm bitter fira gofont noto lora orbitron montserrat sun dec ibm3270)
 
 if(test $#* -eq 0 ) {
 	echo Select all or one of the following fonts:
