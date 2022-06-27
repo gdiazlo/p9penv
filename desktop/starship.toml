@@ -1,0 +1,313 @@
+
+[aws]
+style = ""
+symbol = "☁ "
+
+[azure]
+symbol = "☁ "
+style = " "
+
+[battery]
+full_symbol = "⊙ "
+charging_symbol = "⊕ "
+discharging_symbol = "⊖ "
+
+[[battery.display]]
+threshold = 10
+style = ""
+
+[buf]
+symbol = "buf "
+style = ""
+
+[c]
+style = ""
+
+[character]
+success_symbol = "➜ "
+error_symbol = "✗ "
+
+[cmake]
+style = ""
+
+[cobol]
+style = ""
+
+[cmd_duration]
+style = ""
+
+[conda]
+style = ""
+symbol = "𝕔"
+
+[container]
+style = ""
+
+[crystal]
+style = ""
+symbol = "⌬ "
+
+[daml]
+style = ""
+
+[dart]
+style = ""
+symbol = "𝕕 "
+
+[deno]
+style = ""
+symbol = "deno "
+
+
+[directory]
+style = ""
+truncation_length = 8
+truncation_symbol = "…/"
+read_only = "🔒"
+home_symbol = "~"
+
+[docker_context]
+style = ""
+symbol = "❃ "
+
+[dotnet]
+symbol = "🥅 "
+style = ""
+
+[elixir]
+symbol = "🔮 "
+style = ""
+
+[elm]
+symbol = "🌳 "
+style = ""
+
+[env_var]
+style = ""
+
+[erlang]
+symbol = " "
+style = ""
+
+[fill]
+symbol = "-"
+style = ""
+
+[gcloud]
+symbol = "☁ "
+style = ""
+
+[git_branch]
+style = ""
+symbol = "⌥ "
+
+[git_commit]
+style = ""
+commit_hash_length = 4
+tag_symbol = "⌂ "
+
+[git_state]
+style = ""
+cherry_pick = "[⎇ PICKING]"
+
+[git_metrics]
+added_style = ""
+deleted_style = ""
+
+[git_status]
+style = ""
+conflicted = "🏳"
+ahead = "🏎💨"
+behind = "😰"
+diverged = "😵"
+up_to_date = "✓"
+untracked = "🤷"
+stashed = "📦"
+modified = "📝"
+staged = '++\($count\)'
+renamed = "👅"
+deleted = "🗑"
+
+[golang]
+style = ""
+format = "via Go $version "
+
+[haskell]
+symbol = "λ "
+style = ""
+
+[helm]
+symbol = "⎈ "
+style = ""
+
+[hostname]
+ssh_symbol = "☏ "
+style = ""
+
+[java]
+style = ""
+symbol = "☆ "
+
+[jobs]
+style = ""
+symbol = "+ "
+number_threshold = 4
+symbol_threshold = 0
+
+[julia]
+style = ""
+symbol = "ஃ "
+
+[kotlin]
+style = ""
+symbol = "🅺 "
+
+[kubernetes]
+style = ""
+symbol = "☸ "
+
+[localip]
+ssh_only = false
+style = ""
+disabled = true
+
+[lua]
+symbol = "☾ "
+style = ""
+
+[memory_usage]
+symbol = "∃"
+style = ""
+
+[hg_branch]
+symbol = "⌥ "
+style = ""
+
+[nim]
+symbol = "♛ "
+style = ""
+
+[nix_shell]
+symbol = "❄ "
+style = ""
+
+[nodejs]
+symbol = "♻ "
+style = ""
+
+[ocaml]
+symbol = "⋌ "
+style = ""
+
+[openstack]
+style = ""
+symbol = "☁ "
+
+[package]
+style = ""
+symbol = "❏ "
+
+[perl]
+style = ""
+symbol = "perl "
+
+[php]
+style = ""
+symbol = "php "
+
+[pulumi]
+style = ""
+symbol = "pulumi "
+
+[purescript]
+style = ""
+symbol = "<=> "
+
+[python]
+style = ""
+symbol = "python "
+
+[rlang]
+style = ""
+symbol = "R "
+
+[red]
+style = ""
+symbol = "red "
+
+[ruby]
+style = ""
+symbol = "♢ "
+
+[rust]
+style = ""
+symbol = "rust "
+
+[scala]
+style = ""
+symbol = "scala "
+
+[shell]
+style = "shell "
+
+[shlvl]
+style = ""
+symbol = "shlvl "
+
+[singularity]
+style = ""
+
+[spack]
+style = ""
+symbol = "spack "
+
+[status]
+style = ""
+symbol = "✖ "
+success_symbol = "✔ "
+format = '[\[$symbol$common_meaning$signal_name$maybe_int\]]($style) '
+map_symbol = true
+disabled = false
+
+[sudo]
+style = ""
+symbol = "✚ "
+disabled = false
+
+[swift]
+style = ""
+symbol = "swift "
+
+[terraform]
+style = ""
+symbol = "🌑 "
+
+[time]
+style = ""
+disabled = true
+format = '[\[ $time \]]($style) '
+time_format = "%T"
+
+[username]
+style_user = ""
+style_root = ""
+format = "$user "
+disabled = true
+show_always = true
+
+[vagrant]
+style = ""
+symbol = "⍱ "
+
+[vlang]
+style = ""
+symbol = "V "
+
+[vcsh]
+style = ""
+symbol = ""
+
+[zig]
+style = ""
+symbol = "⚡ "
+
