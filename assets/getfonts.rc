@@ -9,6 +9,11 @@ case 'Linux'
 	DEST=$home/.local/share/fonts
 }
 
+fn huerta {
+	fonts=('https://www.huertatipografica.com/free_download/132' 'https://www.huertatipografica.com/free_download/23' 'https://www.huertatipografica.com/free_download/164' 'https://www.huertatipografica.com/free_download/144' 'https://www.huertatipografica.com/free_download/45' 'https://www.huertatipografica.com/free_download/142')
+	install 'huerta' $fonts
+}
+
 fn nerdfonts {
 	fonts=('https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Go-Mono.zip' 'https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/3270.zip' 'https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/BigBlueTerminal.zip' 'https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraMono.zip' 'https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Monoid.zip' 'https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/SourceCodePro.zip' 'https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Terminus.zip')
 	install 'nerdfonts' $fonts
@@ -180,7 +185,7 @@ fn install {
 	}
 }
 
-ALL=(nerdfonts juliamono nimbus minion atkinson ibarra overpass adobe copper input charter terminus computermodern ibm bitter fira gofont noto lora orbitron montserrat sun dec ibm3270)
+ALL=(huerta nerdfonts juliamono nimbus minion atkinson ibarra overpass adobe copper input charter terminus computermodern ibm bitter fira gofont noto lora orbitron montserrat sun dec ibm3270)
 
 if(test $#* -eq 0 ) {
 	echo Select all or one of the following fonts:
