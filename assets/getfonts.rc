@@ -55,9 +55,9 @@ fn adobe {
 
 # Opensource font Copper Hewwit by Chester Jenkins
 # https://www.cooperhewitt.org/open-source-at-cooper-hewitt/cooper-hewitt-the-typeface-by-chester-jenkins/
-fn copper {
+fn cooper {
 	fonts=('https://uh8yh30l48rpize52xh0q1o6i-wpengine.netdna-ssl.com/wp-content/uploads/fonts/CooperHewitt-OTF-public.zip')
-	install 'copper' $fonts
+	install 'cooper' $fonts
 }
 
 # Opensource font by David Johnatan Ross
@@ -185,7 +185,7 @@ fn install {
 	}
 }
 
-ALL=(huerta nerdfonts juliamono nimbus minion atkinson ibarra overpass adobe copper input charter terminus computermodern ibm bitter fira gofont noto lora orbitron montserrat sun dec ibm3270)
+ALL=(huerta nerdfonts juliamono nimbus minion atkinson ibarra overpass adobe cooper input charter terminus computermodern ibm bitter fira gofont noto lora orbitron montserrat sun dec ibm3270)
 
 if(test $#* -eq 0 ) {
 	echo Select all or one of the following fonts:
