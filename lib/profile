@@ -20,6 +20,7 @@ fn nssetup {
 # set plan9 environment
 PLAN9=/usr/local/plan9
 P9PENV=$home/.local/p9penv
+. $PLAN9/lib/acme.rc
 
 # mk max concurrent procs
 nproc=16
@@ -120,25 +121,27 @@ if(test -f $SSH_ENV) {
 if not {
     startsshagent
 }
-ps1='
-➜ '
+
+prompt='➜ '
+nl='
+'
+
+fn title {
+	to=$TERM
+	TERM=xterm
+	if ( test -x /usr/local/bin/starship) {
+		text=`{starship prompt -P `{pwd} }
+	}
+	if not {
+		text=`{pwd}
+	}
+	TERM=$to
+	label $"text
+}
+
 # set cd to execute awd when in acme win
 fn cd  {
-        builtin cd $* &&
-        switch($TERM) {
-		case xterm-256color
-		case dumb
-			if ( test -x /usr/local/bin/starship) {
-				TERM=xterm
-				text=`{starship prompt -P `{pwd} }
-				TERM=dumb
-			}
-			if not {
-				text=`{pwd}
-			}
-			prompt=( $"text^$ps1  '➜')
-			awd
-       }
+        builtin cd $* && title
 }
 
 
