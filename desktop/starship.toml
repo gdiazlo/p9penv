@@ -1,4 +1,9 @@
 
+add_newline = false
+
+[line_break]
+disabled = true
+
 [aws]
 style = ""
 symbol = "☁ "
@@ -61,10 +66,10 @@ symbol = "deno "
 
 [directory]
 style = ""
-truncation_length = 8
-truncation_symbol = "…/"
 read_only = "🔒"
+read_only_style = ""
 home_symbol = "~"
+truncation_length = 3
 
 [docker_context]
 style = ""
