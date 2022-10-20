@@ -26,7 +26,7 @@ P9PENV=$home/.local/p9penv
 nproc=16
 
 # set golang environment
-GOVERSION=1.18.3
+GOVERSION=1.19.2
 GOROOT=$home/.local/go/$GOVERSION
 GOPATH=$home/go
 GO111MODULE=on
@@ -219,7 +219,7 @@ fn p9p_session {
 
 # default font is dejavu sans
 # _set_font default 8 16
-_set_font dejavu 12 12
+_set_font fira 12 24
 
 # always set up the p9p session,
 # this will start services only if there are not started yet

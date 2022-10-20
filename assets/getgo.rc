@@ -2,16 +2,23 @@
 
 os=`{uname | 9 tr [A-Z] [a-z]}
 
-GOVERSION=1.18.3
-
-DEST=$HOME/.local/go/
+GOVERSION=1.19.2
+DEST=$home/.local/go/
 GOROOT=$DEST'/'$GOVERSION
+URL=https://go.dev/dl/go$GOVERSION.$os-amd64.tar.gz
+
+switch($os) {
+case 'darwin'
+	URL=https://go.dev/dl/go$GOVERSION.darwin-arm64.tar.gz
+}
+
 if(test ! -d $GOROOT) {
 	echo Installing Go $GOVERSION
 	mkdir -p $DEST
 	cd $DEST
-	curl -L 'https://go.dev/dl/go'$GOVERSION'.'$os'-amd64.tar.gz' | 9 gunzip | 9 tar x
+	curl -L $URL | 9 gunzip | 9 tar x
 	mv go $GOVERSION
+	exit
 }
 
 path=($GOROOT/bin $path)
