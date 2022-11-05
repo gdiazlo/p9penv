@@ -2,7 +2,7 @@
 
 os=`{uname | 9 tr [A-Z] [a-z]}
 
-GOVERSION=1.19.2
+GOVERSION=1.19.3
 DEST=$home/.local/go/
 GOROOT=$DEST'/'$GOVERSION
 URL=https://go.dev/dl/go$GOVERSION.$os-amd64.tar.gz
