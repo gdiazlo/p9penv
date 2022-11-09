@@ -63,7 +63,7 @@ fn cooper {
 # Opensource font by David Johnatan Ross
 # https://input.fontbureau.com/
 fn input {
-	fonts=('http://input.fontbureau.com/build/?fontSelection=whole&a=0&g=ss&i=0&l=0&zero=0&asterisk=0&braces=0&preset=default&line-height=1.4&accept=I+do&email=')
+	fonts=('https://input.djr.com/build/?fontSelection=whole&a=0&g=0&i=0&l=0&zero=0&asterisk=0&braces=0&preset=default&line-height=1.2&accept=I+do&email=')
 	install 'input' $fonts
 }
 
