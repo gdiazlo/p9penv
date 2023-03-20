@@ -23,35 +23,13 @@ P9PENV=$home/.local/p9penv
 . $PLAN9/lib/acme.rc
 
 # mk max concurrent procs
-nproc=16
+nproc=8
 
 # set golang environment
-GOVERSION=1.19.3
+GOVERSION=1.20.2
 GOROOT=$home/.local/go/$GOVERSION
 GOPATH=$home/go
 GO111MODULE=on
-
-# set java environmant
-JAVA_VERSION=11.0.11
-JAVA_HOME=$home/.local/java/jdk/$JAVA_VERSION
-
-# set scala environment
-SBT_VERSION=1.5.2
-SBT_HOME=$home/.local/java/sbt/$SBT_VERSION
-
-# set Maven Home
-MVN_VERSION=3.8.1
-MVN_HOME=$home/.local/java/mvn/$MVN_VERSION
-
-# set rust environment
-CARGO=$home/.cargo
-
-# set ocaml environment
-OCAML=$home/.opam/4.11.1
-OPAM_SWITCH_PREFIX=$OCAML
-CAML_LD_LIBRARY_PATH=$home/.opam/4.11.1/lib/stublibs:$home/.opam/4.11.1/lib/ocaml/stublibs:$home/.opam/4.11.1/lib/ocaml
-OCAML_TOPLEVEL_PATH=$home/.opam/4.11.1/lib/toplevel
-MANPATH=:$home/.opam/4.11.1/man
 
 # set acme environment
 usebigarrow=1
@@ -71,8 +49,9 @@ fn tb { nc termbin.com 9999 }
 # Prepare PATH environment
 #   append custom tools at the end of the current path
 #   prepend ~/bin and goroot into path to avoid using gcc-go in system path by default
-pathappend=($P9PENV/mail $GOPATH/bin $PLAN9/bin/upas $JAVA_HOME/bin $SBT_HOME/bin $MVN_HOME/bin  $CARGO/bin)
-pathprepend=($P9PENV/bin $PLAN9/bin $home/.local/bin $GOROOT/bin $OCAML/bin)
+pathappend=($P9PENV/mail $GOPATH/bin $PLAN9/bin/upas)
+pathprepend=($P9PENV/bin $PLAN9/bin $home/.local/bin $GOROOT/bin)
+
 path=($pathprepend $path $pathappend)
 
 # check if something is not there
@@ -127,17 +106,11 @@ nl='
 '
 
 fn title {
-	to=$TERM
-	TERM=xterm
-	if ( test -x /usr/local/bin/starship) {
-		text=`{starship prompt -P `{pwd} }
-	}
-	if not {
-		text=`{pwd}
-	}
-	TERM=$to
+	text=`{pwd}
 	label $"text
 }
+
+
 
 # set cd to execute awd when in acme win
 fn cd  {
@@ -160,36 +133,9 @@ fn _set_font {
 	case go
 		mono='GoMono'
 		sans='GoRegular'
-	case cmu
-		mono='CMUTypewriter-Regular'
-		sans='CMUSansSerif-Regular'
-	case ibm
-		mono='IBMPlexMono'
-		sans='IBMPlexSans'
-	case fira
-		mono='FiraMono-Regular'
-		sans='FiraSans-Regular'
-	case terminus
-		mono='TerminusTTF'
-		sans='TerminusTTF'
-	case book
-		mono='GoMono'
-		sans='Bitter-Regular'
-	case ibarra
-		mono='CMUTypewriter-Regular'
-		sans='IbarraRealNova-SemiBold'
-	case input-condensed
-		mono='InputMonoCondensed-Regular'
-		sans='InputSansCondensed-Regular'
 	case input
 		mono='InputMono-Regular'
 		sans='InputSans-Regular'
-	case noto
-		mono='NotoSansMono-Regular'
-		sans='NotoSans-Regular'
-	case adobe
-		mono='SourceCodePro-Regular'
-		sans='SourceSansPro-Regular'
 	case *
 		mono='DejaVuSansMono'
 		sans='DejaVuSans'
@@ -219,7 +165,7 @@ fn p9p_session {
 
 # default font is dejavu sans
 # _set_font default 8 16
-_set_font fira 12 24
+_set_font input 12 24
 
 # always set up the p9p session,
 # this will start services only if there are not started yet
