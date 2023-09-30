@@ -50,7 +50,7 @@ fn tb { nc termbin.com 9999 }
 #   append custom tools at the end of the current path
 #   prepend ~/bin and goroot into path to avoid using gcc-go in system path by default
 pathappend=($P9PENV/mail $GOPATH/bin $PLAN9/bin/upas)
-pathprepend=($P9PENV/bin $PLAN9/bin $home/.local/bin $GOROOT/bin)
+pathprepend=($P9PENV/bin $PLAN9/bin $home/.local/bin $GOROOT/bin /opt/homebrew/bin)
 
 path=($pathprepend $path $pathappend)
 
@@ -110,8 +110,6 @@ fn title {
 	label $"text
 }
 
-
-
 # set cd to execute awd when in acme win
 fn cd  {
         builtin cd $* && title
@@ -127,15 +125,18 @@ fn _set_font {
 	shift
 
 	switch($family) {
-	case dejavu
-		mono='DejaVuSansMono'
-		sans='DejaVuSans'
 	case go
 		mono='GoMono'
 		sans='GoRegular'
 	case input
 		mono='InputMono-Regular'
 		sans='InputSans-Regular'
+	case iosevka
+		mono='Iosevka'
+		sans='Iosevka-Aile'
+	case sf
+		mono='SFMono-Regular'
+		sans='SFProDisplay-Regular'
 	case *
 		mono='DejaVuSansMono'
 		sans='DejaVuSans'
@@ -165,7 +166,7 @@ fn p9p_session {
 
 # default font is dejavu sans
 # _set_font default 8 16
-_set_font input 12 24
+_set_font iosevka  8 16
 
 # always set up the p9p session,
 # this will start services only if there are not started yet
