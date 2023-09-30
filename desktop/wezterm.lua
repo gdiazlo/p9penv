@@ -1,6 +1,6 @@
 local wezterm = require 'wezterm';
 return {
-	font = wezterm.font("IBM Plex Mono"),
+	font = wezterm.font("Iosevka"),
 	font_size = 13,
 	color_scheme = "AtomOneLight",
 	use_ime = true,
