@@ -9,6 +9,13 @@ case 'Linux'
 	DEST=$home/.local/share/fonts
 }
 
+# Free Font derived form Lucida to be included with Go programming language
+# https://blog.golang.org/go-fonts
+fn gofont {
+	git clone https://go.googlesource.com/image
+	mkdir -p $DEST/gofont
+	cp image/font/gofont/ttfs/* $DEST/gofont
+}
 
 fn iosevka {
 	fonts=('https://github.com/be5invis/Iosevka/releases/download/v26.3.3/ttf-iosevka-26.3.3.zip' 'https://github.com/be5invis/Iosevka/releases/download/v26.3.3/ttf-iosevka-term-26.3.3.zip' 'https://github.com/be5invis/Iosevka/releases/download/v26.3.3/ttf-iosevka-slab-26.3.3.zip' 'https://github.com/be5invis/Iosevka/releases/download/v26.3.3/ttf-iosevka-etoile-26.3.3.zip' 'https://github.com/be5invis/Iosevka/releases/download/v26.3.3/ttf-iosevka-fixed-26.3.3.zip' 'https://github.com/be5invis/Iosevka/releases/download/v26.3.3/ttf-iosevka-aile-26.3.3.zip' )
@@ -117,13 +124,6 @@ fn fira {
 	fonts=('https://github.com/mozilla/Fira/archive/4.202.zip')
 	install 'fira' $fonts
 }
-# Free Font derived form Lucida to be included with Go programming language
-# https://blog.golang.org/go-fonts
-fn gofont {
-	fonts=('https://go.googlesource.com/image/+archive/master/font/gofont/ttfs.tar.gz')
-	curl -L -o gofont.tar.gz $fonts(1)
-	copy 'gofont'
-}
 
 # Open source fonts from Google
 fn noto {
@@ -191,7 +191,7 @@ fn install {
 	}
 }
 
-ALL=(iosevka huerta nerdfonts juliamono nimbus minion atkinson ibarra overpass adobe cooper input charter terminus computermodern ibm bitter fira gofont noto lora orbitron montserrat sun dec ibm3270)
+ALL=(gofont iosevka huerta nerdfonts juliamono nimbus minion atkinson ibarra overpass adobe cooper input charter terminus computermodern ibm bitter fira gofont noto lora orbitron montserrat sun dec ibm3270)
 
 if(test $#* -eq 0 ) {
 	echo Select all or one of the following fonts:
