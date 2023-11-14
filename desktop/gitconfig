@@ -7,6 +7,7 @@
 
 [core]
 	pager = 9 p
+	excludesfile = /Users/gdiazlo/.gitignore_global
 
 [color]
 	ui = false
@@ -26,12 +27,22 @@
 	pretty = "%h - %an, %ar : %s"
 
 [user]
-	name = Gabriel Diaz
+	name = Gabriel Díaz
 	email = gdiaz@qswarm.com
 	signingkey = 0413D4D41C7F7267D5F7BF9EE2F33E24C7042D30
+
 [credential "https://github.com"]
 	helper = !gh auth git-credential
+
 [commit]
 	gpgsign = true
+	template = /Users/gdiazlo/.stCommitMsg
+
 [gpg]
 	program = gpg
+
+[sendemail]
+	smtpserver = mail.migadu.com
+	smtpuser = gdiaz@qswarm.com
+	smtpencryption = ssl
+	smtpserverport = 465
