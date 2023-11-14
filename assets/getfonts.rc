@@ -9,6 +9,13 @@ case 'Linux'
 	DEST=$home/.local/share/fonts
 }
 
+
+# https://github.com/githubnext/monaspace/releases/tag/v1.000
+fn githubnext {
+	fonts=('https://github.com/githubnext/monaspace/releases/download/v1.000/monaspace-v1.000.zip')
+	install 'next' $fonts
+}
+
 # Free Font derived form Lucida to be included with Go programming language
 # https://blog.golang.org/go-fonts
 fn gofont {
@@ -191,7 +198,7 @@ fn install {
 	}
 }
 
-ALL=(gofont iosevka huerta nerdfonts juliamono nimbus minion atkinson ibarra overpass adobe cooper input charter terminus computermodern ibm bitter fira gofont noto lora orbitron montserrat sun dec ibm3270)
+ALL=(githubnext gofont iosevka huerta nerdfonts juliamono nimbus minion atkinson ibarra overpass adobe cooper input charter terminus computermodern ibm bitter fira gofont noto lora orbitron montserrat sun dec ibm3270)
 
 if(test $#* -eq 0 ) {
 	echo Select all or one of the following fonts:
