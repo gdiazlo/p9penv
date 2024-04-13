@@ -36,10 +36,9 @@ go install rsc.io/mailgun/cmd/mailgun-sendmail@latest
 
 # lang server
 go install golang.org/x/tools/gopls@latest
-go install github.com/fhs/acme-lsp/cmd/acme-lsp@latest
-go install github.com/fhs/acme-lsp/cmd/L@latest
-go install github.com/fhs/acme-lsp/cmd/acmefocused@latest
-
+go install 9fans.net/acme-lsp/cmd/acme-lsp@latest
+go install 9fans.net/acme-lsp/cmd/L@latest
 
 # get ivy
 go install robpike.io/ivy@latest
+
