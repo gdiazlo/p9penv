@@ -1,0 +1,4 @@
+#!/usr/bin/env -S ocaml unix.cma -I +unix
+
+let () =
+ Printf.printf "Hello, world!\n"
